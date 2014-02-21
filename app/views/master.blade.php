@@ -38,9 +38,9 @@
 <body>
 <div id="nav">
     <ul>
+        <li><a href="{{ URL::TO('/') }}">home</a></li>
         @if(Auth::check())
-        <li>welcome {{ Auth::user()->username  }}</li>
-        <li><a href="{{ URL::TO('logout') }}">logout</a></li>
+        <li><a href="{{ URL::TO('logout') }}">logout ({{ Auth::user()->username  }})</a></li>
         @else
         <li><a href="{{ URL::TO('login') }}">Login</a></li>
         @endif
