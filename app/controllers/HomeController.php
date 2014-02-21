@@ -74,4 +74,9 @@ class HomeController extends BaseController {
         return Redirect::to('login'); // redirect the user to the login screen
     }
 
+    public function showUserInfo(){
+        return View::make('admin');
+
+    }
+
 }

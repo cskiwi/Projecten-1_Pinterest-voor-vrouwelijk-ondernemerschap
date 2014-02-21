@@ -13,17 +13,20 @@
             color: #999;
         }
 
-        #paging ul, #nav ul {
+        #paging ul, #nav ul, #admin ul{
             padding: 0;
             margin: 0;
             display: inline;
             list-style-type:none;
         }
 
-        #paging li, #nav ul {
+        #paging li, #nav li {
             padding: 1px;
             display: inline;
         }
+        #nav li:before { content: "«" }
+        #nav li:after { content: "»" }
+
         a, a:visited {
             text-decoration:none;
             color: #000000;
@@ -40,7 +43,8 @@
     <ul>
         <li><a href="{{ URL::TO('/') }}">home</a></li>
         @if(Auth::check())
-        <li><a href="{{ URL::TO('logout') }}">logout ({{ Auth::user()->username  }})</a></li>
+        <li><a href="{{ URL::TO('logout') }}">logout</a></li>
+        <li><a href="{{ URL::TO('admin') }}">{{ Auth::user()->username  }}</a></li>
         @else
         <li><a href="{{ URL::TO('login') }}">Login</a></li>
         @endif

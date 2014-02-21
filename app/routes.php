@@ -25,3 +25,6 @@ Route::post('login', array('uses' => 'HomeController@doLogin'));
 
 // route to logout
 Route::get('logout', array('uses' => 'HomeController@doLogout'));
+
+// user controlpanel
+Route::get('admin', array('before' => 'auth', 'uses' => 'HomeController@showUserInfo'));
