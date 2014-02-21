@@ -13,4 +13,4 @@
 
 
 Route::get('/', 'HomeController@showWelcome');
-Route::get('users', 'UserControllerController@showUsers');
+Route::get('users', 'UserController@showUsers');

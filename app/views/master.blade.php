@@ -12,19 +12,23 @@
             text-align:center;
             color: #999;
         }
-
-        .welcome {
-            width: 300px;
-            height: 200px;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            margin-left: -150px;
-            margin-top: -100px;
+        div {
+            width: 500px;
+        }
+        .paging ul {
+            padding: 0;
+            margin: 0;
+            display: inline;
+            list-style-type:none;
         }
 
+        .paging li {
+            padding: 1px;
+            display: inline;
+        }
         a, a:visited {
             text-decoration:none;
+            color: #000000;
         }
 
         h1 {
