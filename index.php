@@ -8,7 +8,7 @@ exit();
  * ====================
  * create the database defined in app/config/database.php
  *
- * type:
+ * type in cmd in root folder:
  * php artisan migrate
  * php db:seed
  *
