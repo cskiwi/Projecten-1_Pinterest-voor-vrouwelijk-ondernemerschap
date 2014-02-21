@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'test',
+			'database'  => 'pvvo',
 			'username'  => 'root',
 			'password'  => 'Azerty123',
 			'charset'   => 'utf8',

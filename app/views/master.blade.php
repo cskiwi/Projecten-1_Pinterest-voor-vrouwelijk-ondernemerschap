@@ -12,17 +12,15 @@
             text-align:center;
             color: #999;
         }
-        div {
-            width: 500px;
-        }
-        .paging ul {
+
+        #paging ul, #nav ul {
             padding: 0;
             margin: 0;
             display: inline;
             list-style-type:none;
         }
 
-        .paging li {
+        #paging li, #nav ul {
             padding: 1px;
             display: inline;
         }
@@ -38,6 +36,17 @@
     </style>
 </head>
 <body>
+<div id="nav">
+    <ul>
+        @if(Auth::check())
+        <li>welcome {{ Auth::user()->username  }}</li>
+        <li><a href="{{ URL::TO('logout') }}">logout</a></li>
+        @else
+        <li><a href="{{ URL::TO('login') }}">Login</a></li>
+        @endif
+    </ul>
+</div>
+
 @yield('content')
 </body>
 </html>
