@@ -11,5 +11,5 @@ users
 @endforeach
 </div>
 
-<div class="paging">Paging: {{ $users->links() }}</div>
+<div class="paging">{{ $users->links() }}</div>
 @stop
