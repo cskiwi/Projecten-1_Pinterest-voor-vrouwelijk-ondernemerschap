@@ -56,6 +56,104 @@ class UserTableSeeder extends Seeder
             'email'    => 'dummy@test.com',
             'password' => Hash::make('dummy1'),
         ));
+
+        User::create(array(
+            'name'     => 'Dummy User 6',
+            'username' => 'd6',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 8',
+            'username' => 'd7',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 9',
+            'username' => 'd9',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 10',
+            'username' => 'd10',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 11',
+            'username' => 'd11',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 12',
+            'username' => 'd12',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 13',
+            'username' => 'd13',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 14',
+            'username' => 'd15',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 16',
+            'username' => 'd16',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 17',
+            'username' => 'd17',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 18',
+            'username' => 'd18',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 19',
+            'username' => 'd19',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 20',
+            'username' => 'd20',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
+
+        User::create(array(
+            'name'     => 'Dummy User 21',
+            'username' => 'd21',
+            'email'    => 'dummy@test.com',
+            'password' => Hash::make('dummy1'),
+        ));
     }
 
 }
