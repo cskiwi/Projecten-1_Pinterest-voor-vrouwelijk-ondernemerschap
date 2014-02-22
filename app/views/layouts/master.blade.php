@@ -15,8 +15,8 @@
         <li><a href="{{ URL::TO('admin/logout') }}">logout</a></li>
         <li><a href="{{ URL::TO('admin/profile') }}">{{ Auth::user()->name  }} ({{ Auth::user()->username  }})</a></li>
         @else
-        @if(!Request::is('admin/login'))
-            <li><a href="{{ URL::TO('admin/login') }}">Login</a></li>
+        @if(!(Request::is('admin/login') || Request::is('admin/register')))
+            <li><a href="{{ URL::TO('admin/login') }}">Login</a> or <a href="{{ URL::TO('admin/register') }}">register</a></li>
         @endif
         @endif
     </ul>
