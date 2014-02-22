@@ -1,5 +1,3 @@
-// app/database/seeds/UserTableSeeder.php
-
 <?php
 
 class UserTableSeeder extends Seeder

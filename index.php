@@ -16,6 +16,6 @@ exit();
  * create the database defined in app/config/database.php
  *
  * type in cmd in root folder:
- * 'php artisan migrate --seed'
+ * 'php artisan migrate:refresh --seed'
  *
  */

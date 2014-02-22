@@ -5,7 +5,7 @@ Login
 @stop
 
 @section('content')
-{{ Form::open(array('redirect' => 'admin/login')) }}
+{{ Form::open(array('url' => 'admin/login')) }}
 <h1>Login</h1>
 
 <!-- if there are login errors, show them here -->
@@ -28,5 +28,6 @@ Login
 {{ Form::close() }}
 
 Forgot password? <a href="{{ URL::TO('admin/password/remind') }}">Reset</a>
+Need an account? <a href="{{ URL::TO('admin/register') }}">sign up</a>
 
 @stop

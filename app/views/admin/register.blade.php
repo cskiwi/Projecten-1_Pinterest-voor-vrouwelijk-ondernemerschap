@@ -5,7 +5,7 @@ register
 @stop
 
 @section('content')
-{{ Form::open(array('redirect' => 'admin/register')) }}
+{{ Form::open(array('url' => 'admin/register')) }}
 
 <h1>Register</h1>
 
@@ -28,10 +28,10 @@ register
     {{ Form::text('email') }}</p>
 
 <p>{{ Form::label('password', 'Password') }}
-    {{ Form::text('password') }}</p>
+    {{ Form::password('password') }}</p>
 
 <p>{{ Form::label('password_confirmation', 'Password confirm') }}
-    {{ Form::text('password_confirmation') }}</p>
+    {{ Form::password('password_confirmation') }}</p>
 
 <p>{{ Form::submit('Submit') }}</p>
 

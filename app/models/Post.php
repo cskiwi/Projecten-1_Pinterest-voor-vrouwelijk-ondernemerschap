@@ -8,6 +8,13 @@ class Post extends Eloquent {
      * @var string
      */
     protected $table = 'posts';
+    protected $fillable = array('user_id','title', 'body');
 
     public $timestamps = true;
+    public function Boards() {
+        return $this->belongsToMany('Board', 'board_post');
+    }
+    public function User() {
+        return $this->belongsTo('User');
+    }
 }

@@ -8,7 +8,7 @@ Post overview
 <div>
     <ul>
         @foreach($posts as $post)
-        <li><a href="./posts/detail/{{$post->id}}">{{ $post->title }}</a></li>
+        <li><a href="{{ URL::TO('/posts/detail/'.$post->id) }}">{{ $post->title }}</a> by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}"> {{$post->user->name}}</a></li>
         @endforeach
     </ul>
 </div>

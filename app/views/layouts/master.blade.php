@@ -13,9 +13,11 @@
         <li><a href="{{ URL::TO('/') }}">home</a></li>
         @if(Auth::check())
         <li><a href="{{ URL::TO('admin/logout') }}">logout</a></li>
-        <li><a href="{{ URL::TO('admin/profile') }}">{{ Auth::user()->username  }}</a></li>
+        <li><a href="{{ URL::TO('admin/profile') }}">{{ Auth::user()->name  }} ({{ Auth::user()->username  }})</a></li>
         @else
-        <li><a href="{{ URL::TO('admin/login') }}">Login</a></li>
+        @if(!Request::is('admin/login'))
+            <li><a href="{{ URL::TO('admin/login') }}">Login</a></li>
+        @endif
         @endif
     </ul>
 </div>

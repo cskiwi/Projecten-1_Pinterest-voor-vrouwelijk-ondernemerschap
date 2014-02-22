@@ -1,5 +1,3 @@
-// app/database/seeds/PostTableSeeder.php
-
 <?php
 
 class PostTableSeeder extends Seeder
@@ -10,29 +8,34 @@ class PostTableSeeder extends Seeder
 
         DB::table('posts')->delete();
         Post::create(array(
-            'user_id' => 1,
-            'title' => 'How to be not boring',
-            'body'    => 'Do awesome stuff'
+            'id'        => 1,
+            'user_id'   => 1,
+            'title'     => 'How to be not boring',
+            'body'      => 'Do awesome stuff'
         ));
         Post::create(array(
-            'user_id' => 1,
-            'title' => 'How to be awesome',
-            'body'    => 'Do awesome stuff'
+            'id'        => 2,
+            'user_id'   => 1,
+            'title'     => 'How to be awesome',
+            'body'      => 'Do awesome stuff'
         ));
         Post::create(array(
-            'user_id' => 2,
-            'title' => 'How to be Glenn',
-            'body'    => 'Do awesome stuff'
+            'id'        => 3,
+            'user_id'   => 2,
+            'title'     => 'How to be Glenn',
+            'body'      => 'Do awesome stuff'
         ));
         Post::create(array(
-            'user_id' => 5,
-            'title' => 'asdasds',
-            'body'    => 'Do awesome stuff'
+            'id'        => 4,
+            'user_id'   => 5,
+            'title'     => 'asdasds',
+            'body'      => 'Do awesome stuff'
         ));
         Post::create(array(
-            'user_id' => 8,
-            'title' => 'Hasdasdg',
-            'body'    => 'Do awesome stuff'
+            'id'        => 5,
+            'user_id'   => 8,
+            'title'     => 'Hasdasdg',
+            'body'      => 'Do awesome stuff'
         ));
     }
 
