@@ -14,39 +14,7 @@
 // root route
 Route::get('/', 'HomeController@showWelcome');
 
-// route to show all users
-Route::get('users', 'UserController@showUsers');
 
-// route to show the login form
-Route::get('login', array('uses' => 'HomeController@showLogin'));
-
-// route to process the form
-Route::post('login', array('uses' => 'HomeController@doLogin'));
-
-// route to logout
-Route::get('logout', array('uses' => 'HomeController@doLogout'));
-
-// user controlpanel
-Route::get('admin', array('before' => 'auth', 'uses' => 'HomeController@showUserInfo'));
-
+Route::controller('users', 'UserController');
+Route::controller('admin', 'AdminController');
 Route::controller('password', 'RemindersController');
-/*
-Route::get('password/reset', array(
-    'uses' => 'PasswordController@remind',
-    'as' => 'password.remind'
-));
-
-Route::post('password/reset', array(
-    'uses' => 'PasswordController@request',
-    'as' => 'password.request'
-));
-
-Route::get('password/reset/{token}', array(
-    'uses' => 'PasswordController@reset',
-    'as' => 'password.reset'
-));
-
-Route::post('password/reset/{token}', array(
-    'uses' => 'PasswordController@update',
-    'as' => 'password.update'
-));//*/

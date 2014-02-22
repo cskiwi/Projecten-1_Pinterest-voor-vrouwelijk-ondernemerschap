@@ -5,7 +5,7 @@ Login
 @stop
 
 @section('content')
-{{ Form::open(array('url' => 'login')) }}
+{{ Form::open(array('url' => 'admin/login')) }}
 <h1>Login</h1>
 
 <!-- if there are login errors, show them here -->
