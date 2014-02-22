@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-users
+Post detail | {{ $post->title }}
 @stop
 
 @section('content')

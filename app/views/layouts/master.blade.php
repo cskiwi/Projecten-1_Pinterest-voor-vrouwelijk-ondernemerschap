@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     {{ HTML::style('css/common.css'); }}
     {{ HTML::script('js/testscript.js'); }}
+    <title>@yield('pagetitle')</title>
 </head>
 
 <body>

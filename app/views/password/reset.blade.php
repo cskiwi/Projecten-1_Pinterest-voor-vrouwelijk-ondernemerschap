@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('pagetitle')
+Set your new password
+@stop
+
 @section('content')
 <h1>Set Your New Password</h1>
 

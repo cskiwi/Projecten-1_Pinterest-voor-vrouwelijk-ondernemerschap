@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-users
+Post overview
 @stop
 
 @section('content')

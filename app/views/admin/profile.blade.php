@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-users
+User profile | {{ Auth::user()->name  }}
 @stop
 
 @section('content')
