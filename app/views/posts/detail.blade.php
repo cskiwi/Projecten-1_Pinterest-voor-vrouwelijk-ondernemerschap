@@ -20,6 +20,7 @@ Post detail | {{ $post->title }}
     </li>
     @endforeach
 
+        @if(Auth::check())
 
     <h2>Add to board</h2>
 
@@ -32,6 +33,8 @@ Post detail | {{ $post->title }}
         </select></p>
     <p>{{ Form::submit('Submit!') }}</p>
     {{ Form::close() }}
+        @endif
+    
 </div>
 
 @stop
