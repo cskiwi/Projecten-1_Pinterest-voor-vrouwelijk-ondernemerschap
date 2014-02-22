@@ -27,6 +27,6 @@ Login
 <p>{{ Form::submit('Submit!') }}</p>
 {{ Form::close() }}
 
-Forgot password?<a href="{{ URL::TO('admin/password/remind') }}">reset</a>
+Forgot password? <a href="{{ URL::TO('admin/password/remind') }}">Reset</a>
 
 @stop
