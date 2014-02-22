@@ -29,7 +29,8 @@ Route::get('logout', array('uses' => 'HomeController@doLogout'));
 // user controlpanel
 Route::get('admin', array('before' => 'auth', 'uses' => 'HomeController@showUserInfo'));
 
-
+Route::controller('password', 'RemindersController');
+/*
 Route::get('password/reset', array(
     'uses' => 'PasswordController@remind',
     'as' => 'password.remind'
@@ -48,4 +49,4 @@ Route::get('password/reset/{token}', array(
 Route::post('password/reset/{token}', array(
     'uses' => 'PasswordController@update',
     'as' => 'password.update'
-));
+));//*/

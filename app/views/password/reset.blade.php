@@ -1,28 +1,32 @@
-@extends('master')
-
-@section('pagetitle')
-users
-@stop
+@extends('layouts.master')
 
 @section('content')
+<h1>Set Your New Password</h1>
+
+{{ Form::open() }}
+<input type="hidden" name="token" value="{{ $token }}">
+
+<div>
+    {{ Form::label('email', 'Email Address:') }}
+    {{ Form::email('email') }}
+</div>
+
+<div>
+    {{ Form::label('password', 'Password:') }}
+    {{ Form::password('password') }}
+</div>
+
+<div>
+    {{ Form::label('password_confirmation', 'Password Confirmation:') }}
+    {{ Form::password('password_confirmation') }}
+</div>
+
+<div>
+    {{ Form::submit('Submit') }}
+</div>
+</form>
+
 @if (Session::has('error'))
-{{ trans(Session::get('reason')) }}
+<p style="color: red;">{{ Session::get('error') }}</p>
 @endif
-
-{{ Form::open(array('route' => array('password.update', $token))) }}
-
-<p>{{ Form::label('email', 'Email') }}
-    {{ Form::text('email') }}</p>
-
-<p>{{ Form::label('password', 'Password') }}
-    {{ Form::text('password') }}</p>
-
-<p>{{ Form::label('password_confirmation', 'Password confirm') }}
-    {{ Form::text('password_confirmation') }}</p>
-
-{{ Form::hidden('token', $token) }}
-
-<p>{{ Form::submit('Submit') }}</p>
-
-{{ Form::close() }}
 @stop

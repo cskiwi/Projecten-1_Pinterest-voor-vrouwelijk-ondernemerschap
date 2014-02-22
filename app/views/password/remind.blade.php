@@ -1,22 +1,22 @@
-@extends('master')
-
-@section('pagetitle')
-users
-@stop
+@extends('layouts.master')
 
 @section('content')
-@if (Session::has('error'))
-{{ trans(Session::get('reason')) }}
-@elseif (Session::has('success'))
-An email with the password reset has been sent.
-@endif
+<h1>Need to reset your password?</h1>
 
-{{ Form::open(array('route' => 'password.request')) }}
+{{ Form::open() }}
+<div>
+    {{ Form::label('email', 'Email Address:') }}
+    {{ Form::email('email') }}
+</div>
 
-<p>{{ Form::label('email', 'Email') }}
-    {{ Form::text('email') }}</p>
-
-<p>{{ Form::submit('Submit') }}</p>
-
+<div>
+    {{ Form::submit('Reset') }}
+</div>
 {{ Form::close() }}
+
+@if (Session::has('error'))
+<p style="color: red;">{{ Session::get('error') }}</p>
+@elseif (Session::has('status'))
+<p>{{ Session::get('status') }}</p>
+@endif
 @stop
