@@ -16,5 +16,6 @@ Route::get('/', 'HomeController@showWelcome');
 
 
 Route::controller('users', 'UserController');
+Route::controller('posts', 'PostController');
 Route::controller('admin', 'AdminController');
 Route::controller('password', 'RemindersController');
