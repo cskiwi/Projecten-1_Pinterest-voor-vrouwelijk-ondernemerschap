@@ -17,7 +17,11 @@ class DatabaseSeeder extends Seeder {
         $this->call('BoardTableSeeder');
         $this->call('Board_postTableSeeder');
 
+		$this->call('CommentsTableSeeder');
+		$this->call('FavoritesTableSeeder');
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-	}
+
+    }
 
 }

@@ -17,4 +17,10 @@ class Post extends Eloquent {
     public function User() {
         return $this->belongsTo('User');
     }
+    public function Comments(){
+        return $this->hasMany('Comment');
+    }
+    public function Favorites(){
+        return $this->hasMany('Favorite');
+    }
 }
