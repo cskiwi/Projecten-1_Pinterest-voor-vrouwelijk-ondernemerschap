@@ -1,9 +1,18 @@
 <?php
-
+/**
+ * Class AdminController
+ */
 class AdminController extends BaseController {
+    /**
+     *
+     */
     public function getIndex(){
 
     }
+
+    /**
+     *
+     */
     public function getLogin()
     {
         // show the form
@@ -11,6 +20,9 @@ class AdminController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     public function postLogin()
     {
 // validate the info, create rules for the inputs
@@ -21,6 +33,7 @@ class AdminController extends BaseController {
 
         // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
+
 
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
@@ -36,7 +49,7 @@ class AdminController extends BaseController {
             );
 
             // attempt to do the login
-            if (Auth::attempt($userdata)) {
+            if (Auth::attempt($userdata, true, true)) {
 
                 // validation successful!
                 // redirect them to the secure section or whatever
@@ -53,6 +66,9 @@ class AdminController extends BaseController {
         }
     }
 
+    /**
+     *
+     */
     public function getRegister()
     {
         // show the form
@@ -60,6 +76,9 @@ class AdminController extends BaseController {
     }
 
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postRegister(){
         $rules = array(
             'name' => 'Required|Min:3|Max:32|alpha_spaces',
@@ -79,14 +98,18 @@ class AdminController extends BaseController {
                 ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
         } else {
             $data = Input::only(array('name','username', 'password', 'email'));
-            $data['password'] = Hash::make( $data['password']);
+            $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
-            Auth::login($user);
+            Auth::login($user, true);
             return Redirect::to('admin/profile');
 
         }
 
     }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getLogout()
     {
         Auth::logout(); // log the user out of our application
@@ -94,6 +117,9 @@ class AdminController extends BaseController {
     }
 
 
+    /**
+     *
+     */
     public function getProfile(){
         return View::make('admin.profile');
 

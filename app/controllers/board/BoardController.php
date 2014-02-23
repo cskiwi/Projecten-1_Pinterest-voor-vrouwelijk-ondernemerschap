@@ -1,11 +1,22 @@
 <?php
 
+/**
+ * Class BoardController
+ */
 class BoardController extends BaseController {
+    /**
+     * @return mixed
+     */
     public function getIndex()
     {
         $boards = Board::paginate(5);
         return View::make('boards.overview')->with('boards', $boards);
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getDetail($id)
     {
         $board = Board::find($id);
@@ -14,6 +25,9 @@ class BoardController extends BaseController {
         return View::make('boards.detail', array('board' => $board, 'posts' => $posts));
     }
 
+    /**
+     * @return mixed
+     */
     public function postAdd(){
         if (Auth::check()){
             $rules = array(
@@ -39,6 +53,9 @@ class BoardController extends BaseController {
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getCreate(){
         return View::make('boards.create');
     }

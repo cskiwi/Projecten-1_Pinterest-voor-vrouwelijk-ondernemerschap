@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/',
+	'url' => 'http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/',
 
 	/*
 	|--------------------------------------------------------------------------
