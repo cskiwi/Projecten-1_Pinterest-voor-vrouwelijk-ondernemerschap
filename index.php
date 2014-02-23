@@ -3,17 +3,22 @@ header('location:./public');
 exit();
 
 /**
- * ====================
+ *
+ * ====================================
+ * Installing database
+ * ====================================
+ * create the database defined in app/config/database.php
+ *
+ * ====================================
  * Setup database
- * ====================
+ * ====================================
  * Run 'composer install' in root directory
  *
  *
  *
- * ====================
- * Setup database
- * ====================
- * create the database defined in app/config/database.php
+ * ====================================
+ * Update database to newer version
+ * ====================================
  *
  * type in cmd in root folder
  * 'php artisan migrate:refresh --seed' 
