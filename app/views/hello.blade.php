@@ -31,6 +31,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					<h4 class="modal-title">Login to your account</h4>
 				</div>
+				
 				{{ Form::open(array('url' => 'admin/login', 'class'=>'form', 'role' => 'form')) }}
 				<div class="modal-body">
 					<div class="form-group">
@@ -48,7 +49,7 @@
 					
 					<div class="text-center">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Login</button>
+						{{ Form::submit('Login', array('class' => ' btn btn-primary')) }}
 					</div>
 					
 				</div>
