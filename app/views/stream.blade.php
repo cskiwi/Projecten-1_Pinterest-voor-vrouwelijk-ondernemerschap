@@ -42,4 +42,38 @@
 	</nav>
 	
 </div>
+
+<div class="well">
+	<div class="container">
+		
+		<div class="row">
+		
+			<div class="col-md-4">
+				<div class="panel panel-default">
+					<div class="panel-heading">Boards you are following</div>
+					<div class="list-group">
+						<a href="#" class="list-group-item">
+							Cras justo odio
+						</a>
+						<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+						<a href="#" class="list-group-item">Morbi leo risus</a>
+						<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+						<a href="#" class="list-group-item">Vestibulum at eros</a>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-8">
+				<div class="panel panel-default">
+				  <div class="panel-heading">Panel heading without title</div>
+				  <div class="panel-body">
+					Panel content
+				  </div>
+				</div>
+			</div>
+			
+		</div>
+	
+	</div>
+</div>
 @stop

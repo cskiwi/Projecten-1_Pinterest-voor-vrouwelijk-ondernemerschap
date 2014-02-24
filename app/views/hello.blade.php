@@ -34,6 +34,15 @@
 				
 				{{ Form::open(array('url' => 'admin/login', 'class'=>'form', 'role' => 'form')) }}
 				<div class="modal-body">
+					
+					@if ( $errors->first('username') != null || $errors->first('password') != null)
+					<div class="alert alert-danger">
+						<p>Some errors occured</p>
+						{{ $errors->first('username') }}
+						{{ $errors->first('password') }}
+					</div>
+					@endif
+					
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="fa fa-user"></span></span>
@@ -84,17 +93,9 @@
 			  </ul>
 			
 			  <ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown">USERS <span class="fa fa-bars leftSpacingSmall"></span></a>
-					<ul class="dropdown-menu pvvoDropdown text-right">
-						<li class="divider"></li>
-						<li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Login <span class="fa fa-key leftSpacingSmall"> </span></a></li>
-						<li><a href="{{ URL::TO('admin/register') }}">Register <span class="fa fa-pencil leftSpacingSmall"> </span></a></li>
-						<li><a href="{{ URL::to('users') }}">Privacy <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
-					</ul>
-				</li>
-				<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
-				<li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>
+				<li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">LOGIN <span class="fa fa-bars leftSpacingSmall"> </span></a></li>
+				<li><a href="{{ URL::to('posts') }}">TOUR <span class="fa fa-retweet leftSpacingSmall"></span></a></li>
+				<li><a href="{{ URL::to('boards') }}">DISCLAIMER <span class="fa fa-shield leftSpacingSmall"> </span> </a></li>
 			  </ul>
 			</div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
