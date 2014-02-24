@@ -31,11 +31,12 @@
 				<a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
 				<ul class="dropdown-menu text-right">
 					<li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Profile <span class="fa fa-user leftSpacingSmall"> </span></a></li>
+					<li><a href="">Settings <span class="fa fa-wrench leftSpacingSmall"> </span></a></li>
 					<li><a href="{{ URL::to('admin/logout') }}">Logout <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
 				</ul>
 			</li>
-			<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
-			<li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>
+			<!--<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
+			<li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>-->
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
@@ -45,11 +46,40 @@
 
 <div class="well">
 	<div class="container">
-		
+	
 		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-pills">
+				
+					<li class="">
+						<a href="#">
+						<span class="badge pull-right">42 new</span>
+						All boards
+						</a>
+					</li>
+					
+					<li class="">
+						<a href="#">
+						<span class="badge pull-right">20 new</span>
+						Photography
+						</a>
+					</li>
+					
+					<li class="">
+						<a href="#">
+						<span class="badge pull-right">22 new</span>
+						Monkey
+						</a>
+					</li>
+
+				</ul>
+			</div>
+		</div>
 		
-			<div class="col-md-4">
-				<div class="panel panel-default">
+		<div class="row topOffset">
+		
+			<!--<div class="col-md-4">
+				<div class="panel panel-default ">
 					<div class="panel-heading">Boards you are following</div>
 					<div class="list-group">
 						<a href="#" class="list-group-item">
@@ -61,15 +91,44 @@
 						<a href="#" class="list-group-item">Vestibulum at eros</a>
 					</div>
 				</div>
-			</div>
+			</div>-->
 			
-			<div class="col-md-8">
-				<div class="panel panel-default">
-				  <div class="panel-heading">Panel heading without title</div>
-				  <div class="panel-body">
-					Panel content
-				  </div>
+			<div class="col-md-12">
+				
+				<div class="row ">
+					@for ($i = 1; $i <= 9; $i++)
+					<div class="col-lg-3 col-md-4 col-xs-6 thumb">
+						<div class="thumbnail">
+							<a class="" href="#">
+								<img class="img-responsive pvvoThumbImg" src="" style="background:url('http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg') no-repeat center center;">
+							</a>
+							<div class="caption">
+								<div class="media">
+								  <a class="pull-left" href="#">							
+									<img class="media-object" src="http://placehold.it/50x50" alt="...">
+								  </a>
+								  <div class="media-body pvvoMediaBody">
+									<h5 class="media-heading">Jesse Struyvelt</h5>
+									<p>Lorem ipsum dolor sit amet. Paljon on koskessa kivia.</p>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div><!--
+					<div class="col-sm-6 col-md-3">
+						<div class="thumbnail">
+							<img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg" alt="...">
+							<div class="caption">
+								<h3>Pin</h3>
+								<p>...</p>
+								<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+							</div>
+						</div>
+					</div>-->
+					@endfor
+				
 				</div>
+				
 			</div>
 			
 		</div>
