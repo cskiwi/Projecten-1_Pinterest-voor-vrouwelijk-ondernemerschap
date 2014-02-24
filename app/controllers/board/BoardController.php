@@ -53,11 +53,17 @@ class BoardController extends BaseController {
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getCreate(){
-        return View::make('boards.create');
+    public function postDelete($id){
+        if (Auth::check()){
+            $board = Board::find($id);
+            if ($board->user == Auth::user()){
+                $board->delete();
+                return Redirect::to('/');
+            } else {
+                return Redirect::to('boards/detail/'.$board['id'])->witherror('not Your post');
+            }
+        } else {
+            return Redirect::to('/');
+        }
     }
-
 }

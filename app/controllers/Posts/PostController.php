@@ -53,4 +53,18 @@ class PostController extends BaseController {
         }
     }
 
+    public function postDelete($id){
+        if (Auth::check()){
+            $post = Post::find($id);
+            if ($post->user == Auth::user()){
+                $post->delete();
+                return Redirect::to('/');
+            } else {
+                return Redirect::to('posts/detail/'.$post['id'])->witherror('not Your post');
+            }
+        } else {
+            return Redirect::to('/');
+        }
+    }
+
 }

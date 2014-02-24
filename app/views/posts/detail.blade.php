@@ -7,6 +7,12 @@ Post detail | {{ $post->title }}
 @section('content')
 <div>
     <h2>{{ $post->title }}</h2> by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}"> {{$post->user->name}}</a> Fav: {{count($post->favorites)}}</li>
+    @if(Auth::check())
+    @if(Auth::user() == $post->user)
+    <a href="{{ URL::TO('/posts/delete/'.$post->id) }}">remove</a>
+    @endif
+    @endif
+
     <p>{{ $post->body }}</p>
 
     <h2>Member of the following boards</h2>
@@ -38,12 +44,7 @@ Post detail | {{ $post->title }}
     <h2>Comments</h2>
     @foreach($post->comments as $comment)
     <div>{{$comment->content}}</div>
-        @if(Auth::check())
-        @if($board->user == $comment->user)
-        <a href="{{ URL::TO('/posts/'.$post->id.'/removecomment/'.$comment->id) }}">remove</a>
-        @endif
-        @endif
-    </li>
+
     @endforeach
 </div>
 
