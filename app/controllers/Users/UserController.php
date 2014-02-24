@@ -21,7 +21,7 @@ class UserController extends BaseController {
     {
         $user = User::find($id);
 
-        return View::make('users.profile', array('user' => $user));
+        return View::make('users.profile')->with('user', $user);
     }
 
 }

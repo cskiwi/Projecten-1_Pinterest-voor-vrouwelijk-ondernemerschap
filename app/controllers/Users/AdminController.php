@@ -34,12 +34,11 @@ class AdminController extends BaseController {
         // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
 
-
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
-            return Redirect::to('admin/login')
+            return Redirect::to('/')
                 ->withErrors($validator) // send back all errors to the login form
-                ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+                ->withInput(Input::except('password'));// send back the input (not the password) so that we can repopulate the form
         } else {
 
             // create our user data for the authentication
@@ -59,8 +58,8 @@ class AdminController extends BaseController {
             } else {
 
                 // validation not successful, send back to form
-                return Redirect::to('admin/login')->withErrors(array('password' => 'Wrong password/username combination'));
-
+                return Redirect::to('/')
+                    ->withErrors(array('password' => 'Wrong password/username combination'))
             }
 
         }
