@@ -37,12 +37,11 @@ html, body {
 }
 
 .pvvoFooter {
-    position: fixed;
     height: 100px;
 	line-height: 100px;
-    bottom: 0;
     width: 100%;
 	color: #ffffff !important;
+	text-align: center;
 }
 
 .pvvoFooter  p {
