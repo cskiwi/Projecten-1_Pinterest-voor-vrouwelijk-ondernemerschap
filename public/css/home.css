@@ -4,6 +4,10 @@ html, body {
 	overflow:hidden;
 }
 
+.pvvoModal {
+	overflow: hidden;
+}
+
 .pvvoJumbo {
 	background: url('../img/bg2.jpg') no-repeat center center fixed; 
 	height: 100%;

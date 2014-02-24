@@ -23,10 +23,37 @@
 
 @section('content')
 
-<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div class="modal fade bs-example-modal-sm pvvoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
-			Test
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Login to your account</h4>
+				</div>
+				{{ Form::open(array('url' => 'admin/login', 'class'=>'form', 'role' => 'form')) }}
+				<div class="modal-body">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="fa fa-user"></span></span>
+							{{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+							{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'id'=>'password', 'required' => 'required')) }}
+						</div>
+					</div>
+					
+					<div class="text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Login</button>
+					</div>
+					
+				</div>
+				{{ Form::close() }}
+			</div><!-- /.modal-content -->
 		</div>
 	</div>
 </div>
@@ -103,7 +130,7 @@
                 <div class="form-group">
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
-                        {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+                        {{ Form::text('email', $value = null, array('placeholder' => 'Email', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
                     </div>
                 </div>
                 <div class="form-group">
