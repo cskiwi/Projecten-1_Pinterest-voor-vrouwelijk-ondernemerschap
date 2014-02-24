@@ -86,38 +86,32 @@
 			<div class="col-md-5 topOffset">
 				
 				<h3>Register for free</h3>
-				
-				<form class="form" role="form">
-					
-					<div class="form-group">
-						<div class="col-sm-8 input-group">
-						
-							<span class="input-group-addon"><span class="fa fa-user"></span></span>
-							<input type="text" class="form-control" id="username" placeholder="Username">
-							
-						</div>
-					</div>
-					
-				  <div class="form-group">
-					<div class="col-sm-8 input-group">
-						<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
-						<input type="password" class="form-control" id="password" placeholder="Password">
-					</div>
-				  </div>
-				  
-				  <div class="form-group">
-					<div class="col-sm-8 input-group">
-						<span class="input-group-addon"><span class="fa fa-envelope"></span></span>
-						<input type="email" class="form-control" id="email" placeholder="Email">
-					</div>
-				  </div>
-				  
-				  <div class="form-group">
-					<div class="col-sm-8 input-group">
-					  <button type="submit" class="btn btn-danger btn-default">Sign Up</button>
-					</div>
-				  </div>
-				</form>
+
+                {{ Form::open(array('url' => 'admin/register', 'class'=>'form', 'role' => 'form')) }}
+                <div class="form-group">
+                    <div class="col-sm-8 input-group">
+                        <span class="input-group-addon"><span class="fa fa-user"></span></span>
+                        {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 input-group">
+                        <span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+                        {{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'id'=>'password', 'required' => 'required')) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 input-group">
+                        <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                        {{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-8 input-group">
+                        {{ Form::submit('Sign up', array('class' => 'btn btn-danger btn-default')) }}
+                    </div>
+                </div>
+                {{ Form::close() }}
 			
 			</div>
 		

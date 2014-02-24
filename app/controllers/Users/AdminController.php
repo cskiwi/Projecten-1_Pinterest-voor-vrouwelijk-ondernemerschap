@@ -85,7 +85,7 @@ class AdminController extends BaseController {
             'username' => 'Required|Min:3|Max:32|Alpha',
             'email'     => 'Required|Between:3,64|Email|Unique:users',
             'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
-            'password_confirmation'=>'Required|AlphaNum|Between:4,8'
+            // 'password_confirmation'=>'Required|AlphaNum|Between:4,8'
         );
 
         // run the validation rules on the inputs from the form
