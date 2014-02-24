@@ -67,6 +67,5 @@ html, body {
 	color: #ffffff !important;
 }
 
-.rightSpacingSmall {
-	margin-right: 5px;
-}
+.rightSpacingSmall { margin-right: 5px; }
+.leftSpacingSmall { margin-left: 5px; }

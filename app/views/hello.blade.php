@@ -47,16 +47,16 @@
 		
 		  <ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-bars rightSpacingSmall"> </span> USERS </b></a>
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">USERS <span class="fa fa-bars leftSpacingSmall"></span></a>
 				<ul class="dropdown-menu pvvoDropdown text-right">
 					<li class="divider"></li>
-					<li><a href="{{ URL::to('users') }}">Login</a></li>
-					<li><a href="{{ URL::to('users') }}">Register</a></li>
-					<li><a href="{{ URL::to('users') }}">Privacy</a></li>
+					<li><a href="{{ URL::to('users') }}">Login <span class="fa fa-key leftSpacingSmall"> </span></a></li>
+					<li><a href="{{ URL::to('users') }}">Register <span class="fa fa-pencil leftSpacingSmall"> </span></a></li>
+					<li><a href="{{ URL::to('users') }}">Privacy <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
 				</ul>
 			</li>
-			<li><a href="{{ URL::to('posts') }}"><span class="fa fa-comments rightSpacingSmall"> </span> POSTS</a></li>
-			<li><a href="{{ URL::to('boards') }}"><span class="fa fa-cloud rightSpacingSmall"> </span> BOARDS</a></li>
+			<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
+			<li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>
 		  </ul>
 		</div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
