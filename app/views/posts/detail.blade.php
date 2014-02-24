@@ -6,7 +6,9 @@ Post detail | {{ $post->title }}
 
 @section('content')
 <div>
-    <h2>{{ $post->title }}</h2> by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}"> {{$post->user->name}}</a> Fav: {{count($post->favorites)}}</li>
+    <h2>{{ $post->title }}</h2>Fav: {{count($post->favorites)}}</li>
+    by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+
     @if(Auth::check())
     @if(Auth::user() == $post->user)
     <a href="{{ URL::TO('/posts/delete/'.$post->id) }}">remove</a>
@@ -19,9 +21,9 @@ Post detail | {{ $post->title }}
     @foreach($post->boards as $board)
     <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a>
         @if(Auth::check())
-            @if(Auth::user() == $post->user)
-            <a href="{{ URL::TO('/boards/'.$board->id.'/removepost/'.$post->id) }}">remove</a>
-            @endif
+        @if(Auth::user() == $post->user)
+        <a href="{{ URL::TO('/boards/'.$board->id.'/removepost/'.$post->id) }}">remove</a>
+        @endif
         @endif
     </li>
     @endforeach
