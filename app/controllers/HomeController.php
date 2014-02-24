@@ -23,7 +23,7 @@ class HomeController extends BaseController {
      */
     public function getIndex()
     {
-        return View::make('hello');
+        return Auth::check() ? View::make('stream'):View::make('hello');
     }
 
 
