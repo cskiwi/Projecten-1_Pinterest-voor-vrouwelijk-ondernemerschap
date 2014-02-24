@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-Login
+{{ Config::get('app.SiteName') }} | Login
 @stop
 
 @section('content')

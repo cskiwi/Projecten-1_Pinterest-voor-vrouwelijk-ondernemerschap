@@ -1,7 +1,7 @@
 <?php
 
 return array(
-
+    'SiteName' => 'Project PVVO ',
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
