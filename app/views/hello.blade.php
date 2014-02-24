@@ -50,8 +50,8 @@
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">USERS <span class="fa fa-bars leftSpacingSmall"></span></a>
 				<ul class="dropdown-menu pvvoDropdown text-right">
 					<li class="divider"></li>
-					<li><a href="{{ URL::to('users') }}">Login <span class="fa fa-key leftSpacingSmall"> </span></a></li>
-					<li><a href="{{ URL::to('users') }}">Register <span class="fa fa-pencil leftSpacingSmall"> </span></a></li>
+					<li><a href="{{ URL::TO('admin/login') }}">Login <span class="fa fa-key leftSpacingSmall"> </span></a></li>
+					<li><a href="{{ URL::TO('admin/register') }}">Register <span class="fa fa-pencil leftSpacingSmall"> </span></a></li>
 					<li><a href="{{ URL::to('users') }}">Privacy <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
 				</ul>
 			</li>
