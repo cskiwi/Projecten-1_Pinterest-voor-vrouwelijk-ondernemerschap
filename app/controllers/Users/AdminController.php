@@ -59,7 +59,7 @@ class AdminController extends BaseController {
 
                 // validation not successful, send back to form
                 return Redirect::to('/')
-                    ->withErrors(array('password' => 'Wrong password/username combination'))
+                    ->withErrors(array('password' => 'Wrong password/username combination'));
             }
 
         }
