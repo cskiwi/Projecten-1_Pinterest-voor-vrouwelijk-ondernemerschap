@@ -81,11 +81,11 @@ class AdminController extends BaseController {
      */
     public function postRegister(){
         $rules = array(
-            'name' => 'Required|Min:3|Max:32|alpha_spaces',
             'username' => 'Required|Min:3|Max:32|Alpha',
             'email'     => 'Required|Between:3,64|Email|Unique:users',
             'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
             // 'password_confirmation'=>'Required|AlphaNum|Between:4,8'
+            // 'name' => 'Required|Min:3|Max:32|alpha_spaces',
         );
 
         // run the validation rules on the inputs from the form
