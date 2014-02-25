@@ -20,10 +20,6 @@
 	Project PVVO
 @stop
 
-@section('scripts')
-{{ HTML::script('js/testscript.js') }}
-@stop
-
 @section('content')
 
 <div class="modal fade bs-example-modal-sm pvvoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
