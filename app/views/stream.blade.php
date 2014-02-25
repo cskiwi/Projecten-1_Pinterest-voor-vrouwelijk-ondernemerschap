@@ -87,14 +87,11 @@ Welcome {{ Auth::user()->username  }}
                 <div class="row ">
                     @foreach($posts as $post)
                     <div class="col-lg-3 col-md-4 col-xs-6 thumb post" filter-data="{{$post->from_board}}">
+                        @if($post->type == 'text')
                         <div class="thumbnail">
                             <div class="caption">
                                 <div class="media">
-                                    @if($post->type == 'text')
-                                     this is a post
-                                    @elseif($post->type == 'foto')
-                                     this is a foto
-                                    @endif
+
                                     <a class="pull-left" href="#">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="...">
                                     </a>
@@ -105,7 +102,28 @@ Welcome {{ Auth::user()->username  }}
                                 </div>
                             </div>
                         </div>
+                        @elseif($post->type == 'foto')
+                        <div class="thumbnail">
+                            <a class="" href="#">
+                                <img class="img-responsive pvvoThumbImg" src="" style="background:url('http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg') no-repeat center center;">
+                            </a>
+                            <div class="caption">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="...">
+                                    </a>
+                                    <div class="media-body pvvoMediaBody">
+                                        <h5 class="media-heading">Jesse Struyvelt</h5>
+                                        <p>Lorem ipsum dolor sit amet. Paljon on koskessa kivia.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
                     </div>
+
+
                     <!-- <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
                             <img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">
