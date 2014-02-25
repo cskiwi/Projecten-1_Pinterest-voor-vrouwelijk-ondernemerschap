@@ -25,7 +25,8 @@ class AdminController extends BaseController {
      */
     public function postLogin()
     {
-// validate the info, create rules for the inputs
+
+        // validate the info, create rules for the inputs
         $rules = array(
             'username'    => 'required|alphaNum|min:3', // make sure the username is an actual username
             'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
@@ -36,9 +37,11 @@ class AdminController extends BaseController {
 
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
-            return Redirect::to('/')
-                ->withErrors($validator) // send back all errors to the login form
-                ->withInput(Input::except('password'));// send back the input (not the password) so that we can repopulate the form
+            if(\Request::ajax()){
+                return \Response::json(['success' => false, 'errors' => $validator->getMessageBag()->toArray()]);
+            } else {
+                return \Redirect::back()->withInput()->withErrors($validator);
+            }
         } else {
 
             // create our user data for the authentication
@@ -52,39 +55,29 @@ class AdminController extends BaseController {
 
                 // validation successful!
                 // redirect them to the secure section or whatever
-                return Redirect::to('/');
+                return \Response::json(['success' => true], 200);
                 // for now we'll just echo success (even though echoing in a controller is bad)
 
             } else {
-
-                // validation not successful, send back to form
-                return Redirect::to('/')
-                    ->withErrors(array('password' => 'Wrong password/username combination'));
+                if(\Request::ajax()){
+                    return \Response::json(['success' => false, 'errors' => array('password' => 'Wrong password/username combination')]);
+                } else {
+                    return \Redirect::back()->withInput(Input::except('password'))->withErrors(array('password' => 'Wrong password/username combination'));
+                }
             }
 
         }
     }
 
     /**
-     *
-     */
-    public function getRegister()
-    {
-        // show the form
-        return View::make('admin.register');
-    }
-
-
-    /**
      * @return \Illuminate\Http\RedirectResponse
      */
     public function postRegister(){
+        // validate the info, create rules for the inputs
         $rules = array(
-            'username' => 'Required|Min:3|Max:32|Alpha',
+            'username'    => 'required|alphaNum|min:3', // make sure the username is an actual username
+            'password' => 'required|alphaNum|min:3', // password can only be alphanumeric and has to be greater than 3 characters
             'email'     => 'Required|Between:3,64|Email|Unique:users',
-            'password'  =>'Required|AlphaNum|Between:4,8|Confirmed',
-            // 'password_confirmation'=>'Required|AlphaNum|Between:4,8'
-            // 'name' => 'Required|Min:3|Max:32|alpha_spaces',
         );
 
         // run the validation rules on the inputs from the form
@@ -92,18 +85,21 @@ class AdminController extends BaseController {
 
         // if the validator fails, redirect back to the form
         if ($validator->fails()) {
-            return Redirect::to('admin/register')
-                ->withErrors($validator) // send back all errors to the login form
-                ->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+            if(\Request::ajax()){
+                return \Response::json(['success' => false, 'errors' => $validator->getMessageBag()->toArray()]);
+            } else {
+                return \Redirect::back()->withInput(Input::except('password'))->withErrors($validator);
+            }
         } else {
-            $data = Input::only(array('name','username', 'password', 'email'));
+            $data = Input::only(array('username', 'password', 'email'));
             $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
             Auth::login($user, true);
-            return Redirect::to('admin/profile');
-
+            // validation successful!
+            // redirect them to the secure section or whatever
+            return \Response::json(['success' => true], 200);
+            // for now we'll just echo success (even though echoing in a controller is bad)
         }
-
     }
 
     /**

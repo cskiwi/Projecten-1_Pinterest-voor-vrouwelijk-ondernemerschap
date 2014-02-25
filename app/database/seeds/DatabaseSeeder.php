@@ -12,16 +12,17 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
-		$this->call('UserTableSeeder');
-        $this->call('PostTableSeeder');
-        $this->call('BoardTableSeeder');
         $this->call('Board_postTableSeeder');
+        $this->call('FavoritesTableSeeder');
+        $this->call('FollowsTableSeeder');
+        $this->call('CommentsTableSeeder');
 
-		$this->call('CommentsTableSeeder');
-		$this->call('FavoritesTableSeeder');
+        $this->call('PostsTableSeeder');
+        $this->call('BoardsTableSeeder');
+        $this->call('UsersTableSeeder');
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-    }
+	}
 
 }

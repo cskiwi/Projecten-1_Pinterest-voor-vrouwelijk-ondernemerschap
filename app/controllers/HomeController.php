@@ -23,10 +23,22 @@ class HomeController extends BaseController {
      */
     public function getIndex()
     {
-        return Auth::check() ? View::make('stream'):View::make('hello');
+        if (Auth::check()){
+            $posts = []; $boards = [];
+            foreach(Auth::user()->follows as $follow) {
+                array_push($boards, $follow->board);
+            }
+            foreach($boards as $board){
+                foreach($board->posts as $post){
+                    $post['from_board'] = $board->id;
+                    array_push($posts, $post);
+                }
+            }
+            arsort($posts);
+            arsort($boards);
+            return View::make('stream')->with(array('posts' => $posts, 'boards' => $boards));
+        } else {
+            return View::make('hello');
+        }
     }
-
-
-
-
 }

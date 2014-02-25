@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('pagetitle')
-Post overview
+Board overview
 @stop
 
 @section('content')
@@ -9,6 +9,9 @@ Post overview
     <ul>
         @foreach($boards as $board)
         <li><a href="./boards/detail/{{$board->id}}">{{ $board->title }}</a> by <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a> ( {{ count($board->posts) }} posts) </li>
+            @foreach($board->Followers() as $follower)
+                {{ var_dump($follower) }}
+            @endforeach
         @endforeach
     </ul>
 </div>

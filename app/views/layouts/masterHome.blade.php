@@ -15,7 +15,8 @@
 	{{ HTML::style('css/lumen/bootstrap-theme.min.css') }}
 	{{ HTML::style('css/font-awesome.min.css') }}
 	{{ HTML::style('css/home.css') }}
-	
+
+
 </head>
 
 <body>
@@ -24,6 +25,6 @@
 	<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	{{ HTML::script('js/bootstrap.min.js') }}
-
+    @yield('scripts')
 </body>
 </html>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostTable extends Migration {
+class CreatePostsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -21,6 +21,7 @@ class CreatePostTable extends Migration {
 
             $table->string('title');
             $table->text('body');
+            $table->enum('type', array('foto', 'text'));
 			$table->timestamps();
 		});
 	}

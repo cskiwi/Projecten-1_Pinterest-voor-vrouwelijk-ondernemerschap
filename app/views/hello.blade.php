@@ -20,6 +20,9 @@
 	Project PVVO
 @stop
 
+@section('scripts')
+{{ HTML::script('js/testscript.js') }}
+@stop
 
 @section('content')
 
@@ -32,17 +35,14 @@
 					<h4 class="modal-title">Login to your account</h4>
 				</div>
 				
-				{{ Form::open(array('url' => 'admin/login', 'class'=>'form', 'role' => 'form')) }}
+				{{ Form::open(array('url' => '#', 'class'=>'form', 'role' => 'form', 'id' => 'login-form')) }}
 				<div class="modal-body">
 					
-					@if ( $errors->first('username') != null || $errors->first('password') != null)
-					<div class="alert alert-danger">
+					<div id="validation-errors" class="alert alert-danger" hidden>
 						<p>Some errors occured</p>
-						{{ $errors->first('username') }}
-						{{ $errors->first('password') }}
+                        <ul></ul>
 					</div>
-					@endif
-					
+
 					<div class="form-group">
 						<div class="input-group">
 							<span class="input-group-addon"><span class="fa fa-user"></span></span>
@@ -113,10 +113,17 @@
 			</div>
 			
 			<div class="col-md-5 topOffset">
-				
+
+
 				<h3>Register for free</h3>
 
-                {{ Form::open(array('url' => 'admin/register', 'class'=>'form', 'role' => 'form')) }}
+                {{ Form::open(array('url' => 'admin/register', 'class'=>'form', 'role' => 'form', 'id' => 'register-form')) }}
+
+                <div id="validation-errors" class="alert alert-danger" hidden>
+                    <p>Some errors occured</p>
+                    <ul></ul>
+                </div>
+
                 <div class="form-group">
                     <div class="col-sm-8 input-group">
                         <span class="input-group-addon"><span class="fa fa-user"></span></span>

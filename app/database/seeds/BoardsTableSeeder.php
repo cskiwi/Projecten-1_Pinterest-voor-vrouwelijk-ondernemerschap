@@ -1,6 +1,6 @@
 <?php
 
-class BoardTableSeeder extends Seeder
+class BoardsTableSeeder extends Seeder
 {
 
     public function run()

@@ -21,8 +21,13 @@ class BoardController extends BaseController {
     {
         $board = Board::find($id);
         $posts = Board::find($id)->posts;
-
-        return View::make('boards.detail', array('board' => $board, 'posts' => $posts));
+        $following = -1;
+        foreach(Auth::user()->follows as $follow){
+            if($follow->board_id == $board->id){
+                $following = $follow->id;
+            }
+        }
+        return View::make('boards.detail', array('board' => $board, 'posts' => $posts, 'following' => $following));
     }
 
     /**
@@ -65,5 +70,28 @@ class BoardController extends BaseController {
         } else {
             return Redirect::to('/');
         }
+    }
+
+    public function postFollow(){
+        if (Auth::check()){
+            // TODO: check if id is avalid
+            $follow = Follow::create(array(
+                'user_id'   => Auth::user()->id,
+                'board_id'   => Input::get('id'),
+            ));
+
+            return \Response::json(['success' => true, 'followid' => $follow->id], 200);
+        }
+
+    }
+    public function postUnfollow(){
+        if (Auth::check()){
+            // TODO: check if id is avalid
+            $follow = Follow::find(Input::get('id'));
+            $follow->delete();
+
+            return \Response::json(['success' => true], 200);
+        }
+
     }
 }

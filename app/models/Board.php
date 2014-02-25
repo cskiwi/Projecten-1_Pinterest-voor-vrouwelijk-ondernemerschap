@@ -19,4 +19,8 @@ class Board extends Eloquent {
     {
         return $this->belongsTo('User');
     }
+    public function Followers(){
+        return $this->hasMany('Follow');
+    }
+
 }
