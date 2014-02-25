@@ -3,6 +3,10 @@
  */
 $('#filter_boards > a').click(function(){
     var $this = $(this), val = $this.attr('filter-data');
-    $('.post').hide();
-    $('.post[filter-data=' + val + ']').show();
+    if (val == 'all') {
+        $('.post').show();
+    } else {
+        $('.post').hide();
+        $('.post[filter-data=' + val + ']').show();
+    }
 });
