@@ -10,3 +10,9 @@ $('#filter_boards > a').click(function(){
         $('.post[filter-data*=' + val + ']').show();
     }
 });
+
+$('#posts').imagesLoaded( function(){
+	$('#posts').isotope({
+	  itemSelector : '.item'
+	});
+});
