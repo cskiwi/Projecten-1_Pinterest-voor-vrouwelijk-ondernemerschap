@@ -119,7 +119,7 @@ Welcome {{ Auth::user()->username  }}
                         @elseif($post->type == 'foto')
                         <div class="thumbnail">
                             <a class="" href="#">
-                                <img class="img-responsive pvvoThumbImg" src="" style="background:url('http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg') no-repeat center center;">
+                                <img class="img-responsive pvvoThumbImg" src="$post->content" style="background:url('http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg') no-repeat center center;">
                             </a>
                             <div class="caption">
                                 <div class="media">
