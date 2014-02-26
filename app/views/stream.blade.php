@@ -26,12 +26,12 @@ Welcome {{ Auth::user()->username  }}
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="col-md-3 col-sm-5">
                     <ul class="nav navbar-nav">
-                        <form class="navbar-form navbar-left" role="search">
+                        {{ Form::open(array('url' => './boards/search', 'class'=>'navbar-form navbar-left', 'method' => 'get', 'role' => 'search', 'id' => 'search-form')) }}
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search boards...">
+                                {{ Form::text('search-text', $value = null, array('placeholder' => 'Search boards...', 'class'=> 'form-control', 'required' => 'required')) }}
                                 <span class="input-group-addon"><span class="fa fa-search"></span></span>
                             </div>
-                        </form>
+                        {{ Form::close() }}
                     </ul>
                 </div>
 

@@ -19,7 +19,7 @@ class PivotBoardTagTable extends Migration {
 			$table->integer('board_id')->unsigned()->index();
 			$table->integer('tag_id')->unsigned()->index();
 			$table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
-			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+			$table->foreign('tag_id')->references('id')->on('tag')->onDelete('cascade');
 		});
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
