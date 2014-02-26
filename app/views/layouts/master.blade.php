@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand pvvoTitle" href="#">WomanInterest</a>
+                <a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

@@ -4,12 +4,13 @@
 Welcome {{ Auth::user()->username  }}
 @stop
 @section('scripts')
-{{ HTML::script('js/stream.js') }}
 {{ HTML::script('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js') }}
+{{ HTML::script('js/stream.js') }}
 @stop
 @section('content')
 
 <div class="well">
+
     <div class="container">
 
         <div class="row">
@@ -17,14 +18,14 @@ Welcome {{ Auth::user()->username  }}
                 <ul class="nav nav-pills">
                     <li class="" id="filter_boards">
                         <a href="#" filter-data="all">
-                            <span class="badge pull-right">2 new</span>
+                            <!--<span class="badge pull-right">2 new</span>-->
                             All
                         </a>
                     </li>
                     @foreach (Auth::user()->follows as $board)
                     <li class="" id="filter_boards">
-                        <a href="#" filter-data="{{$board->id}}">
-                            <span class="badge pull-right">2 new</span>
+                        <a href="{{ URL::to('/boards/detail/'.$board->id) }}">
+                            <!--<span class="badge pull-right">2 new</span>-->
                             {{$board->title }}
                         </a>
                     </li>
@@ -38,45 +39,47 @@ Welcome {{ Auth::user()->username  }}
 
             <div class="col-md-12">
 
-                <div class="row">
+                <div class="row" id="posts">
+				
                     @foreach($posts as $post)
-					<!-- <div class="col-lg-3 col-md-4 col-xs-6 thumb post" filter-data="<?php foreach($post->boards as $fboard) echo $fboard->id . ' '; ?>"> -->
-                    <div class="col-lg-3 col-md-4 col-xs-6 item" filter-data="<?php foreach($post->boards as $fboard) echo $fboard->id . ' '; ?>">
-                        @if($post->type == 'text')
+			
+					
+                    <div class="col-lg-3 col-md-4 col-xs-6 item">
+					
                         <div class="thumbnail">
+						
+							@if($post->type == 'text')
+							
+								{{ $post->body }}
+								
+							@elseif($post->type == 'foto')
+							
+								<a class="" href="#">
+									<img class="img-responsive pvvoThumbImg" src="{{ $post->body }}" style="background:url('./{{$post->body}}') no-repeat center center;">
+								</a>
+								
+							@endif
+							
                             <div class="caption">
                                 <div class="media">
 
                                     <a class="pull-left" href="#">
                                         <img class="media-object" src="http://placehold.it/50x50" alt="...">
                                     </a>
+									
                                     <div class="media-body pvvoMediaBody">
-
                                         <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
-                                        {{ $post->content }}
+										<p>
+											<span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> {{ count($post->favorites) }}</span>
+											<span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($post->comments) }}</span>
+											</p>
                                     </div>
+									
                                 </div>
                             </div>
                         </div>
-                        @elseif($post->type == 'foto')
-                        <div class="thumbnail">
-                            <a class="" href="#">
-                                <img class="img-responsive pvvoThumbImg" src="{{ $post->body }}" style="background:url('./{{$post->body}}') no-repeat center center;">
-                            </a>
-                            <div class="caption">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="...">
-                                    </a>
-                                    <div class="media-body pvvoMediaBody">
-                                        <h5 class="media-heading">Jesse Struyvelt</h5>
-                                        <p>Lorem ipsum dolor sit amet. Paljon on koskessa kivia.</p>
-                                        {{$post->body}}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @endif
+						
+
                     </div>
 
 

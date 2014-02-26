@@ -80,11 +80,11 @@ html, body {
 }
 
 .isotope {
-  -webkit-transition-property: height, width;
-     -moz-transition-property: height, width;
-      -ms-transition-property: height, width;
-       -o-transition-property: height, width;
-          transition-property: height, width;
+  -webkit-transition-property: height, 100%;
+     -moz-transition-property: height, 100%;
+      -ms-transition-property: height, 100%;
+       -o-transition-property: height, 100%;
+          transition-property: height, 100%;
 }
 
 .isotope .item {
