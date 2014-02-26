@@ -19,6 +19,7 @@ class Board_postTableSeeder extends Seeder {
             ['board_id'  => 1, 'post_id'   => 4],
             ['board_id'  => 1, 'post_id'   => 6],
             ['board_id'  => 1, 'post_id'   => 7],
+            ['board_id'  => 2, 'post_id'   => 8],
         ];
 
 		// Uncomment the below to run the seeder

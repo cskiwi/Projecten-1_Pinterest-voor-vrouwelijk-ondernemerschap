@@ -119,7 +119,7 @@ Welcome {{ Auth::user()->username  }}
                         @elseif($post->type == 'foto')
                         <div class="thumbnail">
                             <a class="" href="#">
-                                <img class="img-responsive pvvoThumbImg" src="$post->content" style="background:url('http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/0{{ $i }}.jpg') no-repeat center center;">
+                                <img class="img-responsive pvvoThumbImg" src="{{ $post->body }}" style="background:url('./{{$post->body}}') no-repeat center center;">
                             </a>
                             <div class="caption">
                                 <div class="media">
@@ -129,6 +129,7 @@ Welcome {{ Auth::user()->username  }}
                                     <div class="media-body pvvoMediaBody">
                                         <h5 class="media-heading">Jesse Struyvelt</h5>
                                         <p>Lorem ipsum dolor sit amet. Paljon on koskessa kivia.</p>
+                                        {{$post->body}}
                                     </div>
                                 </div>
                             </div>

@@ -56,6 +56,13 @@ class PostsTableSeeder extends Seeder
             'body'      => 'Do awesome stuff',
             'type'      => 'text',
         ));
+        Post::create(array(
+            'id'        => 8,
+            'user_id'   => 1,
+            'title'     => 'some foto',
+            'body'      => './public/img/01.jpg',
+            'type'      => 'foto',
+        ));
 
     }
 
