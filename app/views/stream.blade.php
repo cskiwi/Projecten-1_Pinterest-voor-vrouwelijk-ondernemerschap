@@ -24,9 +24,16 @@ Welcome {{ Auth::user()->username  }}
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-
-                </ul>
+                <div class="col-md-3 col-sm-5">
+                    <ul class="nav navbar-nav">
+                        <form class="navbar-form navbar-left" role="search">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search boards...">
+                                <span class="input-group-addon"><span class="fa fa-search"></span></span>
+                            </div>
+                        </form>
+                    </ul>
+                </div>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown active">
