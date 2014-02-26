@@ -13,5 +13,5 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 
-    RewriteBase /dev_Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/
+    RewriteBase /Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/
 </IfModule>

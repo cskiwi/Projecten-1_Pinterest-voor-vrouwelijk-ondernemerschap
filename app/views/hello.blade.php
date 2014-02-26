@@ -1,74 +1,14 @@
 @extends('layouts.masterHome')
 
-<!--<div id="nav">
-    <ul>
-        <li><a href="{{ URL::TO('/') }}">home</a></li>
-        @if(Auth::check())
-        <li><a href="{{ URL::TO('admin/logout') }}">logout</a></li>
-        <li><a href="{{ URL::TO('admin/profile') }}">{{ Auth::user()->name  }} ({{ Auth::user()->username  }})</a></li>
-        @else
-        @if(!(Request::is('admin/login') || Request::is('admin/register')))
-            <li><a href="{{ URL::TO('admin/login') }}">Login</a> or <a href="{{ URL::TO('admin/register') }}">register</a></li>
-        @endif
-        @endif
-    </ul>
-</div>
-
--->
-
 @section('pagetitle')
 	Project PVVO
 @stop
-
 
 @section('scripts')
 {{ HTML::script('js/home.js') }}
 @stop
 
 @section('content')
-
-<div class="modal fade bs-example-modal-sm pvvoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-sm">
-		<div class="modal-content">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Login to your account</h4>
-				</div>
-				
-				{{ Form::open(array('url' => '#', 'class'=>'form', 'role' => 'form', 'id' => 'login-form')) }}
-				<div class="modal-body">
-					
-					<div id="validation-errors" class="alert alert-danger" hidden>
-						<p>Some errors occured</p>
-                        <ul></ul>
-					</div>
-
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"><span class="fa fa-user"></span></span>
-							{{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="input-group">
-							<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
-							{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'id'=>'password', 'required' => 'required')) }}
-						</div>
-					</div>
-					
-					<div class="text-center">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						{{ Form::submit('Login', array('class' => ' btn btn-primary')) }}
-					</div>
-					
-				</div>
-				{{ Form::close() }}
-			</div><!-- /.modal-content -->
-		</div>
-	</div>
-</div>
-
 
 <div class="jumbotron pvvoJumbo">
 
@@ -104,7 +44,7 @@
 	
 		<div class="row">
 		
-			<div class="col-md-7 topOffset text-center">
+			<div class="col-md-7 col-lg-6 col-sm-6 topOffset text-center">
 		
 				<h2>Hello, ladies.. <br />Get ready for some interesting times.</h2>
 				<p>Work hard. Pin hard.</p>
@@ -113,7 +53,7 @@
 				<button type="button" class="btn btn-warning">Get started</button>
 			</div>
 			
-			<div class="col-md-5 topOffset">
+			<div class="col-md-5 col-lg-6 col-sm-6 topOffset">
 
 
 				<h3>Register for free</h3>
@@ -163,39 +103,46 @@
 
 </div>
 
+<div class="modal fade bs-example-modal-sm pvvoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Login to your account</h4>
+				</div>
+				
+				{{ Form::open(array('url' => '#', 'class'=>'form', 'role' => 'form', 'id' => 'login-form')) }}
+				<div class="modal-body">
+					
+					<div id="validation-errors" class="alert alert-danger" hidden>
+						<p>Some errors occured</p>
+                        <ul></ul>
+					</div>
 
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="fa fa-user"></span></span>
+							{{ Form::text('username', $value = null, array('placeholder' => 'Username', 'class'=> 'form-control', 'required' => 'required', 'autofocus' => 'autofocus' )) }}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-addon"><span class="fa fa-asterisk"></span></span>
+							{{ Form::password('password', array('placeholder' => 'Password', 'class' => 'form-control', 'id'=>'password', 'required' => 'required')) }}
+						</div>
+					</div>
+					
+					<div class="text-center">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						{{ Form::submit('Login', array('class' => ' btn btn-primary')) }}
+					</div>
+					
+				</div>
+				{{ Form::close() }}
+			</div><!-- /.modal-content -->
+		</div>
+	</div>
+</div>
 
-<!--
-
-
-<p>Welcome!</p>
-<p>Check out the <a href="{{ URL::to('users') }}">Dummy users</a></p>
-<p>Check out the <a href="{{ URL::to('posts') }}">Dummy posts</a></p>
-<p>Check out the <a href="{{ URL::to('boards') }}">Dummy boards</a></p>
-
-
-@if(Auth::check())
-
-{{ Form::open(array('url' => 'posts/add')) }}
-
-    <h1>Add post</h1>
-    <p> {{$errors->first('title')}}
-        {{$errors->first('body')}}</p>
-
-    <p> {{Form::label('title', 'Title')}}
-        {{Form::text('title')}}</p>
-
-    <p>{{Form::label('board', 'Board')}}
-    <select id="board">
-        @foreach(Auth::user()->boards as $user_board)
-        <option value="{{$user_board->id}}">{{ $user_board->title }}</option>
-        @endforeach
-    </select> <a href="{{ URL::to('boards/create') }}">Create board</a> </p>
-    <p>{{Form::textarea('body')}}</p>
-
-    <p>{{Form::submit('Submit')}}</p>
-{{ Form::close() }}
-@endif
-
--->
 @stop

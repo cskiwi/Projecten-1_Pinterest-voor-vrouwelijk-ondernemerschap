@@ -5,13 +5,16 @@ Welcome {{ Auth::user()->username  }}
 @stop
 @section('scripts')
 {{ HTML::script('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js') }}
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
+{{ HTML::script('js/jquery.touch-punch.min.js') }}
+{{ HTML::script('js/jquery.shapeshift.min.js') }}
 {{ HTML::script('js/stream.js') }}
 @stop
 @section('content')
 
 <div class="well">
 
-    <div class="container">
+    <div class="">
 
         <div class="row">
             <div class="col-md-12">
@@ -39,23 +42,23 @@ Welcome {{ Auth::user()->username  }}
 
             <div class="col-md-12">
 
-                <div class="row" id="posts">
+                <div class="row photos" id="">
 				
                     @foreach($posts as $post)
 			
 					
-                    <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12 item">
+                   <!-- <div class="col-md-3 col-sm-4 col-xs-12 item">-->
 					
-                        <div class="thumbnail">
+                        <div class="thumbnail item">
 						
 							@if($post->type == 'text')
 							
 								{{ $post->body }}
 								
-							@elseif($post->type == 'foto')
+							@elseif($post->type == 'photo')
 							
 								<a class="" href="#">
-									<img class="img-responsive pvvoThumbImg" src="{{ $post->body }}" style="background:url('./{{$post->body}}') no-repeat center center;">
+									<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{$post->body}}') no-repeat center center;">
 								</a>
 								
 							@endif
@@ -80,7 +83,7 @@ Welcome {{ Auth::user()->username  }}
                         </div>
 						
 
-                    </div>
+                    <!--</div>-->
 
 
 
