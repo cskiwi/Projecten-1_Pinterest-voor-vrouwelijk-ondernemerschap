@@ -4,6 +4,7 @@ class Board_postTableSeeder extends Seeder {
 
 	public function run()
 	{
+
         DB::table('board_post')->delete();
 
 		$board_post = [

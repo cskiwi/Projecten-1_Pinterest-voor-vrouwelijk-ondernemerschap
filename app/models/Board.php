@@ -12,15 +12,17 @@ class Board extends Eloquent {
 
     public $timestamps = true;
 
-    public function posts() {
+    public function Posts() {
         return $this->belongsToMany('Post', 'board_post');
     }
-    public function user()
+    public function User()
     {
         return $this->belongsTo('User');
     }
     public function Followers(){
         return $this->belongsToMany('User', 'follows', 'board_id'); //->withPivot('user_id');
     }
-
+    public function Tags() {
+        return $this->belongsToMany('Tag', 'board_tag');
+    }
 }
