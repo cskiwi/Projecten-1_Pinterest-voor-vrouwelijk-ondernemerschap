@@ -92,7 +92,7 @@ Welcome {{ Auth::user()->username  }}
 
                 <div class="row ">
                     @foreach($posts as $post)
-                    <div class="col-lg-3 col-md-4 col-xs-6 thumb post" filter-data="{{$post->from_board}}">
+                    <div class="col-lg-3 col-md-4 col-xs-6 thumb post" filter-data="<?php foreach($post->boards as $fboard) echo $fboard->id . ' '; ?>">
                         @if($post->type == 'text')
                         <div class="thumbnail">
                             <div class="caption">
@@ -102,6 +102,7 @@ Welcome {{ Auth::user()->username  }}
                                         <img class="media-object" src="http://placehold.it/50x50" alt="...">
                                     </a>
                                     <div class="media-body pvvoMediaBody">
+
                                         <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
                                         {{ $post->content }}
                                     </div>
@@ -126,22 +127,21 @@ Welcome {{ Auth::user()->username  }}
                             </div>
                         </div>
                         @endif
-
                     </div>
 
 
-                    <!-- <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">
-                            <div class="caption">
-                                <h3>Pin</h3>
-                                <p>...</p>
-                                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-                            </div>
-                        </div>
-                    </div>-->
-                    @endforeach
 
+                    @endforeach
+                    <!-- <div class="col-sm-6 col-md-3">
+                                            <div class="thumbnail">
+                                                <img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">
+                                                <div class="caption">
+                                                    <h3>Pin</h3>
+                                                    <p>...</p>
+                                                    <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                                </div>
+                                            </div>
+                                        </div>-->
                 </div>
 
             </div>

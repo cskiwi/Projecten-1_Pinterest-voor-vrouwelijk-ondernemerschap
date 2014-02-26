@@ -23,4 +23,5 @@ class Post extends Eloquent {
     public function Favorites(){
         return $this->hasMany('Favorite');
     }
+
 }

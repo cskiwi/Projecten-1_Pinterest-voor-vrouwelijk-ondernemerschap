@@ -24,15 +24,33 @@ class HomeController extends BaseController {
     public function getIndex()
     {
         if (Auth::check()){
-            $posts = Post:: join('board_post', 'posts.id', '=', 'board_post.post_id')
-                ->join('follows', 'follows.board_id', '=', 'board_post.board_id')
-                ->where('follows.user_id', Auth::user()->id)
-                ->orderBy('posts.created_at', 'DESC')
-                ->get();
+            $posts= [];
+            foreach( Auth::user()->follows()->get() as $board){
+                foreach($board -> posts as $post){
+                    array_push($posts, $post);
+                }
+            }
+
+            // remove dubes
+
+            $posts = array_filter($posts,function ($obj) {
+                static $idList = array();
+                if(in_array($obj->id,$idList)) {
+                    return false;
+                }
+                $idList []= $obj->id;
+                return true;
+            });
+
+            // sort by date
+            usort($posts, function($a, $b){
+                return strcmp($b->created_at,$a->created_at);
+            });
 
             return View::make('stream')->with(array('posts' => $posts));
         } else {
             return View::make('hello');
         }
     }
+
 }

@@ -7,6 +7,6 @@ $('#filter_boards > a').click(function(){
         $('.post').show();
     } else {
         $('.post').hide();
-        $('.post[filter-data=' + val + ']').show();
+        $('.post[filter-data*=' + val + ']').show();
     }
 });
