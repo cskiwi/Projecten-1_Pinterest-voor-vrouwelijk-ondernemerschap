@@ -31,8 +31,7 @@ class HomeController extends BaseController {
                 }
             }
 
-            // remove dubes
-
+            // remove dupes
             $posts = array_filter($posts,function ($obj) {
                 static $idList = array();
                 if(in_array($obj->id,$idList)) {
