@@ -19,11 +19,11 @@ Board detail | {{ $board->title }}
         <div class="text">
             @if($following != -1)
             {{ Form::submit('unfollow', array('class' => 'btn btn-primary following', 'id' => 'followButton')) }}
-            {{ Form::hidden('id',$following ) }}
             @else
             {{ Form::submit('follow', array('class' => 'btn btn-primary', 'id' => 'followButton')) }}
-            {{ Form::hidden('id',$board->id ) }}
             @endif
+            {{ Form::hidden('id',$board->id ) }}
+
         </div>
     </div>
     {{ Form::close() }}
@@ -34,7 +34,7 @@ Board detail | {{ $board->title }}
     @endifby
 
     <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a></li>
-    @foreach($posts as $post)
+    @foreach($board->posts as $post)
     <li><a href="{{ URL::TO('/posts/detail/'.$post->id) }}">{{ $post->title }}</a><p>{{ $post->body }}</p></li>
     @endforeach
 </div>

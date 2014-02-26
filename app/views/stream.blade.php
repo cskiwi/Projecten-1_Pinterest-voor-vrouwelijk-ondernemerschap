@@ -58,7 +58,7 @@ Welcome {{ Auth::user()->username  }}
                             All
                         </a>
                     </li>
-                    @foreach ($boards as $board)
+                    @foreach (Auth::user()->follows as $board)
                     <li class="" id="filter_boards">
                         <a href="#" filter-data="{{$board->id}}">
                             <span class="badge pull-right">2 new</span>

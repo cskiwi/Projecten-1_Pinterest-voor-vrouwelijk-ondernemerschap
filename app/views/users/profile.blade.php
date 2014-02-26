@@ -24,8 +24,8 @@ User detail | {{ $user->name }}
 
 <h2>Follows following boards</h2>
 <ul>
-    @foreach($user->follows as $follows)
-    <li><a href="{{ URL::TO('/boards/detail/'.$follows->board->id) }}">{{ $follows->board->title }}</a> ( has {{ count($follows->board->posts) }} posts) </li>
+    @foreach($user->follows as $board)
+    <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->posts) }} posts) </li>
     @endforeach
 </ul>
 @stop

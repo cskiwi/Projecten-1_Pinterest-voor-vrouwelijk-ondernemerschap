@@ -19,15 +19,15 @@ class BoardController extends BaseController {
      */
     public function getDetail($id)
     {
-        $board = Board::find($id);
-        $posts = Board::find($id)->posts;
         $following = -1;
-        foreach(Auth::user()->follows as $follow){
-            if($follow->board_id == $board->id){
-                $following = $follow->id;
+        foreach(Auth::user()->follows as $board){
+            // echo 'User (' . Auth::user()->id . ') follows board id ' . $board->id . ' and this is id: ' . $id . '<br />';
+            if($board->id == $id){
+                $following = $id;
             }
         }
-        return View::make('boards.detail', array('board' => $board, 'posts' => $posts, 'following' => $following));
+
+        return View::make('boards.detail', array('board' => Board::find($id), 'following' => $following));
     }
 
     /**
@@ -75,20 +75,23 @@ class BoardController extends BaseController {
     public function postFollow(){
         if (Auth::check()){
             // TODO: check if id is avalid
-            $follow = Follow::create(array(
+
+            DB::table('follows')->insert(array(
                 'user_id'   => Auth::user()->id,
                 'board_id'   => Input::get('id'),
             ));
 
-            return \Response::json(['success' => true, 'followid' => $follow->id], 200);
+            return \Response::json(['success' => true], 200);
         }
 
     }
     public function postUnfollow(){
         if (Auth::check()){
             // TODO: check if id is avalid
-            $follow = Follow::find(Input::get('id'));
-            $follow->delete();
+            DB::table('follows')
+                ->where('user_id', Auth::user()->id)
+                ->where('board_id', Input::get('id'))
+                ->delete();
 
             return \Response::json(['success' => true], 200);
         }

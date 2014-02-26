@@ -63,6 +63,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
     public function Follows()
     {
-        return $this->hasMany('Follow');
+        return $this->belongsToMany('Board', 'follows', 'user_id')->withPivot('board_id');
     }
 }

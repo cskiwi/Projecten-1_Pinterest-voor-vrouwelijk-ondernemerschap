@@ -20,7 +20,7 @@ class Board extends Eloquent {
         return $this->belongsTo('User');
     }
     public function Followers(){
-        return $this->hasMany('Follow');
+        return $this->belongsToMany('User', 'follows', 'board_id')->withPivot('user_id');
     }
 
 }
