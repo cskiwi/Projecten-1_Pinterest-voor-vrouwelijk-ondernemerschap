@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration {
 
             $table->string('title');
             $table->text('body');
-            $table->enum('type', array('foto', 'text'));
+            $table->enum('type', array('photo', 'text'));
 			$table->timestamps();
 		});
 	}

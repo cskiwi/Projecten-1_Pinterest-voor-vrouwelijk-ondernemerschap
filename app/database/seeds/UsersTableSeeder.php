@@ -167,22 +167,6 @@ class UsersTableSeeder extends Seeder
             'email'    => 'dummy@test.com',
             'password' => Hash::make('dummy1'),
         ));
-
-        User::create(array(
-            'id'       => 21,
-            'name'     => 'Dummy User 20',
-            'username' => 'd20',
-            'email'    => 'dummy@test.com',
-            'password' => Hash::make('dummy1'),
-        ));
-
-        User::create(array(
-            'id'       => 22,
-            'name'     => 'Dummy User 21',
-            'username' => 'd21',
-            'email'    => 'dummy@test.com',
-            'password' => Hash::make('dummy1'),
-        ));
     }
 
 }
