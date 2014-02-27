@@ -3,9 +3,9 @@
 Install
 =======
  create database (default: pvvo)
- update app/config/database.php
- run composer install
+ update `app/config/database.php`
+ run `composer install`
 
 Update
 ======
- run composer update
+ run `composer update`
