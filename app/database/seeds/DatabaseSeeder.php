@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder {
         $this->call('UsersTableSeeder');
 
         $this->call('FavoritesTableSeeder');
-        // $this->call('FollowsTableSeeder');
+        $this->call('FollowsTableSeeder');
         $this->call('CommentsTableSeeder');
         $this->call('TagTableSeeder');
 
-        $this->call('Board_tagTableSeeder');
         $this->call('Board_postTableSeeder');
+        $this->call('Board_tagTableSeeder');
 
 
 
