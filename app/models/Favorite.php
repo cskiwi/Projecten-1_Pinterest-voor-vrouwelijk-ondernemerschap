@@ -9,9 +9,9 @@ class Favorite extends Eloquent {
      */
     protected $table = 'favorites';
     protected $fillable = array('user_id', 'post_id');
-    public $timestamps = true;
+    public $timestamps = false;
 
-    public function posts() {
+    public function post() {
         return $this->belongsTo('Post');
     }
 

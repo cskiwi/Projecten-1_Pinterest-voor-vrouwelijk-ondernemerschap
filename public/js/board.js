@@ -25,7 +25,7 @@ followForm.on( 'submit', function() {
             type: 'post',
             cache: false,
             data: followForm.serialize(),
-            success: function(data) {
+            success: function() {
                 followButton.val('unfollow').addClass('following');
             },
             error: function() {
