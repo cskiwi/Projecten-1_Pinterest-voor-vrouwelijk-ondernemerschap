@@ -5,6 +5,6 @@
 $('.photos').shapeshift({
 	enableDrag: false,
 	enableCrossDrop: false,
-	enableResize: false,
+	enableResize: true,
 	enableTrash: false
   });
