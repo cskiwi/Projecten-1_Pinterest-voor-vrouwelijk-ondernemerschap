@@ -10,7 +10,7 @@ Board detail | {{ $board->title }}
 
 @section('content')
 
-<div>
+<div class="container">
     <h2>{{ $board->title }}</h2>Followers: {{count($board->followers)}}
 
     @if(Auth::check())

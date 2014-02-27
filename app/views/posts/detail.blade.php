@@ -5,7 +5,7 @@ Post detail | {{ $post->title }}
 @stop
 
 @section('content')
-<div>
+<div class="container">
     <h2>{{ $post->title }}</h2>Fav: {{count($post->favorites)}}</li>
     by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
 

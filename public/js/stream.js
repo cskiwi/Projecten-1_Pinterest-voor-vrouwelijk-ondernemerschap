@@ -2,4 +2,9 @@
  * Created by Glenn on 2/25/14.
  */
  
-$('.photos').shapeshift();
+$('.photos').shapeshift({
+	enableDrag: false,
+	enableCrossDrop: false,
+	enableResize: false,
+	enableTrash: false
+  });
