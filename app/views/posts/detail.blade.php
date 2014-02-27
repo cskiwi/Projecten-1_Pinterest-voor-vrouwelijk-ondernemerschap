@@ -29,8 +29,10 @@ Post detail | {{ $post->title }}
     @endforeach
 
     @if(Auth::check())
-    <h2>Add to board</h2>
+    <h2>Add to board</h2>(rewrite to ajax!)
 
+    @if( count(Auth::user()->boards) > 1)
+    <h3>Existing board</h3>
     {{ Form::open(array('url' => 'post/addtoboard')) }}
     <p>{{Form::label('board', 'Board')}}
         <select id="board">
@@ -41,13 +43,20 @@ Post detail | {{ $post->title }}
     <p>{{ Form::submit('Submit!') }}</p>
     {{ Form::close() }}
     @endif
-
+    @endif
+    <h3>Create board</h3>
+    {{ Form::open(array('url' => 'boards/Add/', 'method' => 'post')) }}
+    <p>{{Form::label('board', '')}}
+        {{Form::text('board') }}
+    {{ Form::submit('Create!') }}</p>
+    {{ Form::close() }}
 
     <h2>Comments</h2>
-    @foreach($post->comments as $comment)
-    <div>{{$comment->content}}</div>
-
-    @endforeach
+    <ul>
+        @foreach($post->comments as $comment)
+        <li>{{$comment->content}}</li>
+        @endforeach
+    </ul>
 </div>
 
 @stop
