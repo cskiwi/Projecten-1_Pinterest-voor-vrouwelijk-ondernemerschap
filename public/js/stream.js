@@ -34,26 +34,25 @@ $('.favorite').click(function() {
     });
     return false;
 } );
-var stream = null
 
 setInterval(function() {
+    var latest = latestd($('.media'));
     $.ajax({
         url: 'stream',
         type: 'post',
         cache: false,
-        success: function(data) {
-            stream = data;
-        },
-        error: function() {
-            alert('Something went to wrong.Please Try again later...');
+        success: function(stream) {
+            $.each(stream, function(){
+                if (latest < Date.parse($(this)[0].created_at)){
+                    console.log('adding');
+                }
+            });
         }
     });
-
-
-    console.table(stream.posts);
-    console.log('interval');
-    console.log(latestd($('.media')));
-    console.log();
+    // console.log(stream);
+    // console.log('interval');
+    // console.log(latestd($('.media')));
+    // console.log();
 
 },1000 * 5); // 1000 * 60 * 1); // every minute
 

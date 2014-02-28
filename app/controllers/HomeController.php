@@ -24,6 +24,7 @@ class HomeController extends BaseController {
     public function getIndex()
     {
         if (Auth::check()){
+
             return View::make('stream')->with($this->postStream());
         } else {
             return View::make('hello');
@@ -53,6 +54,12 @@ class HomeController extends BaseController {
             return strcmp($b->created_at,$a->created_at);
         });
 
-        return array('posts' => $posts);
+        if (Request::ajax()) {
+            $postresponse = [];
+            foreach($posts as $post) {array_push($postresponse, $post->toArray());}
+            return Response::json($postresponse);
+        } else {
+            return array('posts' => $posts);
+        }
     }
 }
