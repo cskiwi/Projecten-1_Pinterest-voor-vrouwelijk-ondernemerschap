@@ -27,7 +27,7 @@ class BoardController extends BaseController {
             }
         }
 
-        return View::make('boards.detail', array('board' => Board::find($id), 'following' => $following));
+        return View::make('boards.detail', array('board' => Board::find($id)));
     }
 
     /**
@@ -78,7 +78,7 @@ class BoardController extends BaseController {
 
             DB::table('follows')->insert(array(
                 'user_id'   => Auth::user()->id,
-                'board_id'   => Input::get('id'),
+                'board_id'   => Input::get('board_id'),
             ));
 
             return \Response::json(['success' => true], 200);
@@ -90,7 +90,7 @@ class BoardController extends BaseController {
             // TODO: check if id is avalid
             DB::table('follows')
                 ->where('user_id', Auth::user()->id)
-                ->where('board_id', Input::get('id'))
+                ->where('board_id', Input::get('board_id'))
                 ->delete();
 
             return \Response::json(['success' => true], 200);

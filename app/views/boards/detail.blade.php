@@ -5,7 +5,7 @@ Board detail | {{ $board->title }}
 @stop
 
 @section('scripts')
-{{ HTML::script('js/board.js') }}
+{{ HTML::script('js/followBoard.js') }}
 @stop
 
 @section('content')
@@ -14,15 +14,15 @@ Board detail | {{ $board->title }}
     <h2>{{ $board->title }}</h2>Followers: {{count($board->followers)}}
 
     @if(Auth::check())
-    {{ Form::open(array('url' => '#', 'class'=>'form', 'role' => 'form', 'id' => 'follow-form')) }}
+    {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
     <div class="modal-body">
         <div class="text">
-            @if($following != -1)
-            {{ Form::submit('unfollow', array('class' => 'btn btn-primary following', 'id' => 'followButton')) }}
+            @if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
+            {{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
             @else
-            {{ Form::submit('follow', array('class' => 'btn btn-primary', 'id' => 'followButton')) }}
+            {{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
             @endif
-            {{ Form::hidden('id',$board->id ) }}
+            {{ Form::hidden('board_id',$board->id ) }}
 
         </div>
     </div>
