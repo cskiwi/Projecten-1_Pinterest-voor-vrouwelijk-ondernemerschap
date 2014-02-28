@@ -43,6 +43,8 @@ class Board extends Eloquent {
         return $this->belongsToMany('User', 'follows', 'board_id'); //->withPivot('user_id');
     }
 
+
+
     /**
      * @return mixed
      */

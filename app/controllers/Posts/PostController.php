@@ -67,4 +67,20 @@ class PostController extends BaseController {
         }
     }
 
+    public function postFavorite(){
+        if (Auth::check()){
+            $id = Input::get('id');
+            $like = Auth::user()->favorites()->where('post_id', '=', $id)->get()->first();
+
+            if ($like == null){
+                Favorite::create(array(
+                    'user_id' => Auth::user()->id,
+                    'post_id' => $id));
+            } else {
+                $like->delete();
+            }
+            return \Response::json(['success' => true, 'like' => $like]);//*/
+        }
+    }
+
 }

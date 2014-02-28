@@ -18,8 +18,6 @@ class CreateFavoritesTable extends Migration {
             $table->unsignedinteger('post_id')->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

@@ -8,6 +8,7 @@ Welcome {{ Auth::user()->username  }}
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
 {{ HTML::script('js/jquery.touch-punch.min.js') }}
 {{ HTML::script('js/jquery.shapeshift.min.js') }}
+{{ HTML::script('js/followBoard.js') }}
 {{ HTML::script('js/stream.js') }}
 @stop
 @section('content')
@@ -43,51 +44,99 @@ Welcome {{ Auth::user()->username  }}
             <div class="col-md-12">
 
                 <div class="row photos" id="">
-				
-                    @foreach($posts as $post)
-			
-					
-                   <!-- <div class="col-md-3 col-sm-4 col-xs-12 item">-->
-					
-                        <div class="thumbnail item">
-						
-							@if($post->type == 'text')
-							
-								{{ $post->body }}
-								
-							@elseif($post->type == 'photo')
-							
-								<a class="" href="#">
-									<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{$post->body}}') no-repeat center center;">
-								</a>
-								
-							@endif
-							
-                            <div class="caption">
-                                <div class="media">
 
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="...">
-                                    </a>
-									
-                                    <div class="media-body pvvoMediaBody">
-                                        <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
-										<p>
-											<span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> {{ count($post->favorites) }}</span>
-											<span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($post->comments) }}</span>
-											</p>
-                                    </div>
-									
+                    @foreach($posts as $post)
+
+
+                    <!-- <div class="col-md-3 col-sm-4 col-xs-12 item">-->
+
+                    <div class="thumbnail item">
+
+                        @if($post->type == 'text')
+
+                        {{ $post->body }}
+
+                        @elseif($post->type == 'photo')
+
+                        <a class="" href="#">
+                            <img class="img-responsive pvvoThumbImg" style="background:url('./img/{{$post->body}}') no-repeat center center;">
+                        </a>
+
+                        @endif
+
+                        <div class="caption">
+                            <div class="media">
+
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://placehold.it/50x50" alt="...">
+                                </a>
+
+                                <div class="media-body pvvoMediaBody">
+                                    <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
+                                    <p>
+                                        <a href="#" class="favorite" data="{{$post->id}}"><span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span></span></a>
+                                        <span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($post->comments) }}</span>
+                                    </p>
                                 </div>
+
                             </div>
                         </div>
-						
-
-                    <!--</div>-->
-
-
-
+                    </div>
                     @endforeach
+                </div>
+            </div>
+        </div>
+
+        <!--</div>
+
+        orderBy(DB::raw('RAND()'))->get
+        -->
+        <div class="row topOffset">
+
+            <div class="col-md-12">
+
+                <div class="row photos" id="">
+                    @if (count($posts)  < 5))
+                    @foreach(Board::take(3)->get() as $board)
+                    <div class="thumbnail item">
+
+                        <div class="caption">
+                            <div class="media">
+
+                                <a class="pull-left" href="#">
+                                    <img class="media-object" src="http://placehold.it/200x200" alt="...">
+                                </a>
+
+
+                                <div class="media-body pvvoMediaBody">
+                                    <h5 class="media-heading"><a href=" {{ URL::to('/boards/detail/' . $board->id)}}"> {{ $board->title }}</a></h5>
+                                    <p>
+                                        <span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($board->followers) }}</span></span>
+                                        <span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($board->posts) }}</span>
+                                    </p>
+                                </div>
+
+                                {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
+                                <div class="modal-body">
+                                    <div class="text">
+                                        @if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
+                                        {{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
+                                        @else
+                                        {{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
+                                        @endif
+                                        {{ Form::hidden('board_id',$board->id ) }}
+
+                                    </div>
+                                </div>
+                                {{ Form::close() }}
+
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+
+                    @endif
+
                     <!-- <div class="col-sm-6 col-md-3">
                                             <div class="thumbnail">
                                                 <img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">

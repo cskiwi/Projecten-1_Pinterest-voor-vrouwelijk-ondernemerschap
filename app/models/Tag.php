@@ -9,7 +9,7 @@ class Tag extends Eloquent {
      */
     protected $table = 'tag';
     protected $fillable = array('name');
-    public $timestamps = true;
+    public $timestamps = false;
 
     public function Boards() {
         return $this->belongsToMany('Board', 'board_tag');
