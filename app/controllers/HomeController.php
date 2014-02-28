@@ -24,32 +24,35 @@ class HomeController extends BaseController {
     public function getIndex()
     {
         if (Auth::check()){
-            $posts= [];
-            foreach( Auth::user()->follows()->get() as $board){
-                foreach($board -> posts as $post){
-                    array_push($posts, $post);
-                }
-            }
-
-            // remove dupes
-            $posts = array_filter($posts,function ($obj) {
-                static $idList = array();
-                if(in_array($obj->id,$idList)) {
-                    return false;
-                }
-                $idList []= $obj->id;
-                return true;
-            });
-
-            // sort by date
-            usort($posts, function($a, $b){
-                return strcmp($b->created_at,$a->created_at);
-            });
-
-            return View::make('stream')->with(array('posts' => $posts));
+            return View::make('stream')->with($this->postStream());
         } else {
             return View::make('hello');
         }
     }
 
+    public function postStream(){
+        $posts= [];
+        foreach( Auth::user()->follows()->get() as $board){
+            foreach($board -> posts as $post){
+                array_push($posts, $post);
+            }
+        }
+
+        // remove dupes
+        $posts = array_filter($posts,function ($obj) {
+            static $idList = array();
+            if(in_array($obj->id,$idList)) {
+                return false;
+            }
+            $idList []= $obj->id;
+            return true;
+        });
+
+        // sort by date
+        usort($posts, function($a, $b){
+            return strcmp($b->created_at,$a->created_at);
+        });
+
+        return array('posts' => $posts);
+    }
 }

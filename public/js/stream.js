@@ -1,6 +1,7 @@
 /**
  * Created by Glenn on 2/25/14.
  */
+
 $('.photos').shapeshift({
     enableDrag: false,
     enableCrossDrop: false,
@@ -33,3 +34,34 @@ $('.favorite').click(function() {
     });
     return false;
 } );
+var stream = null
+
+setInterval(function() {
+    $.ajax({
+        url: 'stream',
+        type: 'post',
+        cache: false,
+        success: function(data) {
+            stream = data;
+        },
+        error: function() {
+            alert('Something went to wrong.Please Try again later...');
+        }
+    });
+
+
+    console.table(stream.posts);
+    console.log('interval');
+    console.log(latestd($('.media')));
+    console.log();
+
+},1000 * 5); // 1000 * 60 * 1); // every minute
+
+function latestd(selector) {
+    var max=null;
+    $(selector).each(function() {
+        var date = Date.parse($(this).attr('date'));
+        if ((max===null) || (date > max)) { max = date; }
+    });
+    return max;
+}

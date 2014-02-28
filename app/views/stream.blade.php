@@ -65,16 +65,15 @@ Welcome {{ Auth::user()->username  }}
                         @endif
 
                         <div class="caption">
-                            <div class="media">
+                            <div class="media" date="{{ $post->created_at }}">
 
                                 <a class="pull-left" href="#">
                                     <img class="media-object" src="http://placehold.it/50x50" alt="...">
                                 </a>
 
-                                <div class="media-body pvvoMediaBody">
+                                <div class="media-body pvvoMediaBody" >
                                     <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
-                                    <p>
-                                        <a href="#" class="favorite" data="{{$post->id}}"><span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span></span></a>
+                                    <p> <a href="#" class="favorite" data="{{$post->id}}"><span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span></span></a>
                                         <span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($post->comments) }}</span>
                                     </p>
                                 </div>
@@ -112,7 +111,7 @@ Welcome {{ Auth::user()->username  }}
                                     <h5 class="media-heading"><a href=" {{ URL::to('/boards/detail/' . $board->id)}}"> {{ $board->title }}</a></h5>
                                     <p>
                                         <span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($board->followers) }}</span></span>
-                                        <span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($board->posts) }}</span>
+                                        <span class="label label-warning"><span class="fa fa-pencil rightSpacingSmall"></span> {{ count($board->posts) }}</span>
                                     </p>
                                 </div>
 
