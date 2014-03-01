@@ -2,6 +2,7 @@
  * Created by Glenn on 2/25/14.
  */
 
+
 $('.photos').shapeshift({
     enableDrag: false,
     enableCrossDrop: false,
@@ -35,7 +36,15 @@ $('.favorite').click(function() {
     return false;
 } );
 
+$('.followButton').click(function(){
+    fetchNewPosts();
+});
+
 setInterval(function() {
+    fetchNewPosts();
+},1000 * 60 * 1); // every minute
+
+function fetchNewPosts(){
     var added = false;
     var photos = $('.photos:not(.suggestion)');
     var latestDate = !(photos.find('.media').length > 0 ) ? null : latestd(photos.find('.media'));
@@ -62,14 +71,7 @@ setInterval(function() {
             }
         }
     });
-
-
-    // console.log(stream);
-    // console.log('interval');
-    // console.log(latestd($('.media')));
-    // console.log();
-
-},1000 * 60 * 1); // every minute
+}
 
 function latestd(selector) {
     var max=null;
