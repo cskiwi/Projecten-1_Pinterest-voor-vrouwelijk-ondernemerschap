@@ -2,7 +2,8 @@
 <html lang="en" class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>@yield('pagetitle') | {{Config::get('app.SiteName') }}</title>
+    <title>@yield('pagetitle')
+        | {{ Config::get('app.SiteName') }} </title>
 
     <meta name="description" content="">
     <meta name="robots" content="">
