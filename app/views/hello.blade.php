@@ -1,7 +1,7 @@
 @extends('layouts.masterHome')
 
 @section('pagetitle')
-Project PVVO
+{{Config::get('app.SiteName') }}
 @stop
 
 @section('scripts')
@@ -24,7 +24,7 @@ Project PVVO
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    v0.0.5<a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
+                    {{Config::get('app.version') }}<a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
                 </div>
 
                 <!-- Collect the nav links, forms, and other content for toggling -->

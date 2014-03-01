@@ -35,8 +35,16 @@ $('.favorite').click(function() {
     });
     return false;
 } );
+var followButton = $('.followButton');
+var filterBoards = $('.nav-pills');
+followButton.click(function(){
+    var board = $(this).parent().parent().parent().parent().parent().parent().find('.media-heading > a');
+    if(followButton.hasClass('following')){
+        filterBoards.find("a[href='" + board.attr('href')  + "']").remove();
+    } else {
+        $('<li class="" id="filter_boards"><a href="' + board.attr('href') + '">' + board.text() + '</a></li>').appendTo(filterBoards);
+    }
 
-$('.followButton').click(function(){
     fetchNewPosts();
 });
 

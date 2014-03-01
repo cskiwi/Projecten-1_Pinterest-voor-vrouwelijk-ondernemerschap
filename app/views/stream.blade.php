@@ -20,8 +20,8 @@ Welcome {{ Auth::user()->username  }}
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-pills">
-                    <li class="" id="filter_boards">
-                        <a href="#" filter-data="all">
+                    <li class="">
+                        <a href="#">
                             <!--<span class="badge pull-right">2 new</span>-->
                             All
                         </a>

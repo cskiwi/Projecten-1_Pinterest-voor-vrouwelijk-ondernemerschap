@@ -2,7 +2,7 @@
 <html lang="en" class="no-js">
 <head>
     <meta charset="utf-8">
-    <title>@yield('pagetitle')</title>
+    <title>@yield('pagetitle') | {{Config::get('app.SiteName') }}</title>
 
     <meta name="description" content="">
     <meta name="robots" content="">
@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                v0.0.5<a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
+                {{Config::get('app.version') }}<a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
