@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
+                v0.0.5<a class="navbar-brand pvvoTitle" href="{{ URL::to('/') }}">WomanInterest</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -46,7 +46,6 @@
                         {{ Form::close() }}
                     </ul>
                 </div>
-
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
