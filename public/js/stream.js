@@ -52,7 +52,7 @@ followButton.click(function(){
 
 setInterval(function() {
     fetchNewPosts();
-},1000 * 60 * 1); // every minute
+},1000 * 15) ; // every 15 seconds
 
 function fetchNewPosts(){
     var added = false;
