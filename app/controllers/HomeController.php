@@ -56,7 +56,9 @@ class HomeController extends BaseController {
 
         if (Request::ajax()) {
             $postresponse = [];
-            foreach($posts as $post) {array_push($postresponse, $post->toArray());}
+            foreach($posts as $post) {
+                array_push($postresponse, ['post' => $post->toArray(), 'favorites' => count($post->favorites), 'comments' => count($post->comments)]);
+            }
             return Response::json($postresponse);
         } else {
             return array('posts' => $posts);

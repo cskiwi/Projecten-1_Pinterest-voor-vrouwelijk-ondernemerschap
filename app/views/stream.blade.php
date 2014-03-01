@@ -54,7 +54,7 @@ Welcome {{ Auth::user()->username  }}
 
                         @if($post->type == 'text')
 
-                        {{ $post->body }}
+                        <div>{{ $post->body }}</div>
 
                         @elseif($post->type == 'photo')
 
@@ -73,8 +73,14 @@ Welcome {{ Auth::user()->username  }}
 
                                 <div class="media-body pvvoMediaBody" >
                                     <h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
-                                    <p> <a href="#" class="favorite" data="{{$post->id}}"><span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span></span></a>
-                                        <span class="label label-warning"><span class="fa fa-comment rightSpacingSmall"></span> {{ count($post->comments) }}</span>
+                                    <p>
+                                        <a href="#" class="favorite" data="{{$post->id}}">
+                                            <span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span><span class="count">{{ count($post->favorites) }}</span></span>
+                                        </a>
+
+                                        <span class="label label-warning">
+                                            <span class="fa fa-comment rightSpacingSmall"></span><span class="count">{{ count($post->comments) }}</span>
+                                        </span>
                                     </p>
                                 </div>
 
@@ -94,8 +100,8 @@ Welcome {{ Auth::user()->username  }}
 
             <div class="col-md-12">
 
-                <div class="row photos" id="">
-                    @if (count($posts)  < 5))
+                <div class="row photos suggestion" id="">
+                    @if (count($posts)  < 1)
                     @foreach(Board::take(3)->get() as $board)
                     <div class="thumbnail item">
 
