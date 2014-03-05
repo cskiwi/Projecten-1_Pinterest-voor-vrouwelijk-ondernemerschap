@@ -69,7 +69,7 @@ function fetchNewPosts(){
                 // console.log(latestDate + ' : ' + postDate);
                 if (latestDate == null || latestDate < postDate){
                     console.log('adding post : ' + $(this)[0].post.title);
-                    createPost($(this)).prependTo(photos);
+                    createPost($(this)).prependTo(photos);     // TODO: maybe not adding them but still hide them en on refresh show
                     added = true;
                 }
             });

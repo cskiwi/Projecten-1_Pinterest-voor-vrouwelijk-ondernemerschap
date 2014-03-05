@@ -21,9 +21,9 @@ Welcome {{ Auth::user()->username  }}
             <div class="col-md-12">
                 <ul class="nav nav-pills">
                     <li class="">
-                        <a href="#">
+                        <a class="refresh" href="#">
                             <!--<span class="badge pull-right">2 new</span>-->
-                            All
+                            Refresh
                         </a>
                     </li>
                     @foreach (Auth::user()->follows as $board)
