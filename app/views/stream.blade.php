@@ -10,6 +10,8 @@ Welcome {{ Auth::user()->username  }}
 {{ HTML::script('js/jquery.shapeshift.min.js') }}
 {{ HTML::script('js/followBoard.js') }}
 {{ HTML::script('js/stream.js') }}
+{{ HTML::script('js/wysihtml5-0.3.0.min.js') }}
+{{ HTML::script('js/bootstrap-wysihtml5-0.0.2.min.js') }}
 @stop
 @section('content')
 
@@ -33,6 +35,12 @@ Welcome {{ Auth::user()->username  }}
                     @endforeach
 
                 </ul>
+				
+				
+<textarea id="some-textarea" placeholder="Enter text ...">zeaez</textarea>
+<script type="text/javascript">
+	$('#some-textarea').wysihtml5();
+</script>
             </div>
         </div>
 
