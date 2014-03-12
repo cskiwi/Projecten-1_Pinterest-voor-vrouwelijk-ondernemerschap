@@ -21,10 +21,7 @@ Welcome {{ Auth::user()->username  }}
             <div class="col-md-12">
                 <ul class="nav nav-pills">
                     <li class="">
-                        <a class="refresh" href="#">
-                            <!--<span class="badge pull-right">2 new</span>-->
-                            Refresh
-                        </a>
+                        <a class="refresh" href="{{URL::to('/');}}">Refresh<span class="badge pull-right" id="newposts" hidden>2</span></a>
                     </li>
                     @foreach (Auth::user()->follows as $board)
                     <li class="" id="filter_boards">

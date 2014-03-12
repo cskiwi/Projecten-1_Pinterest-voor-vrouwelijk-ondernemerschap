@@ -10,6 +10,8 @@ $('.photos').shapeshift({
     enableTrash: false
 });
 
+$('#newposts').hide();
+
 
 $('.favorite').click(function() {
     event.preventDefault();
@@ -69,7 +71,9 @@ function fetchNewPosts(){
                 // console.log(latestDate + ' : ' + postDate);
                 if (latestDate == null || latestDate < postDate){
                     console.log('adding post : ' + $(this)[0].post.title);
-                    createPost($(this)).prependTo(photos);     // TODO: maybe not adding them but still hide them en on refresh show
+                    $('#newposts')
+                        .show()
+                        .text(photos.length);     // TODO: maybe not adding them but still hide them en on refresh show
                     added = true;
                 }
             });
