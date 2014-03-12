@@ -4,14 +4,15 @@
 Welcome {{ Auth::user()->username  }}
 @stop
 @section('scripts')
+<script>console.log = function() {};// disable logging</script>
 {{ HTML::script('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js') }}
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
 {{ HTML::script('js/jquery.touch-punch.min.js') }}
 {{ HTML::script('js/jquery.shapeshift.min.js') }}
-{{ HTML::script('js/followBoard.js') }}
-{{ HTML::script('js/stream.js') }}
 {{ HTML::script('js/wysihtml5-0.3.0.min.js') }}
 {{ HTML::script('js/bootstrap-wysihtml5-0.0.2.min.js') }}
+{{ HTML::script('js/followBoard.js') }}
+{{ HTML::script('js/stream.js') }}
 @stop
 @section('content')
 
@@ -28,7 +29,6 @@ Welcome {{ Auth::user()->username  }}
                     @foreach (Auth::user()->follows as $board)
                     <li class="" id="filter_boards">
                         <a href="{{ URL::to('/boards/detail/'.$board->id) }}">
-                            <!--<span class="badge pull-right">2 new</span>-->
                             {{$board->title }}
                         </a>
                     </li>
@@ -38,9 +38,6 @@ Welcome {{ Auth::user()->username  }}
 				
 				
 <textarea id="some-textarea" placeholder="Enter text ...">zeaez</textarea>
-<script type="text/javascript">
-	$('#some-textarea').wysihtml5();
-</script>
             </div>
         </div>
 
