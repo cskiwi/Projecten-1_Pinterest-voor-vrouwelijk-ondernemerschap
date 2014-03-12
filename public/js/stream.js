@@ -7,16 +7,13 @@ $('.photos').shapeshift({
     enableCrossDrop: false,
     enableResize: true,
     enableTrash: false,
-    colWidth: 350
+    colWidth: 370
 });
 
 
 $('#some-textarea').wysihtml5({
     "stylesheets": []
 });
-
-$('#newposts').hide();
-
 
 $('.favorite').click(function() {
     event.preventDefault();

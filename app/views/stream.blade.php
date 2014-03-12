@@ -4,7 +4,7 @@
 Welcome {{ Auth::user()->username  }}
 @stop
 @section('scripts')
-<script>console.log = function() {};// disable logging</script>
+<script>// console.log = function() {};// disable logging</script>
 {{ HTML::script('//cdn.jsdelivr.net/isotope/1.5.25/jquery.isotope.min.js') }}
 {{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
 {{ HTML::script('js/jquery.touch-punch.min.js') }}
@@ -24,7 +24,7 @@ Welcome {{ Auth::user()->username  }}
             <div class="col-md-12">
                 <ul class="nav nav-pills">
                     <li class="">
-                        <a class="refresh" href="{{URL::to('/');}}">Refresh<span class="badge pull-right" id="newposts" hidden>2</span></a>
+                        <a class="refresh" href="{{URL::to('/');}}">Refresh<span class="badge pull-right" id="newposts" style="display: none;">2</span></a>
                     </li>
                     @foreach (Auth::user()->follows as $board)
                     <li class="" id="filter_boards">
