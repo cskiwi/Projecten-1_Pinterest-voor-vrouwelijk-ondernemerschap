@@ -2,14 +2,18 @@
  * Created by Glenn on 2/25/14.
  */
 
-
 $('.photos').shapeshift({
     enableDrag: false,
     enableCrossDrop: false,
     enableResize: true,
-    enableTrash: false
+    enableTrash: false,
+    colWidth: 370
 });
 
+
+$('#some-textarea').wysihtml5({
+    "stylesheets": []
+});
 
 $('.favorite').click(function() {
     event.preventDefault();
@@ -63,18 +67,19 @@ function fetchNewPosts(){
         type: 'post',
         cache: false,
         success: function(stream) {
-
+            var newPosts = 0;
             $.each(stream, function(){
                 var postDate = Date.parse($(this)[0].post.created_at);
                 // console.log(latestDate + ' : ' + postDate);
                 if (latestDate == null || latestDate < postDate){
+                    newPosts ++;
                     console.log('adding post : ' + $(this)[0].post.title);
-                    createPost($(this)).prependTo(photos);     // TODO: maybe not adding them but still hide them en on refresh show
                     added = true;
                 }
             });
 
             if (added){
+                $('#newposts').show().text(photos.length + ' new');
                 $('.suggestion').remove();
                 $('.photos').shapeshift({
                     enableDrag: false,

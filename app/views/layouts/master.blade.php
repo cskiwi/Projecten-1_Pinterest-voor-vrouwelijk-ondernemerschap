@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700|Dosis:200,600|Open+Sans:400,700" type="text/css" />
     {{ HTML::style('css/lumen/bootstrap.css') }}
     {{ HTML::style('css/lumen/bootstrap.min.css') }}
+	{{ HTML::style('css/bootstrap-wysihtml5-0.0.2.css') }}
     {{ HTML::style('css/font-awesome.min.css') }}
     {{ HTML::style('css/default.css') }}
 
@@ -69,7 +70,7 @@
 @yield('content')
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 {{ HTML::script('js/bootstrap.min.js') }}
 @yield('scripts')
 
