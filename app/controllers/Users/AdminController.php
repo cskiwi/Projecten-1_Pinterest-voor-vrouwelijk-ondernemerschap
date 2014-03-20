@@ -7,19 +7,15 @@ class AdminController extends BaseController {
      *
      */
     public function getIndex(){
+        return Redirect::to('/');
 
     }
 
     /**
      *
      */
-    public function getLogin()
-    {
-        if (Auth::check()){
-           return Redirect::to('/');
-        } else {
-            return View::make('admin.login');
-        }
+    public function getLogin()    {
+        return Redirect::to('/');
     }
 
 

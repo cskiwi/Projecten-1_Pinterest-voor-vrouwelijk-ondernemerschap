@@ -29,6 +29,6 @@ Route::controller('/', 'HomeController');
 Route::filter('loginCheck', function()
 {
     if (!Auth::check()) {
-        return Redirect::to('admin/login');
+        return Redirect::to('/')->with('authError', 'Please login');
     }
 });

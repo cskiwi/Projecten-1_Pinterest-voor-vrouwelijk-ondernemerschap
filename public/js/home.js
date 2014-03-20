@@ -9,7 +9,7 @@ loginForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = loginForm.find('div#validation-errors');
     $.ajax({
-        url: '../admin/login',
+        url: '../public/admin/login',
         type: 'post',
         cache: false,
         data: loginForm.serialize(),

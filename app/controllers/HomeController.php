@@ -24,7 +24,6 @@ class HomeController extends BaseController {
     public function getIndex()
     {
         if (Auth::check()){
-
             return View::make('stream')->with($this->postStream());
         } else {
             return View::make('hello');

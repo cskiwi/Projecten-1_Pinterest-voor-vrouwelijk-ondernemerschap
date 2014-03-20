@@ -41,9 +41,14 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
-        @if (isset($authError))
-            <div>test</div>
+
+        @if (Session::has('authError'))
+            <div id="validation-errors" class="alert alert-danger">
+                <p>Some errors occured</p>
+                <ul>{{ Session::get('authError') }} </ul>
+            </div>
         @endif
+
         <div class="row">
 
             <div class="col-md-7 col-lg-6 col-sm-6 topOffset text-center">
