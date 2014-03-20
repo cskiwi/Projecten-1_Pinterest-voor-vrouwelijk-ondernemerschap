@@ -79,7 +79,7 @@ function fetchNewPosts(){
             });
 
             if (added){
-                $('#newposts').show().text(photos.length + ' new');
+                $('#newposts').show().text(newPosts + ' new');
                 $('.suggestion').remove();
                 $('.photos').shapeshift({
                     enableDrag: false,

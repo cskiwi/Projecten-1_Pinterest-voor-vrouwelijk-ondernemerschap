@@ -9,7 +9,7 @@ loginForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = loginForm.find('div#validation-errors');
     $.ajax({
-        url: './admin/login',
+        url: '../admin/login',
         type: 'post',
         cache: false,
         data: loginForm.serialize(),
@@ -43,7 +43,7 @@ registerForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = registerForm.find('div#validation-errors');
     $.ajax({
-        url: 'admin/register',
+        url: '../admin/register',
         type: 'post',
         cache: false,
         data: registerForm.serialize(),

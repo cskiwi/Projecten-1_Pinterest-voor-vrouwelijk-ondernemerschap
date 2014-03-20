@@ -10,16 +10,25 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
+// all require login :)
+Route::group(array('before' => 'loginCheck'), function()
+{
+    Route::controller('/users', 'UserController');
 
-// root route
+    Route::controller('/posts', 'PostController');
 
-Route::controller('/users', 'UserController');
-
-Route::controller('/posts', 'PostController');
-
-Route::controller('/boards', 'BoardController');
+    Route::controller('/boards', 'BoardController');
+});
 
 Route::controller('/admin/password', 'RemindersController');
 Route::controller('/admin', 'AdminController');
 
 Route::controller('/', 'HomeController');
+
+
+Route::filter('loginCheck', function()
+{
+    if (!Auth::check()) {
+        return Redirect::to('admin/login');
+    }
+});
