@@ -9,6 +9,18 @@ class PostController extends BaseController {
      */
     public function getIndex()
     {
+        /*foreach(Post::All() as $post){
+            echo 'Title: ';
+            echo ($post->title) ? $post->title : 'no title defined';
+            echo '<br />';
+
+            echo 'username: ';
+            echo ($post->user) ? $post->user->name : 'You got a problem';
+
+            echo  '<hr/>';
+        }
+        die();//*/
+
         $posts = Post::paginate(5);
         return View::make('posts.overview')->with('posts', $posts);
     }

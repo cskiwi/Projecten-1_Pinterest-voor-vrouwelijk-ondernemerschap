@@ -15,7 +15,7 @@ class Post extends Eloquent {
         return $this->belongsToMany('Board', 'board_post');
     }
     public function User() {
-        return $this->belongsTo('User');
+        return $this->belongsTo('User', 'user_id');
     }
     public function Comments(){
         return $this->hasMany('Comment');
