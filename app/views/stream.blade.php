@@ -54,11 +54,17 @@ Welcome {{ Auth::user()->username  }}
 
                         @if($post->type == 'text')
 
-                        <div>{{ $post->body }}</div>
-
+                        <div class="pvvoStreamBody">
+							{{ str_limit($post->body, $limit = 300, $end = '...') }}
+						</div>	
+						
+						<div class="readMore">
+							<a href="#">Read more</a>
+						</div>
+						
                         @elseif($post->type == 'photo')
 
-                        <a class="" href="#">
+                        <a class="pvvoThumbImg" href="#">
                             <img class="img-responsive pvvoThumbImg" style="background:url('./img/{{$post->body}}') no-repeat center center;">
                         </a>
 

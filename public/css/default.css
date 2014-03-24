@@ -62,14 +62,29 @@ html, body {
 	
 	width: 100%;
 	height: 300px !important;
+	border: 0px !important;
+}
 
 
+.pvvoStreamBody {
+	padding: 15px;
+	font-size: 12px;
+	line-height: 18px;
+	overflow: hidden;
+}
+
+.readMore {
+	height: 25px;
+	border-bottom: 1px solid #ff4136;
+	padding-left: 15px;
+	margin; 0px;
 }
 
 .thumbnail {
 	height: auto;
-  position: absolute;
-  width: 350px;
+	position: absolute;
+	width: 350px;
+	padding: 0px !important;
 }
 
 .rightSpacingSmall { margin-right: 5px; }
