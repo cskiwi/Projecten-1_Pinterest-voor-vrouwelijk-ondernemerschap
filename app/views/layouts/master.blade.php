@@ -131,9 +131,9 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 {{ HTML::script('js/bootstrap.min.js') }}
-{{ HTML::script('js/AddPin.js') }}
 {{ HTML::script('js/wysihtml5-0.3.0.min.js') }}
 {{ HTML::script('js/bootstrap-wysihtml5-0.0.2.min.js') }}
+{{ HTML::script('js/AddPin.js') }}
 @yield('scripts')
 <script>
 	$('#descriptionArea').wysihtml5();

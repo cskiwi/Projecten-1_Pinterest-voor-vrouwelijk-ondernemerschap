@@ -11,9 +11,6 @@ $('.photos').shapeshift({
 });
 
 
-$('#some-textarea').wysihtml5({
-    "stylesheets": []
-});
 
 $('.favorite').click(function() {
     event.preventDefault();
