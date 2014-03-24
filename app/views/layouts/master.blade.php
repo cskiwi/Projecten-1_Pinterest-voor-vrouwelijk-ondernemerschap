@@ -111,7 +111,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">Description</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" id="descriptionArea" rows="3"></textarea>
+                                <textarea class="form-control" rows="3"></textarea>
                             </div>
                         </div>
                     </span>
@@ -135,9 +135,6 @@
 {{ HTML::script('js/bootstrap-wysihtml5-0.0.2.min.js') }}
 {{ HTML::script('js/AddPin.js') }}
 @yield('scripts')
-<script>
-	$('#descriptionArea').wysihtml5();
-</script>
 
 </body>
 </html>
