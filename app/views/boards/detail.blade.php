@@ -10,23 +10,29 @@ Board detail | {{ $board->title }}
 
 @section('content')
 
-<div class="container">
-    <h2>{{ $board->title }}</h2>Followers: {{count($board->followers)}}
 
-    @if(Auth::check())
-    {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
-    <div class="modal-body">
-        <div class="text">
-            @if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
-            {{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
-            @else
-            {{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
-            @endif
-            {{ Form::hidden('board_id',$board->id ) }}
+@if(Auth::check())
 
-        </div>
-    </div>
-    {{ Form::close() }}
+<div class="jumbotron pvvoJumboBoard">
+	<div class="container">
+		<h1>{{ $board->title }}</h1>
+		<p>Followers: {{count($board->followers)}}</p>
+		<p>
+			{{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
+				<div class="text">
+				@if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
+				{{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
+				@else
+				{{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
+				@endif
+				{{ Form::hidden('board_id',$board->id ) }}
+				</div>
+			{{ Form::close() }}
+		</p>
+	</div>
+</div>
+
+<div class="well">
 
     @if(Auth::user() == $board->user)
         <a href="{{ URL::TO('boards/'.$board->id.'/remove') }}">Remove board</a>
