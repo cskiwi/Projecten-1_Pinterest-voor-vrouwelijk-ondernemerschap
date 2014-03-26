@@ -2,12 +2,14 @@
  * Created by Glenn on 2/25/14.
  */
 var followForm = $( '.follow-form' );
-followForm.on( 'submit', function() {
+followForm.on( 'submit', function(event) {
+
     event.preventDefault();
 
-    var followButton = $(this).children().children().children('.followButton');
+    var followButton = $(this).find('.followButton');
 
     if(followButton.hasClass('following')){
+        console.log('following');
         $.ajax({
             url: followForm.attr('target') + '/unfollow',
             type: 'post',
