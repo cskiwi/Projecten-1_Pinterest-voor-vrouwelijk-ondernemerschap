@@ -51,4 +51,21 @@ class Board extends Eloquent {
     public function Tags() {
         return $this->belongsToMany('Tag', 'board_tag');
     }
+
+
+    public function MostLiked($type){
+        $posts = $this->posts()->where('type', '=', $type)->get();
+        $highestID = -1;
+        $highestCount = -1;
+        if ($posts){
+        foreach( $posts as $i => $thisPost){
+            $currentCount = count($thisPost->favorites);
+            if ($highestCount <= $currentCount){
+                $highestCount = $currentCount;
+                $highestID = $i;
+            }
+        }
+        return $posts[$highestID];
+        } else return null;
+    }
 }

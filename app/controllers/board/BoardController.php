@@ -19,14 +19,6 @@ class BoardController extends BaseController {
      */
     public function getDetail($id)
     {
-        $following = -1;
-        foreach(Auth::user()->follows as $board){
-            // echo 'User (' . Auth::user()->id . ') follows board id ' . $board->id . ' and this is id: ' . $id . '<br />';
-            if($board->id == $id){
-                $following = $id;
-            }
-        }
-
         return View::make('boards.detail', array('board' => Board::find($id)));
     }
 
