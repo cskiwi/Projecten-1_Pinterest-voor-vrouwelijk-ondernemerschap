@@ -1,12 +1,18 @@
 <IfModule mod_rewrite.c>
     Options -MultiViews
     RewriteEngine On
-
+    rewriteBase /SnapChatPP/public/
+    
     RewriteCond %{HTTPS} off
-    RewriteCond %{HTTP_HOST} !^www\. [NC]
+    RewriteCond %{HTTP_HOST} !^ip\. [NC]
     RewriteCond %{HTTP_HOST} !localhost [NC]
-    RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
 
+    RewriteRule ^ http://ip.%{HTTP_HOST}%{REQUEST_URI} [R=301,L,NE]
+
+    # Redirect Trailing Slashes...
+    RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+    # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
