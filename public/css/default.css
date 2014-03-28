@@ -93,7 +93,7 @@ html, body {
 .thumbnail {
 	height: auto;
 	position: absolute;
-	width: 350px;
+	width: 250px;
 	padding: 0px !important;
 }
 

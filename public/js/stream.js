@@ -7,7 +7,7 @@ $('.photos').shapeshift({
     enableCrossDrop: false,
     enableResize: true,
     enableTrash: false,
-    colWidth: 370
+    colWidth: 250
 });
 
 
