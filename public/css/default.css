@@ -13,16 +13,21 @@ html, body {
 	background: url('../img/bg2.jpg') no-repeat center center fixed; 
 	height: 100%;
 	min-height: 100%;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+	-webkit-background-size: contain;
+	-moz-background-size: contain;
+	-o-background-size: contain;
+	background-size: contain;
 	border: 0px;
 }
 
 .pvvoJumboBoard {
 	margin: 0px;
 	border: 0px;
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
 }
 
 .pvvoNavbar {

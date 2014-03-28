@@ -65,7 +65,7 @@ Welcome {{ Auth::user()->username  }}
                         @elseif($post->type == 'photo')
 
                         <a class="pvvoThumbImg" href="#">
-                            <img class="img-responsive pvvoThumbImg" style="background:url('./img/{{$post->body}}') no-repeat center center;">
+                            <img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
                         </a>
 
                         @endif

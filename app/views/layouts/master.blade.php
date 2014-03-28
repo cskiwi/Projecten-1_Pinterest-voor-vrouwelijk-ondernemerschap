@@ -82,10 +82,11 @@
 
             <div class="modal-body">
                 <form class="form-horizontal" role="form">
+				
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label">Type</label>
-                        <div class="col-sm-10">
-                            <select id="Media-Type" class="form-control">
+                        <label class="col-sm-3 control-label">Type</label>
+                        <div class="col-sm-9">
+                            <select id="media-type" class="form-control">
                                 <option>Text</option>
                                 <option>Tutorial</option>
                                 <option>Image</option>
@@ -95,25 +96,68 @@
                         </div>
                     </div>
 
-
-                    <!-- types -->
-                    <span id="type-text" class="type-media">
-					<div class="form-group">
-                        <label class="col-sm-2 control-label">Choose file</label>
-                        <div class="col-sm-10">
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+                    <!-- Image Type -->
+                    <span id="type-image" class="type-media">
+						<div class="form-group">
+                            <label class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+								<input type="email" class="form-control" placeholder="">
+                            </div>
                         </div>
-                    </div>
-					</span>
-                    <span id="type-tutorial" class="type-media">
-
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Description</label>
-                            <div class="col-sm-10">
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Choose file</label>
+							<div class="col-sm-9">
+								<input type="file" id="exampleInputFile">
+								<p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+							</div>
+						</div>
+						
+						<div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
                                 <textarea class="form-control" rows="3"></textarea>
                             </div>
                         </div>
+					</span>
+					
+					<!-- Tutorial & Text Type -->
+                    <span id="type-tutorial" class="type-media">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea class="form-control" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </span>
+					
+					<!-- Video Type -->
+                    <span id="type-video" class="type-media">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Link</label>
+                            <div class="col-sm-9">
+								<input type="email" class="form-control" placeholder="ex. YouTube or Vimeo">
+                            </div>
+                        </div>
+                    </span>
+					
+					<!-- Offer Type -->
+					<span id="type-offer" class="type-media">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Price €</label>
+                            <div class="col-sm-9">
+								<input type="email" class="form-control" placeholder="0.00">
+                            </div>
+                        </div>
+						
+						<div class="form-group">
+							<label class="col-sm-3 control-label">Choose image</label>
+							<div class="col-sm-9">
+								<input type="file" id="exampleInputFile">
+								<p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+							</div>
+						</div>
+					</span>
                     </span>
 
                 </form>

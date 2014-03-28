@@ -13,7 +13,7 @@ Board detail | {{ $board->title }}
 
 @if(Auth::check())
 
-<div class="jumbotron pvvoJumboBoard">
+<div class="jumbotron pvvoJumboBoard" style="background: url('../../img/{{ $board->MostLiked('photo')->body }}') no-repeat  fixed;">
 	<div class="container">
 		<h1>{{ $board->title }}</h1>
 		<p>Followers: {{count($board->followers)}}</p>
