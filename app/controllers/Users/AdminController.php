@@ -118,5 +118,10 @@ class AdminController extends BaseController {
         return View::make('admin.profile');
 
     }
+	
+	public function getSettings(){
+        return View::make('admin.settings');
+
+    }
 
 }
