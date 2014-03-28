@@ -54,7 +54,7 @@
                         <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
                         <ul class="dropdown-menu text-right">
                             <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">Profile <span class="fa fa-user leftSpacingSmall"> </span></a></li>
-                            <li><a href="">Settings <span class="fa fa-wrench leftSpacingSmall"> </span></a></li>
+                            <li><a href="{{ URL::to('admin/settings') }}">Settings <span class="fa fa-wrench leftSpacingSmall"> </span></a></li>
                             <li><a href="{{ URL::to('admin/logout') }}">Logout <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
                         </ul>
                     </li>
@@ -69,7 +69,11 @@
 
 
 @yield('content')
-
+<div class="row">
+	<div class="container">
+		<p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
+	</div>
+</div>
 <!-- Modal -->
 <div class="modal fade" id="pinAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

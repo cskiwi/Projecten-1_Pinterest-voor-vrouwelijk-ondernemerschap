@@ -97,6 +97,10 @@ html, body {
 	padding: 0px !important;
 }
 
+.favorite:hover {
+	text-decoration: none;
+}
+
 .rightSpacingSmall { margin-right: 5px; }
 .leftSpacingSmall { margin-left: 5px; }
 .upperCase { text-transform: uppercase; }
