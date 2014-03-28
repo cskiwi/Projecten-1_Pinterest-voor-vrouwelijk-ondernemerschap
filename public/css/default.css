@@ -97,6 +97,27 @@ html, body {
 	padding: 0px !important;
 }
 
+.pvvoPills {
+	background: #2E2E2E;
+	height: 50px;
+	line-height: 30px;
+}
+
+.pvvoPills ul li a {
+	color: #fff;
+}
+
+.pvvoPills ul li a:hover {
+	color: #fff;
+	background: #F22C5D; 
+	border-radius: 0px;
+}
+
+.pvvoPills ul .refresh {
+	border-radius: 0px;
+	background: #F22C5D; 
+}
+
 .favorite:hover {
 	text-decoration: none;
 }
