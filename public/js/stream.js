@@ -61,7 +61,7 @@ setInterval(function() {
 function fetchNewPosts(){
     var added = false;
     var photos = $('.photos:not(.suggestion)');
-    var latestDate = !(photos.find('.media').length > 0 ) ? null : latestd(photos.find('.media'));
+    var latestDate = !(photos.find('.item').length > 0 ) ? null : latestd(photos.find('.item'));
     $.ajax({
         url: 'stream',
         type: 'post',

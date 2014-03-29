@@ -90,7 +90,7 @@ html, body {
 	height: 25px;
 	border-bottom: 1px solid #ff4136;
 	padding-left: 15px;
-	margin; 0px;
+	margin: 0px;
 }
 
 .item {
@@ -157,6 +157,9 @@ html, body {
 
 .hoverContainer:hover  .hoverCaption {
 	display: block;
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
 }
 
 .hoverCaption {
@@ -168,7 +171,6 @@ html, body {
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	color: #fff;
 	opacity: 0.7;
 	font-size: 16px;
 }
@@ -204,4 +206,3 @@ html, body {
        -o-transition-property:         top, left, opacity;
           transition-property:         transform, opacity;
 }
-  

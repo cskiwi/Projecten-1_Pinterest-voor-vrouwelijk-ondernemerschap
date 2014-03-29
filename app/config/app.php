@@ -2,7 +2,7 @@
 
 return array(
     'SiteName' => 'Project PVVO ',
-    'version' => 'v0.0.7c',
+    'version' => 'v0.0.8a',
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode

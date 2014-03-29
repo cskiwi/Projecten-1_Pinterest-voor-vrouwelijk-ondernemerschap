@@ -92,9 +92,9 @@
                         <div class="col-sm-9">
                             <select id="media-type" class="form-control">
                                 <option>Text</option>
-                                <option>Tutorial</option>
                                 <option>Image</option>
                                 <option>Video</option>
+                                <option>Tutorial</option>
                                 <option>Offer</option>
                             </select>
                         </div>
@@ -126,7 +126,7 @@
 					</span>
 					
 					<!-- Tutorial & Text Type -->
-                    <span id="type-tutorial" class="type-media">
+                    <span id="type-text" class="type-media">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">

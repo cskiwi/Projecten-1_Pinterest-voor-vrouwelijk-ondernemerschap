@@ -44,7 +44,7 @@ Welcome {{ Auth::user()->username  }}
 
 				@foreach($posts as $post)
 				
-				<div class="panel panel-default item">
+				<div class="panel panel-default item" date="{{ $post->created_at }}">
 				
 					<div class="hoverContainer">
 					
@@ -63,10 +63,9 @@ Welcome {{ Auth::user()->username  }}
 							</div>	
 						</div>
 						@endif
-						
-						<div class="hoverCaption">
+                        <a class="hoverCaption" href="{{ URL::to('/posts/detail/' . $post->id)}}">
 							Read more...
-						</div>
+                        </a>
 					
 					</div>
 					
@@ -116,7 +115,7 @@ Welcome {{ Auth::user()->username  }}
 
 
 							<div class="media-body pvvoMediaBody">
-								<h5 class="media-heading"><a href=" {{ URL::to('/boards/detail/' . $board->id)}}"> {{ $board->title }}</a></h5>
+								<h5 class="media-heading"><a href="{{ URL::to('/boards/detail/' . $board->id)}}"> {{ $board->title }}</a></h5>
 								<p>
 									<span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($board->followers) }}</span></span>
 									<span class="label label-warning"><span class="fa fa-pencil rightSpacingSmall"></span> {{ count($board->posts) }}</span>
