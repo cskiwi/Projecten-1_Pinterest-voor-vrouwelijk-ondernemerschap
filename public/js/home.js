@@ -43,7 +43,7 @@ registerForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = registerForm.find('div#validation-errors');
     $.ajax({
-        url: '../admin/register',
+        url: '../public/admin/register',
         type: 'post',
         cache: false,
         data: registerForm.serialize(),

@@ -3,12 +3,11 @@ var typeText = $('#type-text');
 var typeVideo = $('#type-video');
 var typeImage = $('#type-image');
 var typeOffer = $('#type-offer');
-
-
+var addPin = $('#addPin');
 
 media.hide();
 typeText.show();
- 
+
 $('#media-type').change(function(){
     var type = $(this).val();
     media.hide();
@@ -33,6 +32,41 @@ $('#media-type').change(function(){
             break;
     }
 });
+
+addPin.on('submit', function() {
+    event.preventDefault();
+    console.log(addPin.serialize());
+    var errorForm = addPin.find('div#validation-errors');
+    $.ajax({
+        url: '../public/posts/add',
+        type: 'post',
+        cache: false,
+        data: addPin.serialize(),
+        beforeSend: function() {
+            errorForm.hide();
+            errorForm.find("ul").empty();
+        },
+        success: function(data) {
+            console.log(data);
+            if(data.success == false) {
+                var arr = data.errors;
+                $.each(arr, function(index, value)                {
+                    if (value.length != 0)
+                    {
+                        errorForm.find("ul").append('<li>'+ value +'</li>');
+                    }
+                });
+                errorForm.show();
+            } else {
+                location.reload();
+            }
+        },
+        error: function() {
+            alert('Something went to wrong.Please Try again later...');
+        }
+    });
+    return false;
+} );
 
 
 typeText.find('textarea').wysihtml5({

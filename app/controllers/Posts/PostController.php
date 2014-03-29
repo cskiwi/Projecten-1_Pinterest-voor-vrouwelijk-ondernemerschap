@@ -42,26 +42,27 @@ class PostController extends BaseController {
     public function postAdd(){
         if (Auth::check()){
             $rules = array(
-                'title' => 'Required|Min:3|Max:255|alpha_spaces',
-                'body' => 'Required|Min:3',
+                'media-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                'media-description' => 'Required|Min:3',
             );
 
             $validator = Validator::make(Input::all(), $rules);
 
             if ($validator->fails()) {
-                return Redirect::to('/')
-                    ->withErrors($validator)
-                    ->withInput();
+                return \Response::json(['success' => false, 'errors' => array($validator)]);
             } else {
-                $data = Input::only(array('title','body'));
-                $data['user_id'] = Auth::user()->id;
+                $post = Post::create(array(
+                    'user_id'     => Auth::user()->id,
+                    'title'     => Input::get('media-title'),
+                    'body'      => Input::get('media-description'),
+                    'type'      => Input::get('text'),
+                ));
 
-                $post = Post::create($data);
-                return Redirect::to('posts/detail/'.$post['id']);
+                DB::table('board_post')->insert(['board_id'  => 1, 'post_id'   => $post->id]);
+
+                return  \Response::json(['success' => true ]);//*/
 
             }
-        } else {
-            return Redirect::to('/');
         }
     }
 

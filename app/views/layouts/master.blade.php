@@ -70,9 +70,9 @@
 
 @yield('content')
 <div class="row">
-	<div class="container">
-		<p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
-	</div>
+    <div class="container">
+        <p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
+    </div>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="pinAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -85,92 +85,104 @@
             </div>
 
             <div class="modal-body">
-                <form class="form-horizontal" role="form">
-				
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label">Type</label>
-                        <div class="col-sm-9">
-                            <select id="media-type" class="form-control">
-                                <option>Text</option>
-                                <option>Image</option>
-                                <option>Video</option>
-                                <option>Tutorial</option>
-                                <option>Offer</option>
-                            </select>
-                        </div>
-                    </div>
+                <div id="validation-errors" class="alert alert-danger" hidden>
+                    <p>Some errors occured</p>
+                    <ul></ul>
+                </div>
 
-                    <!-- Image Type -->
+                {{ Form::open(array('class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Type</label>
+                    <div class="col-sm-9">
+                        {{ Form::select('media-type', array(
+                        'Text' => 'Text',
+                        'Image' => 'Image',
+                        'Video' => 'Video',
+                        'Tutorial' => 'Tutorial',
+                        'Offer' => 'Offer',
+                        ), null, array('id' => 'media-type', 'class' => 'form-control'))}}
+                    </div>
+                </div>
+
+                <!-- Image Type -->
                     <span id="type-image" class="type-media">
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
-								<input type="email" class="form-control" placeholder="">
+                                {{ Form::text('media-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
                             </div>
                         </div>
 						
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Choose file</label>
-							<div class="col-sm-9">
-								<input type="file" id="exampleInputFile">
-								<p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
-							</div>
-						</div>
+                            <label class="col-sm-3 control-label">Choose file</label>
+                            <div class="col-sm-9">
+                                {{ Form::file('image-file') }}
+                                <p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+                            </div>
+                        </div>
 						
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" rows="3"></textarea>
+                                {{ Form::textarea('media-description', null, array('class' => 'form-control', 'rows' => '3')) }}
                             </div>
                         </div>
 					</span>
-					
-					<!-- Tutorial & Text Type -->
+
+                <!-- Tutorial & Text Type -->
                     <span id="type-text" class="type-media">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                {{ Form::text('media-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" rows="3"></textarea>
+                                {{ Form::textarea('media-description', null, array('class' => 'form-control', 'rows' => '3')) }}
                             </div>
                         </div>
                     </span>
-					
-					<!-- Video Type -->
+
+                <!-- Video Type -->
                     <span id="type-video" class="type-media">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Link</label>
                             <div class="col-sm-9">
-								<input type="email" class="form-control" placeholder="ex. YouTube or Vimeo">
+                                {{ Form::text('video-link', null, array('class' => 'form-control', 'placeholder' => 'ex. YouTube or Vimeo')) }}
                             </div>
                         </div>
                     </span>
-					
-					<!-- Offer Type -->
+
+                <!-- Offer Type -->
 					<span id="type-offer" class="type-media">
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Price €</label>
                             <div class="col-sm-9">
-								<input type="email" class="form-control" placeholder="0.00">
+                                {{ Form::text('offer-price', null, array('class' => 'form-control', 'placeholder' => '0.00')) }}
                             </div>
                         </div>
 						
 						<div class="form-group">
-							<label class="col-sm-3 control-label">Choose image</label>
-							<div class="col-sm-9">
-								<input type="file" id="exampleInputFile">
-								<p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
-							</div>
-						</div>
+                            <label class="col-sm-3 control-label">Choose image</label>
+                            <div class="col-sm-9">
+                                {{ Form::file('offer-image-file') }}
+                                <p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+                            </div>
+                        </div>
 					</span>
-                    </span>
 
-                </form>
+                <div class="modal-footer">
+                    {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
+                    {{ Form::submit('Pin it, babe!', array('class' => 'btn btn-info')) }}
+
+                </div>
+                {{ Form::close() }}
             </div>
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-info">Pin it, babe!</button>
-            </div>
+
 
         </div>
     </div>
