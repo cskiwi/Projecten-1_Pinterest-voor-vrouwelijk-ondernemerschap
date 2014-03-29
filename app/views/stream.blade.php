@@ -46,21 +46,29 @@ Welcome {{ Auth::user()->username  }}
 				
 				<div class="panel panel-default item">
 				
-					@if($post->type == 'photo')
-					<div class="panel-article-header">
-						<a class="pvvoThumbUrl" href="#">
-							<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
-						</a>
-					</div>
-					@endif
+					<div class="hoverContainer">
 					
-					@if($post->type == 'text')
-					<div class="panel-body">
-						<div class="pvvoStreamBody">
-							{{ str_limit($post->body, $limit = 300, $end = '...') }}
-						</div>	
+						@if($post->type == 'photo')
+						<div class="panel-article-header">
+							<a class="pvvoThumbUrl" href="#">
+								<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
+							</a>
+						</div>
+						@endif
+						
+						@if($post->type == 'text')
+						<div class="panel-body">
+							<div class="pvvoStreamBody">
+								{{ str_limit($post->body, $limit = 300, $end = '...') }}
+							</div>	
+						</div>
+						@endif
+						
+						<div class="hoverCaption">
+							Read more...
+						</div>
+					
 					</div>
-					@endif
 					
 					<div class="panel-footer">
 						<div class="btn-group btn-group-xs btn-group-justified pinBtns">

@@ -10,8 +10,12 @@ $('.photos').shapeshift({
     colWidth: 250
 });
 
+$('.hoverContainer').mouseover(function(event) {
+	var h = $(this).height();
+	$(this).find(".hoverCaption").css("line-height", h +"px");
+});
 
-$('.favorite').click(function() {
+$('.favorite').click(function(event) {
     event.preventDefault();
     var clickID = $(this).attr('data');
     var count = $('.favorite[data=' + clickID + '] > span.count');
