@@ -11,11 +11,10 @@ $('.photos').shapeshift({
 });
 
 
-
 $('.favorite').click(function() {
     event.preventDefault();
     var clickID = $(this).attr('data');
-    var count = $('.favorite[data=' + clickID + '] > span > span.count');
+    var count = $('.favorite[data=' + clickID + '] > span.count');
     $.ajax({
         url: 'posts/favorite',
         type: 'post',

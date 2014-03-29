@@ -49,7 +49,7 @@
                     </ul>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#" data-toggle="modal" data-target="#pinAddModal">Add pin <span class="fa fa-plus leftSpacingSmall"></span></a></li>
+                    <li class="active"><a href="#" data-toggle="modal" data-target="#pinAddModal" class="pvvoPink">Add pin <span class="fa fa-plus leftSpacingSmall"></span></a></li>
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
                         <ul class="dropdown-menu text-right">
@@ -169,7 +169,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Pin it, babe!</button>
+                <button type="button" class="btn btn-info">Pin it, babe!</button>
             </div>
 
         </div>

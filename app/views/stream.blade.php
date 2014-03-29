@@ -43,53 +43,44 @@ Welcome {{ Auth::user()->username  }}
 			<div class="row photos" id="">
 
 				@foreach($posts as $post)
-
-
-				<!-- <div class="col-md-3 col-sm-4 col-xs-12 item">-->
-
-				<div class="thumbnail item">
-
-					@if($post->type == 'text')
-
-					<div class="pvvoStreamBody">
-						{{ str_limit($post->body, $limit = 300, $end = '...') }}
-					</div>	
-					
-					<div class="readMore">
-						<a href="#">Read more</a>
+				
+				<div class="panel panel-default item">
+				
+					@if($post->type == 'photo')
+					<div class="panel-article-header">
+						<a class="pvvoThumbUrl" href="#">
+							<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
+						</a>
 					</div>
-					
-					@elseif($post->type == 'photo')
-
-					<a class="pvvoThumbImg" href="#">
-						<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
-					</a>
-
 					@endif
+					
+					@if($post->type == 'text')
+					<div class="panel-body">
+						<div class="pvvoStreamBody">
+							{{ str_limit($post->body, $limit = 300, $end = '...') }}
+						</div>	
+					</div>
+					@endif
+					
+					<div class="panel-footer">
+						<div class="btn-group btn-group-xs btn-group-justified pinBtns">
 
-					<div class="caption">
-						<div class="media" date="{{ $post->created_at }}">
-
-							<a class="pull-left" href="#">
-								<img class="media-object" src="http://placehold.it/50x50" alt="...">
+							<a href="#" class="btn favorite" data="{{$post->id}}">
+								<span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span>
 							</a>
 
-							<div class="media-body pvvoMediaBody" >
-								<h5 class="media-heading"><a href=" {{ URL::to('/posts/detail/' . $post->id)}}"> {{ $post->title }}</a></h5>
-								<p>
-									<a href="#" class="favorite" data="{{$post->id}}">
-										<span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span><span class="count">{{ count($post->favorites) }}</span></span>
-									</a>
-
-									<span class="label label-warning">
-										<span class="fa fa-comment rightSpacingSmall"></span><span class="count">{{ count($post->comments) }}</span>
-									</span>
-								</p>
-							</div>
-
+							<a class="btn comment">
+								<span class="fa fa-comment rightSpacingSmall"></span> <span class="count">{{ count($post->comments) }}</span>
+							</a>
+							
+							<a class="btn repin">
+								<span class="fa fa-retweet rightSpacingSmall"></span> pin
+							</a>
+						
 						</div>
 					</div>
 				</div>
+
 				@endforeach
 			</div>
 		</div>

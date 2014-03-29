@@ -69,12 +69,15 @@ html, body {
 }
 
 .pvvoThumbImg {
-	
+	text-decoration: none;
 	width: 100%;
 	height: 300px !important;
 	border: 0px !important;
 }
 
+.pvvoThumbUrl {
+	border: 5px;
+}
 
 .pvvoStreamBody {
 	padding: 15px;
@@ -90,11 +93,22 @@ html, body {
 	margin; 0px;
 }
 
-.thumbnail {
+.item {
 	height: auto;
 	position: absolute;
 	width: 250px;
 	padding: 0px !important;
+	border-radius: 5px;
+}
+
+.pinBtns a {
+	color: #999;
+	font-weight: normal;
+	font-size: 14px;
+}
+
+.pvvoPink {
+	color: #F22C5D !important;
 }
 
 .pvvoPills {
@@ -120,6 +134,20 @@ html, body {
 
 .favorite:hover {
 	text-decoration: none;
+	color: #F22C5D; 
+}
+
+.comment:hover {
+	text-decoration: none;
+	color: #FF8E47; 
+}
+
+.repin {
+	color: #F22C5D !important;
+}
+
+.thumbButtons {
+	width: 100%;
 }
 
 .rightSpacingSmall { margin-right: 5px; }
