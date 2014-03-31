@@ -56,7 +56,6 @@ $('#media-type').change(function(){
 
 addPin.on('submit', function() {
     event.preventDefault();
-    console.log(addPin.serialize());
     var errorForm = addPin.find('div#validation-errors');
     $.ajax({
         url: '../public/posts/add',
@@ -68,17 +67,16 @@ addPin.on('submit', function() {
             errorForm.find("ul").empty();
         },
         success: function(data) {
-            console.log(data);
             if(data.success == false) {
                 var arr = data.errors;
-                $.each(arr, function(index, value)                {
-                    if (value.length != 0)
-                    {
+                console.log(arr);
+                $.each(arr, function(index, value){
+                    if (value.length != 0){
                         errorForm.find("ul").append('<li>'+ value +'</li>');
                     }
                 });
                 errorForm.show();
-            } else {
+                } else {
                 location.reload();
             }
         },

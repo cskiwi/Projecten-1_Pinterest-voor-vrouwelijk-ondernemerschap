@@ -52,6 +52,7 @@ class PostController extends BaseController {
                     $rules = array(
                         'Image-title' => 'Required|Min:3|Max:255|alpha_spaces',
                         'Image-description' => 'Required|Min:3',
+                        'Image-file' => 'image',
                     );
                     break;
                 case 'Video':
@@ -71,6 +72,7 @@ class PostController extends BaseController {
                         'Offer-title' => 'Required|Min:3|Max:255|alpha_spaces',
                         'Offer-price' => 'Required|numeric|Min:3',
                         'Offer-description' => 'Required|Min:3',
+                        'Offer-file' => 'image',
                     );
                     break;
             }
@@ -79,8 +81,11 @@ class PostController extends BaseController {
             $validator = Validator::make(Input::all(), $rules);
 
             if ($validator->fails()) {
-                return \Response::json(['success' => false, 'errors' => array($validator)]);
+                return \Response::json(['success' => false, 'errors' =>  $validator->getMessageBag()->toArray()]);
             } else {
+
+
+
                 switch(Input::get('media-type')){
                     case 'Text':
                         $post = Post::create(array(
@@ -91,14 +96,23 @@ class PostController extends BaseController {
                         ));
                         break;
                     case 'Image':
-                        // TODO: handle upload;
                         $post = Post::create(array(
                             'user_id'   => Auth::user()->id,
                             'title'     => Input::get('Image-title'),
-                            'imgLocation' => '',
                             'description' => Input::get('Image-description'),
                             'type'      => 'Image',
                         ));
+
+                        $file = Input::file('Image-file');
+
+                        $destinationPath    = 'img/';
+                        $extension          = $file->getClientOriginalExtension();
+                        $filename           = 'usr_'.  Auth::user()->id . '_post'.$post->id .'.'. $extension;
+
+                        $file->move($destinationPath, $filename);
+                        $post->imgLocation = $filename;
+                        $post->save();
+
                         break;
                     case 'Video':
                         $post = Post::create(array(
@@ -130,7 +144,7 @@ class PostController extends BaseController {
 
                 DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
 
-                return  \Response::json(['success' => true ]);//*/
+                return  \Response::json(['success' => true]);//*/
 
             }
         }

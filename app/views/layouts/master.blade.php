@@ -85,12 +85,14 @@
             </div>
 
             <div class="modal-body">
+
+
+                {{ Form::open(array('url' => '../public/posts/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
+
                 <div id="validation-errors" class="alert alert-danger" hidden>
                     <p>Some errors occured</p>
                     <ul></ul>
                 </div>
-
-                {{ Form::open(array('class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Type</label>
