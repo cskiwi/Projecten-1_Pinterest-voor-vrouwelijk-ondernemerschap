@@ -23,5 +23,8 @@ class Post extends Eloquent {
     public function Favorites(){
         return $this->hasMany('Favorite');
     }
+    public function FavoriteUser(){
+        return Auth::user()->favorites()->where('post_id', '=', $this->id)->get()->first() == true;
+    }
 
 }

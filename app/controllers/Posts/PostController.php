@@ -41,29 +41,92 @@ class PostController extends BaseController {
      */
     public function postAdd(){
         if (Auth::check()){
-            $rules = array(
-                'media-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                'media-description' => 'Required|Min:3',
-            );
+            switch(Input::get('media-type')){
+                case 'Text':
+                    $rules = array(
+                        'Text-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                        'Text-description' => 'Required|Min:3',
+                    );
+                    break;
+                case 'Image':
+                    $rules = array(
+                        'Image-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                        'Image-description' => 'Required|Min:3',
+                    );
+                    break;
+                case 'Video':
+                    $rules = array(
+                        'Video-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                        'Video-link' => 'Required|Min:3',
+                    );
+                    break;
+                case 'Tutorial':
+                    $rules = array(
+                        'Text-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                        'Text-description' => 'Required|Min:3',
+                    );
+                    break;
+                case 'Offer':
+                    $rules = array(
+                        'Offer-title' => 'Required|Min:3|Max:255|alpha_spaces',
+                        'Offer-price' => 'Required|numeric|Min:3',
+                        'Offer-description' => 'Required|Min:3',
+                    );
+                    break;
+            }
+
 
             $validator = Validator::make(Input::all(), $rules);
 
             if ($validator->fails()) {
                 return \Response::json(['success' => false, 'errors' => array($validator)]);
             } else {
-                //TODO: fix this
                 switch(Input::get('media-type')){
                     case 'Text':
-
+                        $post = Post::create(array(
+                            'user_id'   => Auth::user()->id,
+                            'title'     => Input::get('Text-title'),
+                            'description' => Input::get('Text-description'),
+                            'type'      => 'Text',
+                        ));
                         break;
-
+                    case 'Image':
+                        // TODO: handle upload;
+                        $post = Post::create(array(
+                            'user_id'   => Auth::user()->id,
+                            'title'     => Input::get('Image-title'),
+                            'imgLocation' => '',
+                            'description' => Input::get('Image-description'),
+                            'type'      => 'Image',
+                        ));
+                        break;
+                    case 'Video':
+                        $post = Post::create(array(
+                            'user_id'   => Auth::user()->id,
+                            'title'     => Input::get('Video-title'),
+                            'description' => Input::get('Video-link'),
+                            'type'      => 'Video',
+                        ));
+                        break;
+                    case 'Tutorial':
+                        $post = Post::create(array(
+                            'user_id'   => Auth::user()->id,
+                            'title'     => Input::get('Text-title'),
+                            'description' => Input::get('Text-description'),
+                            'type'      => 'Tutorial',
+                        ));
+                        break;
+                    case 'Offer':
+                        $post = Post::create(array(
+                            'user_id'   => Auth::user()->id,
+                            'title'     => Input::get('Offer-title'),
+                            'price'     => Input::get('Offer-price'),
+                            'description' => Input::get('Offer-description'),
+                            'imgLocation' => '',
+                            'type'      => 'Offer',
+                        ));
+                        break;
                 }
-                $post = Post::create(array(
-                    'user_id'   => Auth::user()->id,
-                    'title'     => Input::get('media-title'),
-                    'description' => Input::get('media-description'),
-                    'type'      => Input::get('media-type'),
-                ));
 
                 DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
 

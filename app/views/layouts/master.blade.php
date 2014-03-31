@@ -110,14 +110,14 @@
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
-                                {{ Form::text('media-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
+                                {{ Form::text('Image-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
                             </div>
                         </div>
 						
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Choose file</label>
                             <div class="col-sm-9">
-                                {{ Form::file('image-file') }}
+                                {{ Form::file('Image-file') }}
                                 <p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
-                                {{ Form::textarea('media-description', null, array('class' => 'form-control', 'rows' => '3')) }}
+                                {{ Form::textarea('Image-description', null, array('class' => 'form-control', 'rows' => '3')) }}
                             </div>
                         </div>
 					</span>
@@ -135,13 +135,13 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Title</label>
                             <div class="col-sm-9">
-                                {{ Form::text('media-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
+                                {{ Form::text('Text-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-3 control-label">Description</label>
                             <div class="col-sm-9">
-                                {{ Form::textarea('media-description', null, array('class' => 'form-control', 'rows' => '3')) }}
+                                {{ Form::textarea('Text-description', null, array('class' => 'form-control wysi', 'rows' => '3')) }}
                             </div>
                         </div>
                     </span>
@@ -149,9 +149,15 @@
                 <!-- Video Type -->
                     <span id="type-video" class="type-media">
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                {{ Form::text('Video-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Link</label>
                             <div class="col-sm-9">
-                                {{ Form::text('video-link', null, array('class' => 'form-control', 'placeholder' => 'ex. YouTube or Vimeo')) }}
+                                {{ Form::text('Video-link', null, array('class' => 'form-control', 'placeholder' => 'ex. YouTube or Vimeo')) }}
                             </div>
                         </div>
                     </span>
@@ -159,17 +165,29 @@
                 <!-- Offer Type -->
 					<span id="type-offer" class="type-media">
                         <div class="form-group">
+                            <label class="col-sm-3 control-label">Title</label>
+                            <div class="col-sm-9">
+                                {{ Form::text('Offer-title', null, array('class' => 'form-control', 'placeholder' => '')) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-3 control-label">Price €</label>
                             <div class="col-sm-9">
-                                {{ Form::text('offer-price', null, array('class' => 'form-control', 'placeholder' => '0.00')) }}
+                                {{ Form::text('Offer-price', null, array('class' => 'form-control', 'placeholder' => '0.00')) }}
                             </div>
                         </div>
 						
 						<div class="form-group">
                             <label class="col-sm-3 control-label">Choose image</label>
                             <div class="col-sm-9">
-                                {{ Form::file('offer-image-file') }}
+                                {{ Form::file('Offer-file') }}
                                 <p class="help-block">Only .jpg, .png, .gif, .bmp allowed.</p>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Description</label>
+                            <div class="col-sm-9">
+                                {{ Form::textarea('Offer-description', null, array('class' => 'form-control wysi', 'rows' => '3')) }}
                             </div>
                         </div>
 					</span>
@@ -177,7 +195,6 @@
                 <div class="modal-footer">
                     {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
                     {{ Form::submit('Pin it, babe!', array('class' => 'btn btn-info')) }}
-
                 </div>
                 {{ Form::close() }}
             </div>

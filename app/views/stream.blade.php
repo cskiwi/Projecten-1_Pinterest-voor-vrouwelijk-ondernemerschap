@@ -61,18 +61,19 @@ Welcome {{ Auth::user()->username  }}
 								{{ str_limit($post->description, $limit = 300, $end = '...') }}
 							</div>	
 						</div>
+
 						@endif
                         <a class="hoverCaption" href="{{ URL::to('/posts/detail/' . $post->id)}}">
 							Read more...
                         </a>
 					
 					</div>
-					
-					<div class="panel-footer">
+
+                    <div class="panel-footer">
 						<div class="btn-group btn-group-xs btn-group-justified pinBtns">
 
-							<a href="#" class="btn favorite" data="{{$post->id}}">
-								<span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }}</span>
+                            <a href="#" class="btn favorite" data="{{$post->id}}">
+								<span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }} @if($post->FavoriteUser())*@endif</span>
 							</a>
 
 							<a class="btn comment">
@@ -82,8 +83,8 @@ Welcome {{ Auth::user()->username  }}
 							<a class="btn repin">
 								<span class="fa fa-retweet rightSpacingSmall"></span> pin
 							</a>
-						
-						</div>
+
+                        </div>
 					</div>
 				</div>
 

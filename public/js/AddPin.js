@@ -8,6 +8,27 @@ var addPin = $('#addPin');
 media.hide();
 typeText.show();
 
+typeText.find('textarea').wysihtml5({
+    "font-styles": true,
+    "emphasis": true,
+    "lists": false,
+    "html": false,
+    "link": true,
+    "image": false,
+    "color": false
+});
+typeOffer.find('textarea').wysihtml5({
+    "font-styles": true,
+    "emphasis": true,
+    "lists": false,
+    "html": false,
+    "link": true,
+    "image": false,
+    "color": false
+});
+
+
+
 $('#media-type').change(function(){
     var type = $(this).val();
     media.hide();
@@ -69,12 +90,3 @@ addPin.on('submit', function() {
 } );
 
 
-typeText.find('textarea').wysihtml5({
-    "font-styles": true,
-    "emphasis": true,
-    "lists": false,
-    "html": false,
-    "link": true,
-    "image": false,
-    "color": false
-});
