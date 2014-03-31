@@ -24,12 +24,10 @@ Welcome {{ Auth::user()->username  }}
 					{{$board->title }}
 				</a>
 			</li>
-			
-			
+
 			@endforeach
-			
 			<li class="pull-right">
-				<a class="refresh refreshPill" href="#">
+				<a class="refresh refreshPill" href="{{ URL::to('/')}}">
 					Refresh <span id="newposts" class="badge"></span>
 				</a>
 			</li>
@@ -119,7 +117,7 @@ Welcome {{ Auth::user()->username  }}
 						<div class="media">
 
 							<a class="pull-left" href="#">
-								<img class="media-object" src="http://placehold.it/200x200" alt="...">
+								<img class="media-object" src="http://placehold.it/100x100" alt="...">
 							</a>
 
 

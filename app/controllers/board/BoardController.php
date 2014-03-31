@@ -84,8 +84,7 @@ class BoardController extends BaseController {
                 ->where('user_id', Auth::user()->id)
                 ->where('board_id', Input::get('board_id'))
                 ->delete();
-
-            return \Response::json(['success' => true], 200);
+            return \Response::json(['success' => true]);
         }
     }
 

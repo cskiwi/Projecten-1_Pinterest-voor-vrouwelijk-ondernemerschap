@@ -83,9 +83,6 @@ class PostController extends BaseController {
             if ($validator->fails()) {
                 return \Response::json(['success' => false, 'errors' =>  $validator->getMessageBag()->toArray()]);
             } else {
-
-
-
                 switch(Input::get('media-type')){
                     case 'Text':
                         $post = Post::create(array(
@@ -144,8 +141,7 @@ class PostController extends BaseController {
 
                 DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
 
-                return  \Response::json(['success' => true]);//*/
-
+                return \Response::json(['success' => true]);
             }
         }
     }

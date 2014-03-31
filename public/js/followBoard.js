@@ -17,9 +17,6 @@ followForm.on( 'submit', function(event) {
             data: $(this).serialize(),
             success: function() {
                 followButton.val('follow').removeClass('following');
-            },
-            error: function() {
-                alert('Something went to wrong.Please Try again later...');
             }
         });
 
@@ -31,9 +28,6 @@ followForm.on( 'submit', function(event) {
             data: $(this).serialize(),
             success: function() {
                 followButton.val('unfollow').addClass('following');
-            },
-            error: function() {
-                alert('Something went to wrong.Please Try again later...');
             }
         });
     }

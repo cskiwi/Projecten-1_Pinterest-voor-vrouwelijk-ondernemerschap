@@ -33,7 +33,6 @@ $('#media-type').change(function(){
     var type = $(this).val();
     media.hide();
 
-    console.log(type);
     switch (type) {
         case 'Tutorial':
             typeText.show();
@@ -56,32 +55,35 @@ $('#media-type').change(function(){
 
 addPin.on('submit', function() {
     event.preventDefault();
+    var formData = addPin.serialize();
     var errorForm = addPin.find('div#validation-errors');
     $.ajax({
         url: '../public/posts/add',
         type: 'post',
         cache: false,
-        data: addPin.serialize(),
+        data: formData,
         beforeSend: function() {
             errorForm.hide();
             errorForm.find("ul").empty();
         },
         success: function(data) {
+
             if(data.success == false) {
                 var arr = data.errors;
-                console.log(arr);
                 $.each(arr, function(index, value){
                     if (value.length != 0){
                         errorForm.find("ul").append('<li>'+ value +'</li>');
                     }
                 });
                 errorForm.show();
-                } else {
+            } else {
                 location.reload();
             }
         },
-        error: function() {
-            alert('Something went to wrong.Please Try again later...');
+        error: function(data) {
+            console.log(data);
+
+            alert('see console');
         }
     });
     return false;
