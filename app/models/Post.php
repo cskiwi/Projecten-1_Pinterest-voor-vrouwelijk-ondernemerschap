@@ -8,7 +8,7 @@ class Post extends Eloquent {
      * @var string
      */
     protected $table = 'posts';
-    protected $fillable = array('user_id','title', 'body');
+    protected $fillable = array('user_id','title', 'description', 'imgLocation', 'price', 'type');
 
     public $timestamps = true;
     public function Boards() {

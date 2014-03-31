@@ -51,14 +51,21 @@ class PostController extends BaseController {
             if ($validator->fails()) {
                 return \Response::json(['success' => false, 'errors' => array($validator)]);
             } else {
+                //TODO: fix this
+                switch(Input::get('media-type')){
+                    case 'Text':
+
+                        break;
+
+                }
                 $post = Post::create(array(
-                    'user_id'     => Auth::user()->id,
+                    'user_id'   => Auth::user()->id,
                     'title'     => Input::get('media-title'),
-                    'body'      => Input::get('media-description'),
-                    'type'      => Input::get('text'),
+                    'description' => Input::get('media-description'),
+                    'type'      => Input::get('media-type'),
                 ));
 
-                DB::table('board_post')->insert(['board_id'  => 1, 'post_id'   => $post->id]);
+                DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
 
                 return  \Response::json(['success' => true ]);//*/
 

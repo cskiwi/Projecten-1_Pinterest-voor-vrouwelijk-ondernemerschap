@@ -20,8 +20,12 @@ class CreatePostsTable extends Migration {
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
 
             $table->string('title');
-            $table->text('body');
-            $table->enum('type', array('photo', 'text'));
+            $table->text('description');
+
+            $table->string('imgLocation');
+            $table->double('price');
+
+            $table->enum('type', array('Image', 'Text', 'Video', 'Tutorial', 'Offer'));
 			$table->timestamps();
 		});
 	}

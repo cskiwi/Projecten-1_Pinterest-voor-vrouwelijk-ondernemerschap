@@ -47,19 +47,18 @@ Welcome {{ Auth::user()->username  }}
 				<div class="panel panel-default item" date="{{ $post->created_at }}">
 				
 					<div class="hoverContainer">
-					
-						@if($post->type == 'photo')
+						@if($post->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
-								<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->body}}') no-repeat center center;">
+								<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->imgLocation}}') no-repeat center center;">
 							</a>
 						</div>
 						@endif
 						
-						@if($post->type == 'text')
+						@if($post->type == 'Text')
 						<div class="panel-body">
 							<div class="pvvoStreamBody">
-								{{ str_limit($post->body, $limit = 300, $end = '...') }}
+								{{ str_limit($post->description, $limit = 300, $end = '...') }}
 							</div>	
 						</div>
 						@endif
