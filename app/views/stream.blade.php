@@ -17,18 +17,22 @@ Welcome {{ Auth::user()->username  }}
 	<div class="col-md-12">
 	
 		<ul class="nav nav-pills">
-			<li class="">
-				<a class="refresh refreshPill" href="#">
-					Refresh
-				</a>
-			</li>
+			
 			@foreach (Auth::user()->follows as $board)
 			<li class="" id="filter_boards">
 				<a href="{{ URL::to('/boards/detail/'.$board->id) }}">
 					{{$board->title }}
 				</a>
 			</li>
+			
+			
 			@endforeach
+			
+			<li class="pull-right">
+				<a class="refresh refreshPill" href="#">
+					Refresh <span id="newposts" class="badge"></span>
+				</a>
+			</li>
 
 		</ul>
 	</div>
@@ -50,14 +54,19 @@ Welcome {{ Auth::user()->username  }}
 						@if($post->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
-								<img class="img-responsive pvvoThumbImg" style="background:url('./img/{{ $post->imgLocation}}') no-repeat center center;">
+								<!-- style="background:url('./img/{{ $post->imgLocation}}') no-repeat center center;" -->
+								<img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
 							</a>
+							
 						</div>
 						@endif
 						
 						@if($post->type == 'Text')
 						<div class="panel-body">
 							<div class="pvvoStreamBody">
+								<p>
+									<strong>{{ $post->title }}</strong>
+								</p>
 								{{ str_limit($post->description, $limit = 300, $end = '...') }}
 							</div>	
 						</div>
