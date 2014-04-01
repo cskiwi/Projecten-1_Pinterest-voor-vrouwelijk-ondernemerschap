@@ -20,7 +20,7 @@ $('.favorite').click(function(event) {
     var clickID = $(this).attr('data');
     var count = $('.favorite[data=' + clickID + '] > span.count');
     $.ajax({
-        url: 'posts/favorite',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/posts/favorite',
         type: 'post',
         cache: false,
         data: { id: clickID },
@@ -55,7 +55,7 @@ function fetchNewPosts(){
     var photos = $('.photos:not(.suggestion)');
     var latestDate = !(photos.find('.item').length > 0 ) ? null : latestd(photos.find('.item'));
     $.ajax({
-        url: 'stream',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/stream',
         type: 'post',
         cache: false,
         success: function(stream) {

@@ -9,7 +9,7 @@ loginForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = loginForm.find('div#validation-errors');
     $.ajax({
-        url: '../public/admin/login',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/admin/login',
         type: 'post',
         cache: false,
         data: loginForm.serialize(),
@@ -43,7 +43,7 @@ registerForm.on( 'submit', function() {
     event.preventDefault();
     var errorForm = registerForm.find('div#validation-errors');
     $.ajax({
-        url: '../public/admin/register',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/admin/register',
         type: 'post',
         cache: false,
         data: registerForm.serialize(),

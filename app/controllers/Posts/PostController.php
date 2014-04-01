@@ -45,103 +45,101 @@ class PostController extends BaseController {
                 case 'Text':
                     $rules = array(
                         'Text-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Text-description' => 'Required|Min:3',
+                        'Text-description' => 'Required|Min:3'
                     );
                     break;
                 case 'Image':
                     $rules = array(
                         'Image-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Image-description' => 'Required|Min:3',
-                        'Image-file' => 'image',
+                        'Image-description' => 'Required|Min:3'
                     );
                     break;
                 case 'Video':
                     $rules = array(
                         'Video-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Video-link' => 'Required|Min:3',
+                        'Video-link' => 'Required|Min:3'
                     );
                     break;
                 case 'Tutorial':
                     $rules = array(
                         'Text-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Text-description' => 'Required|Min:3',
+                        'Text-description' => 'Required|Min:3'
                     );
                     break;
                 case 'Offer':
                     $rules = array(
                         'Offer-title' => 'Required|Min:3|Max:255|alpha_spaces',
                         'Offer-price' => 'Required|numeric|Min:3',
-                        'Offer-description' => 'Required|Min:3',
-                        'Offer-file' => 'image',
+                        'Offer-description' => 'Required|Min:3'
                     );
                     break;
             }
-
-
             $validator = Validator::make(Input::all(), $rules);
 
             if ($validator->fails()) {
                 return \Response::json(['success' => false, 'errors' =>  $validator->getMessageBag()->toArray()]);
             } else {
-                switch(Input::get('media-type')){
-                    case 'Text':
-                        $post = Post::create(array(
-                            'user_id'   => Auth::user()->id,
-                            'title'     => Input::get('Text-title'),
-                            'description' => Input::get('Text-description'),
-                            'type'      => 'Text',
-                        ));
-                        break;
-                    case 'Image':
-                        $post = Post::create(array(
-                            'user_id'   => Auth::user()->id,
-                            'title'     => Input::get('Image-title'),
-                            'description' => Input::get('Image-description'),
-                            'type'      => 'Image',
-                        ));
+                if(!\Request::ajax()){
+                    switch(Input::get('media-type')){
+                        case 'Text':
+                            $post = Post::create(array(
+                                'user_id'   => Auth::user()->id,
+                                'title'     => Input::get('Text-title'),
+                                'description' => Input::get('Text-description'),
+                                'type'      => 'Text',
+                            ));
+                            break;
+                        case 'Image':
+                            $post = Post::create(array(
+                                'user_id'   => Auth::user()->id,
+                                'title'     => Input::get('Image-title'),
+                                'description' => Input::get('Image-description'),
+                                'type'      => 'Image',
+                            ));
 
-                        $file = Input::file('Image-file');
+                            $file = Input::file('Image-file');
 
-                        $destinationPath    = 'img/';
-                        $extension          = $file->getClientOriginalExtension();
-                        $filename           = 'usr_'.  Auth::user()->id . '_post'.$post->id .'.'. $extension;
+                            $destinationPath    = 'img/';
+                            $extension          = $file->getClientOriginalExtension();
+                            $filename           = 'usr_'.  Auth::user()->id . '_post'.$post->id .'.'. $extension;
 
-                        $file->move($destinationPath, $filename);
-                        $post->imgLocation = $filename;
-                        $post->save();
+                            $file->move($destinationPath, $filename);
+                            $post->imgLocation = $filename;
+                            $post->save();
+                            break;
+                        case 'Video':
+                            $post = Post::create(array(
+                                'user_id'   => Auth::user()->id,
+                                'title'     => Input::get('Video-title'),
+                                'description' => Input::get('Video-link'),
+                                'type'      => 'Video',
+                            ));
+                            break;
+                        case 'Tutorial':
+                            $post = Post::create(array(
+                                'user_id'   => Auth::user()->id,
+                                'title'     => Input::get('Text-title'),
+                                'description' => Input::get('Text-description'),
+                                'type'      => 'Tutorial',
+                            ));
+                            break;
+                        case 'Offer':
+                            $post = Post::create(array(
+                                'user_id'   => Auth::user()->id,
+                                'title'     => Input::get('Offer-title'),
+                                'price'     => Input::get('Offer-price'),
+                                'description' => Input::get('Offer-description'),
+                                'imgLocation' => '',
+                                'type'      => 'Offer',
+                            ));
+                            break;
+                    }
 
-                        break;
-                    case 'Video':
-                        $post = Post::create(array(
-                            'user_id'   => Auth::user()->id,
-                            'title'     => Input::get('Video-title'),
-                            'description' => Input::get('Video-link'),
-                            'type'      => 'Video',
-                        ));
-                        break;
-                    case 'Tutorial':
-                        $post = Post::create(array(
-                            'user_id'   => Auth::user()->id,
-                            'title'     => Input::get('Text-title'),
-                            'description' => Input::get('Text-description'),
-                            'type'      => 'Tutorial',
-                        ));
-                        break;
-                    case 'Offer':
-                        $post = Post::create(array(
-                            'user_id'   => Auth::user()->id,
-                            'title'     => Input::get('Offer-title'),
-                            'price'     => Input::get('Offer-price'),
-                            'description' => Input::get('Offer-description'),
-                            'imgLocation' => '',
-                            'type'      => 'Offer',
-                        ));
-                        break;
+                    DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
+                    return Redirect::to('/');
+                } else {
+                    return \Response::json(['success' => true]);
                 }
-
-                DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
-
-                return \Response::json(['success' => true]);
             }
         }
     }

@@ -54,19 +54,21 @@ $('#media-type').change(function(){
 });
 
 addPin.on('submit', function() {
-    event.preventDefault();
-    var formData = addPin.serialize();
+    var formData = addPin.serializeArray();
     var errorForm = addPin.find('div#validation-errors');
+    var returnvalue = false;
     $.ajax({
-        url: '../public/posts/add',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/posts/add',
         type: 'post',
         cache: false,
+        async: false,
         data: formData,
         beforeSend: function() {
             errorForm.hide();
             errorForm.find("ul").empty();
         },
         success: function(data) {
+            console.log('setting');
 
             if(data.success == false) {
                 var arr = data.errors;
@@ -76,17 +78,19 @@ addPin.on('submit', function() {
                     }
                 });
                 errorForm.show();
+                returnvalue = false;
             } else {
-                location.reload();
+                returnvalue = true;
             }
         },
         error: function(data) {
             console.log(data);
-
             alert('see console');
+            return false;
         }
     });
-    return false;
+    console.log(returnvalue);
+    return returnvalue;
 } );
 
 
