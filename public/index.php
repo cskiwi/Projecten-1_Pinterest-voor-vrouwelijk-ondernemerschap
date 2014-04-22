@@ -55,7 +55,6 @@ $app->run();
 \Iseed::generateSeed('comments');
 \Iseed::generateSeed('favorites');
 \Iseed::generateSeed('follows');
-\Iseed::generateSeed('migrations');
 \Iseed::generateSeed('password_reminders');
 \Iseed::generateSeed('posts');
 \Iseed::generateSeed('tag');
