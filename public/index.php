@@ -47,3 +47,16 @@ $app = require_once __DIR__.'/../bootstrap/start.php';
 */
 
 $app->run();
+
+
+/*\Iseed::generateSeed('boards');
+\Iseed::generateSeed('board_post');
+\Iseed::generateSeed('board_tag');
+\Iseed::generateSeed('comments');
+\Iseed::generateSeed('favorites');
+\Iseed::generateSeed('follows');
+\Iseed::generateSeed('migrations');
+\Iseed::generateSeed('password_reminders');
+\Iseed::generateSeed('posts');
+\Iseed::generateSeed('tag');
+\Iseed::generateSeed('users');//*/

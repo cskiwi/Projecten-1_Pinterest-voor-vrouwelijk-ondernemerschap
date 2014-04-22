@@ -1,36 +1,58 @@
 <?php
 
-class BoardsTableSeeder extends Seeder
-{
+class BoardsTableSeeder extends Seeder {
 
-    public function run()
-    {
-        DB::table('boards')->delete();
-        Board::create(array(
-            'id'        => 1,
-            'user_id'   => rand(0,20),
-            'title'     => 'Littens',
-        ));
-        Board::create(array(
-            'id'        => 2,
-            'user_id'   => rand(0,20),
-            'title'     => 'Dogs',
-        ));
-        Board::create(array(
-            'id'        => 3,
-            'user_id'   => rand(0,20),
-            'title'     => 'Photography',
-        ));
-        Board::create(array(
-            'id'        => 4,
-            'user_id'   => rand(0,20),
-            'title'     => 'Programming',
-        ));
-        Board::create(array(
-            'id'        => 5,
-            'user_id'   => rand(0,20),
-            'title'     => 'Random',
-        ));
-    }
+	/**
+	 * Auto generated seed file
+	 *
+	 * @return void
+	 */
+	public function run()
+	{
+		\DB::table('boards')->truncate();
+        
+		\DB::table('boards')->insert(array (
+			0 => 
+			array (
+				'id' => 1,
+				'user_id' => 16,
+				'title' => 'Littens',
+				'created_at' => '2014-04-01 10:00:28',
+				'updated_at' => '2014-04-01 10:00:28',
+			),
+			1 => 
+			array (
+				'id' => 2,
+				'user_id' => 4,
+				'title' => 'Dogs',
+				'created_at' => '2014-04-01 10:00:28',
+				'updated_at' => '2014-04-01 10:00:28',
+			),
+			2 => 
+			array (
+				'id' => 3,
+				'user_id' => 11,
+				'title' => 'Photography',
+				'created_at' => '2014-04-01 10:00:28',
+				'updated_at' => '2014-04-01 10:00:28',
+			),
+			3 => 
+			array (
+				'id' => 4,
+				'user_id' => 6,
+				'title' => 'Programming',
+				'created_at' => '2014-04-01 10:00:28',
+				'updated_at' => '2014-04-01 10:00:28',
+			),
+			4 => 
+			array (
+				'id' => 5,
+				'user_id' => 20,
+				'title' => 'Random',
+				'created_at' => '2014-04-01 10:00:28',
+				'updated_at' => '2014-04-01 10:00:28',
+			),
+		));
+	}
 
 }
