@@ -9,7 +9,8 @@ class DatabaseSeeder extends Seeder {
 	 */
 	public function run()
 	{
-
+        Eloquent::unguard();
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     	$this->call('UsersTableSeeder');
 		$this->call('BoardsTableSeeder');
 		$this->call('BoardPostTableSeeder');
@@ -17,10 +18,11 @@ class DatabaseSeeder extends Seeder {
 		$this->call('CommentsTableSeeder');
 		$this->call('FavoritesTableSeeder');
 		$this->call('FollowsTableSeeder');
-		$this->call('MigrationsTableSeeder');
 		$this->call('PasswordRemindersTableSeeder');
 		$this->call('PostsTableSeeder');
 		$this->call('TagTableSeeder');
-	}
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+    }
 
 }

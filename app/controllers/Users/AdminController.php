@@ -15,7 +15,8 @@ class AdminController extends BaseController {
      *
      */
     public function getLogin()    {
-        return Redirect::to('/');
+        return View::make('admin.login');
+        // return Redirect::to('/');
     }
 
 

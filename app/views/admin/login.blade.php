@@ -5,7 +5,6 @@
 @stop
 
 @section('scripts')
-{{ HTML::script('js/home.js') }}
 @stop
 
 @section('content')
