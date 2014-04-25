@@ -209,14 +209,6 @@ html, body {
 	color: #999;
 }
 
-.profBoxJumbo ul li:hover {
-	border-bottom: 4px solid black;
-}
-
-.profileTabActive {
-	border-bottom: 4px solid black;
-}
-
 .statLbl {
 	margin: 0px;
 	padding: 0px;

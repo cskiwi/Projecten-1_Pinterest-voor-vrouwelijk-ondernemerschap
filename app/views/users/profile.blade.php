@@ -38,7 +38,7 @@
 
     <div class="row profBoxJumbo">
         <ul class="stats">
-            <li class="profileTabActive">
+            <li class="">
                 <h4 class="statLbl">Pins</h4>
                 {{ count($user->posts) }}
             </li>
