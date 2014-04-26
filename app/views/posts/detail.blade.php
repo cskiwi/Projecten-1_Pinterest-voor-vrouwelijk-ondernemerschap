@@ -9,7 +9,7 @@ Post detail | {{ $post->title }}
 
     <div class="row">
 
-        <div class="col-md-6">
+        <div class="col-md-8">
             
             <div class="panel panel-default">
 
@@ -28,12 +28,15 @@ Post detail | {{ $post->title }}
                 @endif
                 </div>
 
-            </div>
-
-
         </div>
 
+        <div class="col-md-4">
+            <div class="well">
+                Pin by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+            </div>
+        </div>
     </div>
+
 
     <h2></h2>Fav: {{count($post->favorites)}}</li>
     by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
