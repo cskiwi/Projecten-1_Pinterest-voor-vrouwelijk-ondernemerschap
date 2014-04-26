@@ -6,7 +6,33 @@ Post detail | {{ $post->title }}
 
 @section('content')
 <div class="container">
-    <h2>{{ $post->title }}</h2>Fav: {{count($post->favorites)}}</li>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            
+            <div class="panel panel-default">
+
+                <div class="panel-heading">{{ $post->title }}</div>
+
+                <div class="panel-body">
+                    @if($post->type == 'Image')
+                        <img class="img-responsive" src="./img/{{ $post->imgLocation }}" >
+                    @endif
+                        
+                    @if($post->type == 'Text')
+                        {{ $post->description }}
+                    @endif
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <h2></h2>Fav: {{count($post->favorites)}}</li>
     by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
 
     @if(Auth::check())
