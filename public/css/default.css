@@ -108,6 +108,11 @@ html, body {
 	font-size: 14px;
 }
 
+.pinDetailBodyImg { 
+	padding: 0px;
+	margin: 0px;
+}
+
 .pvvoPink {
 	color: #F22C5D !important;
 }

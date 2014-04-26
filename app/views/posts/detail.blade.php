@@ -15,14 +15,17 @@ Post detail | {{ $post->title }}
 
                 <div class="panel-heading">{{ $post->title }}</div>
 
-                <div class="panel-body">
-                    @if($post->type == 'Image')
+                @if($post->type == 'Image')
+                    <div class="panel-body pinDetailBodyImg">
                         <img class="img-responsive" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
-                    @endif
+                    </div>
+                @endif
                         
-                    @if($post->type == 'Text')
+                @if($post->type == 'Text')
+                    <div class="panel-body">
                         {{ $post->description }}
-                    @endif
+                    </div>
+                @endif
                 </div>
 
             </div>
