@@ -17,7 +17,7 @@ Post detail | {{ $post->title }}
 
                 <div class="panel-body">
                     @if($post->type == 'Image')
-                        <img class="img-responsive" src="{{ URL::base() }}/img/{{ $post->imgLocation }}" >
+                        <img class="img-responsive" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
                     @endif
                         
                     @if($post->type == 'Text')
