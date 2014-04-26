@@ -80,7 +80,7 @@ Welcome {{ Auth::user()->username  }}
 						<div class="btn-group btn-group-xs btn-group-justified pinBtns">
 
                             <a href="#" class="btn favorite" data="{{$post->id}}">
-								<span class="fa fa-star rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }} @if($post->FavoriteUser())*@endif</span>
+								<span class="fa fa-star rightSpacingSmall"></span> <span class="count @if($post->FavoriteUser()) pvvoPink @endif">{{ count($post->favorites) }}</span>
 							</a>
 
 							<a class="btn comment">
