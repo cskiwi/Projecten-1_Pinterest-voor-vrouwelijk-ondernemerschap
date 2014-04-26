@@ -6,7 +6,7 @@
 	"require": {
         "laravel/framework": "4.1.*@dev",
         "way/generators": "dev-master",
-		"phpdocumentor/reflection": "dev-master",
+		"phpdocumentor/reflection": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
