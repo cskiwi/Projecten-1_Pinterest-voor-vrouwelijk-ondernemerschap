@@ -61,7 +61,7 @@
 <div class="well">
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading"><h4>{{ $user->username }}'s boards</h4></div>
+            <div class="panel-heading"><h4>Boars of {{ $user->username }}</h4></div>
             <div class="panel-body">
                 <div class="col-xs-6 col-md-12">
                     @if(count ($user->boards) > 0)
@@ -85,14 +85,6 @@
 
 
     <div class="container">
-
-
-        <h2>Has made the following boards</h2>
-        <ul>
-            @foreach($user->boards as $user_board)
-            <li><a href="{{ URL::TO('/boards/detail/'.$user_board->id) }}">{{ $user_board->title }}</a> ( {{ count($user_board->posts) }} posts) </li>
-            @endforeach
-        </ul>
 
         <h2>Has made the following posts</h2>
         <ul>

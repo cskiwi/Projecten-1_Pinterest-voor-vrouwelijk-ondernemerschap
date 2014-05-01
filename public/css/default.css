@@ -87,6 +87,14 @@ html, body {
 	overflow: hidden;
 }
 
+.pvvoStreamVideo {
+
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+
+}
+
 .readMore {
 	height: 25px;
 	border-bottom: 1px solid #ff4136;

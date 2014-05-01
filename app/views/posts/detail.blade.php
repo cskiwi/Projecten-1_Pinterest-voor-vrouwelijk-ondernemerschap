@@ -17,8 +17,14 @@ Post detail | {{ $post->title }}
 
                 @if($post->type == 'Image')
                     <div class="panel-body pinDetailBodyImg">
-                        <img class="img-responsive" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
+                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
+
                     </div>
+                    @if($post->description != '')
+                    <div class="panel-body">
+                        {{ $post->description }}
+                    </div>
+                    @endif
                 @endif
                         
                 @if($post->type == 'Text')
@@ -32,20 +38,39 @@ Post detail | {{ $post->title }}
 
         <div class="col-md-4">
             <div class="well">
-                Pin by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+                <p>
+                    Pin by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+                </p>
+
+
+
+                <h4 class="statLbl">Favourites</h4>
+                {{count($post->favorites)}}
+
             </div>
+
+            @if($post->FavoriteUser())
+                <button type="button" class="btn btn-info" data="{{$post->id}}"><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
+            @else
+            <button type="button" class="btn btn-default" data="{{$post->id}}"><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
+            @endif
+            <button type="button" class="btn btn-default"><span class="fa fa-retweet rightSpacingSmall"></span> pin</button>
+
+            @if(Auth::check())
+            @if(Auth::user() == $post->user)
+            <a href="{{ URL::TO('/posts/delete/'.$post->id) }}" type="button" class="btn btn-danger"><span class="fa fa-times rightSpacingSmall"></span> remove pin</a>
+            @endif
+            @endif
+
+
         </div>
     </div>
 
 
-    <h2></h2>Fav: {{count($post->favorites)}}</li>
+    <h2></h2>Fav: </li>
     by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
 
-    @if(Auth::check())
-    @if(Auth::user() == $post->user)
-    <a href="{{ URL::TO('/posts/delete/'.$post->id) }}">remove</a>
-    @endif
-    @endif
+
 
     <p>{{ $post->body }}</p>
 

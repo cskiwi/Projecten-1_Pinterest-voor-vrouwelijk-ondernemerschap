@@ -19,7 +19,7 @@ Your settings - {{ Auth::user()->username  }}
 			<div class="form-group">
 				<label class="col-sm-3 control-label">Username</label>
 				<div class="col-sm-5">
-					<input id="username" name="username" type="text" placeholder="" class="form-control" required="">
+					<input id="username" name="username" type="text" placeholder="{{ Auth::user()->username  }}" class="form-control" required="" disabled>
 				</div>
 			</div>
 

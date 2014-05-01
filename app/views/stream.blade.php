@@ -13,9 +13,10 @@ Welcome {{ Auth::user()->username  }}
 @stop
 @section('content')
 
-<div class="row pvvoPills">
+<div class="pvvoPills">
+
 	<div class="col-md-12">
-	
+
 		<ul class="nav nav-pills">
 			
 			@foreach (Auth::user()->follows as $board)
@@ -35,7 +36,7 @@ Welcome {{ Auth::user()->username  }}
 		</ul>
 	</div>
 </div>
-		
+
 <div class="well">
 	
 	<div class="row topOffset">
@@ -52,7 +53,6 @@ Welcome {{ Auth::user()->username  }}
 						@if($post->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
-								<!-- style="background:url('./img/{{ $post->imgLocation}}') no-repeat center center;" -->
 								<img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
 							</a>
 							
@@ -70,8 +70,30 @@ Welcome {{ Auth::user()->username  }}
 						</div>
 
 						@endif
+
+                        @if($post->type == 'Offer')
+                        <div class="panel-article-header">
+                            <a class="pvvoThumbUrl" href="#">
+                                <img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
+                            </a>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="pvvoStreamBody">
+                                <p>
+                                    <strong>{{ $post->title }}</strong>
+                                </p>
+                                {{ str_limit($post->description, $limit = 300, $end = '...') }}
+                            </div>
+                        </div>
+
+                        @endif
+
+                        @if($post->type == 'Video')
+                            <iframe class="pvvoStreamVideo" width="100%" src="{{ $post->description }}" frameborder="0" allowfullscreen></iframe>
+                        @endif
                         <a class="hoverCaption" href="{{ URL::to('/posts/detail/' . $post->id)}}">
-							Read more...
+							View pin
                         </a>
 					
 					</div>
@@ -104,6 +126,8 @@ Welcome {{ Auth::user()->username  }}
 
 	orderBy(DB::raw('RAND()'))->get
 	-->
+
+
 	<div class="row topOffset">
 
 		<div class="col-md-12">
@@ -150,16 +174,7 @@ Welcome {{ Auth::user()->username  }}
 
 				@endif
 
-				<!-- <div class="col-sm-6 col-md-3">
-										<div class="thumbnail">
-											<img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">
-											<div class="caption">
-												<h3>Pin</h3>
-												<p>...</p>
-												<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-											</div>
-										</div>
-									</div>-->
+
 			</div>
 
 		</div>

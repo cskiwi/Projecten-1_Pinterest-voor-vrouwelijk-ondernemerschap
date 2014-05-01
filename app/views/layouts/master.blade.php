@@ -69,7 +69,7 @@
 
 
 @yield('content')
-<div class="row">
+<div class="col-md-12">
     <div class="container">
         <p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
     </div>
