@@ -129,9 +129,17 @@ class PostController extends BaseController {
                                 'title'     => Input::get('Offer-title'),
                                 'price'     => Input::get('Offer-price'),
                                 'description' => Input::get('Offer-description'),
-                                'imgLocation' => '',
                                 'type'      => 'Offer',
                             ));
+                            $file = Input::file('Offer-file');
+
+                            $destinationPath    = 'img/';
+                            $extension          = $file->getClientOriginalExtension();
+                            $filename           = 'usr_'.  Auth::user()->id . '_post'.$post->id .'.'. $extension;
+
+                            $file->move($destinationPath, $filename);
+                            $post->imgLocation = $filename;
+                            $post->save();
                             break;
                     }
 
@@ -144,7 +152,7 @@ class PostController extends BaseController {
         }
     }
 
-    public function postDelete($id){
+    public function getDelete($id){
         if (Auth::check()){
             $post = Post::find($id);
             if ($post->user == Auth::user()){

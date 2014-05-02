@@ -1,5 +1,10 @@
 @extends('layouts.master')
 
+@section('scripts')
+{{ HTML::script('js/detail.js') }}
+
+@stop
+
 @section('pagetitle')
 Post detail | {{ $post->title }}
 @stop
@@ -10,29 +15,29 @@ Post detail | {{ $post->title }}
     <div class="row">
 
         <div class="col-md-8">
-            
+
             <div class="panel panel-default">
 
                 <div class="panel-heading">{{ $post->title }}</div>
 
                 @if($post->type == 'Image')
-                    <div class="panel-body pinDetailBodyImg">
-                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
+                <div class="panel-body pinDetailBodyImg">
+                    <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
 
-                    </div>
-                    @if($post->description != '')
-                    <div class="panel-body">
-                        {{ $post->description }}
-                    </div>
-                    @endif
-                @endif
-                        
-                @if($post->type == 'Text')
-                    <div class="panel-body">
-                        {{ $post->description }}
-                    </div>
-                @endif
                 </div>
+                @if($post->description != '')
+                <div class="panel-body">
+                    {{ $post->description }}
+                </div>
+                @endif
+                @endif
+
+                @if($post->type == 'Text')
+                <div class="panel-body">
+                    {{ $post->description }}
+                </div>
+                @endif
+            </div>
 
         </div>
 
@@ -45,15 +50,13 @@ Post detail | {{ $post->title }}
 
 
                 <h4 class="statLbl">Favourites</h4>
-                {{count($post->favorites)}}
+                <span id="fav-count"> {{count($post->favorites)}}</span>
 
             </div>
 
-            @if($post->FavoriteUser())
-                <button type="button" class="btn btn-info" data="{{$post->id}}"><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
-            @else
-            <button type="button" class="btn btn-default" data="{{$post->id}}"><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
-            @endif
+
+            <button type="button" id="favorited"  class="btn btn-info favorite" data="{{$post->id}}" @if(!$post->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
+            <button type="button" id="not-favorited" class="btn btn-default favorite" data="{{$post->id}}" @if($post->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
             <button type="button" class="btn btn-default"><span class="fa fa-retweet rightSpacingSmall"></span> pin</button>
 
             @if(Auth::check())
@@ -105,7 +108,7 @@ Post detail | {{ $post->title }}
     {{ Form::open(array('url' => 'boards/Add/', 'method' => 'post')) }}
     <p>{{Form::label('board', '')}}
         {{Form::text('board') }}
-    {{ Form::submit('Create!') }}</p>
+        {{ Form::submit('Create!') }}</p>
     {{ Form::close() }}
 
     <h2>Comments</h2>
