@@ -58,7 +58,7 @@
                             <li><a href="{{ URL::to('admin/logout') }}">Logout <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
                         </ul>
                     </li>
-                    <!--<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
+                    <!--<li><a href="{{ URL::to('pins') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
                     <li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>-->
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -87,7 +87,7 @@
             <div class="modal-body">
 
 
-                {{ Form::open(array('url' => '../public/posts/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
+                {{ Form::open(array('url' => '../public/pins/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
 
                 <div id="validation-errors" class="alert alert-danger" hidden>
                     <p>Some errors occured</p>

@@ -58,7 +58,7 @@ addPin.on('submit', function() {
     var errorForm = addPin.find('div#validation-errors');
     var returnvalue = false;
     $.ajax({
-        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/posts/add',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/pins/add',
         type: 'post',
         cache: false,
         async: false,

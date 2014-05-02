@@ -6,7 +6,7 @@
 @stop
 
 @section('pagetitle')
-Post detail | {{ $post->title }}
+Post detail | {{ $pin->title }}
 @stop
 
 @section('content')
@@ -18,23 +18,23 @@ Post detail | {{ $post->title }}
 
             <div class="panel panel-default">
 
-                <div class="panel-heading">{{ $post->title }}</div>
+                <div class="panel-heading">{{ $pin->title }}</div>
 
-                @if($post->type == 'Image')
+                @if($pin->type == 'Image')
                 <div class="panel-body pinDetailBodyImg">
-                    <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $post->imgLocation) }}" >
+                    <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $pin->imgLocation) }}" >
 
                 </div>
-                @if($post->description != '')
+                @if($pin->description != '')
                 <div class="panel-body">
-                    {{ $post->description }}
+                    {{ $pin->description }}
                 </div>
                 @endif
                 @endif
 
-                @if($post->type == 'Text')
+                @if($pin->type == 'Text')
                 <div class="panel-body">
-                    {{ $post->description }}
+                    {{ $pin->description }}
                 </div>
                 @endif
             </div>
@@ -44,24 +44,24 @@ Post detail | {{ $post->title }}
         <div class="col-md-4">
             <div class="well">
                 <p>
-                    Pin by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+                    Pin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ strlen( $pin->user->name) != 0 ? $pin->user->name : $pin->user->username }} </a>
                 </p>
 
 
 
                 <h4 class="statLbl">Favourites</h4>
-                <span id="fav-count"> {{count($post->favorites)}}</span>
+                <span id="fav-count"> {{count($pin->favorites)}}</span>
 
             </div>
 
 
-            <button type="button" id="favorited"  class="btn btn-info favorite" data="{{$post->id}}" @if(!$post->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
-            <button type="button" id="not-favorited" class="btn btn-default favorite" data="{{$post->id}}" @if($post->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
+            <button type="button" id="favorited"  class="btn btn-info favorite" data="{{$pin->id}}" @if(!$pin->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
+            <button type="button" id="not-favorited" class="btn btn-default favorite" data="{{$pin->id}}" @if($pin->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
             <button type="button" class="btn btn-default"><span class="fa fa-retweet rightSpacingSmall"></span> pin</button>
 
             @if(Auth::check())
-            @if(Auth::user() == $post->user)
-            <a href="{{ URL::TO('/posts/delete/'.$post->id) }}" type="button" class="btn btn-danger"><span class="fa fa-times rightSpacingSmall"></span> remove pin</a>
+            @if(Auth::user() == $pin->user)
+            <a href="{{ URL::TO('/pins/delete/'.$pin->id) }}" type="button" class="btn btn-danger"><span class="fa fa-times rightSpacingSmall"></span> remove pin</a>
             @endif
             @endif
 
@@ -71,18 +71,18 @@ Post detail | {{ $post->title }}
 
 
     <h2></h2>Fav: </li>
-    by <a href="{{ URL::TO('/users/profile/'.$post->user->id) }}">{{ strlen( $post->user->name) != 0 ? $post->user->name : $post->user->username }} </a>
+    by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ strlen( $pin->user->name) != 0 ? $pin->user->name : $pin->user->username }} </a>
 
 
 
-    <p>{{ $post->body }}</p>
+    <p>{{ $pin->body }}</p>
 
     <h2>Member of the following boards</h2>
-    @foreach($post->boards as $board)
+    @foreach($pin->boards as $board)
     <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a>
         @if(Auth::check())
-        @if(Auth::user() == $post->user)
-        <a href="{{ URL::TO('/boards/'.$board->id.'/removepost/'.$post->id) }}">remove</a>
+        @if(Auth::user() == $pin->user)
+        <a href="{{ URL::TO('/boards/'.$board->id.'/removepin/'.$pin->id) }}">remove</a>
         @endif
         @endif
     </li>
@@ -93,7 +93,7 @@ Post detail | {{ $post->title }}
 
     @if( count(Auth::user()->boards) > 1)
     <h3>Existing board</h3>
-    {{ Form::open(array('url' => 'post/addtoboard')) }}
+    {{ Form::open(array('url' => 'pin/addtoboard')) }}
     <p>{{Form::label('board', 'Board')}}
         <select id="board">
             @foreach(Auth::user()->boards as $user_board)
@@ -105,7 +105,7 @@ Post detail | {{ $post->title }}
     @endif
     @endif
     <h3>Create board</h3>
-    {{ Form::open(array('url' => 'boards/Add/', 'method' => 'post')) }}
+    {{ Form::open(array('url' => 'boards/Add/', 'method' => 'pin')) }}
     <p>{{Form::label('board', '')}}
         {{Form::text('board') }}
         {{ Form::submit('Create!') }}</p>
@@ -113,7 +113,7 @@ Post detail | {{ $post->title }}
 
     <h2>Comments</h2>
     <ul>
-        @foreach($post->comments as $comment)
+        @foreach($pin->comments as $comment)
         <li>{{$comment->content}}</li>
         @endforeach
     </ul>

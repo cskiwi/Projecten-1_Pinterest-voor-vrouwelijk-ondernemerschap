@@ -40,7 +40,7 @@
         <ul class="stats">
             <li class="">
                 <h4 class="statLbl">Pins</h4>
-                {{ count($user->posts) }}
+                {{ count($user->pins) }}
             </li>
             <li>
                 <h4 class="statLbl">Boards</h4>
@@ -92,17 +92,17 @@
 
     <div class="container">
 
-        <h2>Has made the following posts</h2>
+        <h2>Has made the following pins</h2>
         <ul>
-            @foreach($user->posts as $user_post)
-            <li><a href="{{ URL::TO('/posts/detail/'.$user_post->id) }}">{{ $user_post->title }}</a> ( in {{ count($user_post->boards) }} boards) </li>
+            @foreach($user->pins as $user_pin)
+            <li><a href="{{ URL::TO('/pins/detail/'.$user_pin->id) }}">{{ $user_pin->title }}</a> ( in {{ count($user_pin->boards) }} boards) </li>
             @endforeach
         </ul>
 
         <h2>Follows following boards</h2>
         <ul>
             @foreach($user->follows as $board)
-            <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->posts) }} posts) </li>
+            <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->pins) }} pins) </li>
             @endforeach
         </ul>
 

@@ -20,7 +20,7 @@ $('.favorite').click(function(event) {
     var clickID = $(this).attr('data');
     var count = $('.favorite[data=' + clickID + '] > span.count');
     $.ajax({
-        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/posts/favorite',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/pins/favorite',
         type: 'post',
         cache: false,
         data: { id: clickID },

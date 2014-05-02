@@ -8,7 +8,7 @@ Board overview
 <div>
     <ul>
         @foreach($boards as $board)
-        <li><a href="./boards/detail/{{$board->id}}">{{ $board->title }}</a> by <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a> ( {{ count($board->posts) }} posts) </li>
+        <li><a href="./boards/detail/{{$board->id}}">{{ $board->title }}</a> by <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a> ( {{ count($board->pins) }} pins) </li>
             @foreach($board->Followers() as $follower)
                 {{ var_dump($follower) }}
             @endforeach

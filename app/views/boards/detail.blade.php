@@ -13,7 +13,7 @@ Board detail | {{ $board->title }}
 
 @if(Auth::check())
 
-<div class="jumbotron pvvoJumboBoard" style="background: url('../../img/{{ $board->MostLiked('Image')->body }}') no-repeat  fixed;">
+<div class="jumbotron pvvoJumboBoard" style="background: url('') no-repeat  fixed;">
 	<div class="container">
 		<h1>{{ $board->title }}</h1>
 		<p>Followers: {{count($board->followers)}}</p>
@@ -40,8 +40,8 @@ Board detail | {{ $board->title }}
     @endifby
 
     <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a></li>
-    @foreach($board->posts as $post)
-    <li><a href="{{ URL::TO('/posts/detail/'.$post->id) }}">{{ $post->title }}</a><p>{{ $post->body }}</p></li>
+    @foreach($board->pins as $pin)
+    <li><a href="{{ URL::TO('/pins/detail/'.$pin->id) }}">{{ $pin->title }}</a><p>{{ $pin->body }}</p></li>
     @endforeach
 </div>
 
