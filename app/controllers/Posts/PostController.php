@@ -32,8 +32,11 @@ class PostController extends BaseController {
     public function getDetail($id)
     {
         $post = Post::find($id);
-
-        return View::make('posts.detail', array('post' => $post));
+        if ($post) {
+            return View::make('posts.detail', array('post' => $post));
+        } else {
+            return Redirect::to('/');
+        }
     }
 
     /**
