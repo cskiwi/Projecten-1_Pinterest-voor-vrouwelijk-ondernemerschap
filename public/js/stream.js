@@ -25,11 +25,12 @@ $('.favorite').click(function(event) {
         cache: false,
         data: { id: clickID },
         success: function(data) {
-            console.log(data);
             if (data.like) {
                 count.text(parseInt(count.text())-1);
+                $('.favorite').find('span').removeClass('pvvoPink');
             } else{
                 count.text(parseInt(count.text())+1);
+                $('.favorite').find('span').addClass('pvvoPink');
 
             }
         },
