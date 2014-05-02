@@ -102,9 +102,6 @@ class AdminController extends BaseController {
         }
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function getLogout()
     {
         Auth::logout(); // log the user out of our application
@@ -119,9 +116,40 @@ class AdminController extends BaseController {
         return View::make('admin.profile');
 
     }
-	
-	public function getSettings(){
+
+    public function getSettings(){
+
+
         return View::make('admin.settings');
+
+    }
+
+    public function postSettings(){
+        if (Auth::check()){
+
+            $rules = array(
+                'email' => 'Required|Min:3|Max:255|alpha_spaces',
+                'password' => 'Required|Min:3|Max:255|alpha_spaces',
+                'name' => 'Min:3|Max:255|alpha_spaces',
+            );
+
+            $validator = Validator::make(Input::all(), $rules);
+
+            if ($validator->fails()) {
+                return Redirect::to('admin/settings')
+                    ->withErrors($validator)
+                    ->withInput();
+            } else {
+                $data = Input::only(array('email', 'password', 'name'));
+
+                Auth::User()->Update($data);
+
+                return Redirect::to('admin/settings/');
+
+            }
+        } else {
+            return Redirect::to('/');
+        }
 
     }
 
