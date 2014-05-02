@@ -66,9 +66,15 @@
                 <div class="col-xs-6 col-md-12">
                     @if(count ($user->boards) > 0)
                     @foreach($user->boards as $board)
+
                     <a href="#" class="thumbnail boardThumb pull-left">
-                        <p>$board->title</p>
+                        <p>{{ $board->title }} </p>
+
+                        @if(($image = $board->MostLiked('Image')) != null)
+                        {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '')) }}
+                        @else
                         <img src="http://placehold.it/150x150" >
+                        @endif
                     </a>
                     @endforeach
                     @else

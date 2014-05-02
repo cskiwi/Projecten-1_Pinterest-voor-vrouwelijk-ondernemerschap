@@ -53,7 +53,7 @@ Welcome {{ Auth::user()->username  }}
 						@if($post->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
-								<img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
+                                {{ HTML::image(asset('img/' . $post->imgLocation), $post->title , array('class' => 'img-responsive pvvoThumbImg')) }}
 							</a>
 							
 						</div>
@@ -74,7 +74,7 @@ Welcome {{ Auth::user()->username  }}
                         @if($post->type == 'Offer')
                         <div class="panel-article-header">
                             <a class="pvvoThumbUrl" href="#">
-                                <img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
+                                {{ HTML::image(asset('img/' . $post->imgLocation), $post->title , array('class' => 'img-responsive pvvoThumbImg')) }}
                             </a>
 
                         </div>
