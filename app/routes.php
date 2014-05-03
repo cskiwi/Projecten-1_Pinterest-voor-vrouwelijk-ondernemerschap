@@ -15,7 +15,7 @@ Route::group(array('before' => 'loginCheck'), function()
 {
     Route::controller('/users', 'UserController');
 
-    Route::controller('/posts', 'PostController');
+    Route::controller('/pins', 'PinController');
 
     Route::controller('/boards', 'BoardController');
 });

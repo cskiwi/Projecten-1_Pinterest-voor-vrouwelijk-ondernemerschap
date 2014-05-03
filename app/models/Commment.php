@@ -14,7 +14,7 @@ class Comment extends Eloquent {
     /**
      * @var array
      */
-    protected $fillable = array('user_id', 'post_id', 'content');
+    protected $fillable = array('user_id', 'pin_id', 'content');
     /**
      * @var bool
      */
@@ -23,14 +23,14 @@ class Comment extends Eloquent {
     /**
      * @return mixed
      */
-    public function posts() {
-        return $this->belongsTo('Post');
+    public function Pins() {
+        return $this->belongsTo('Pin');
     }
 
     /**
      * @return mixed
      */
-    public function user()
+    public function User()
     {
         return $this->belongsTo('User');
     }

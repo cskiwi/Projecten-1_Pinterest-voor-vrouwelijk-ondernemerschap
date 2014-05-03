@@ -16,7 +16,7 @@ class CommentsTableSeeder extends Seeder {
 			array (
 				'id' => 1,
 				'user_id' => 1,
-				'post_id' => 1,
+				'pin_id' => 1,
 				'content' => 'Let\'s go crazy',
 				'created_at' => '2014-04-01 10:00:30',
 				'updated_at' => '2014-04-01 10:00:30',
@@ -25,7 +25,7 @@ class CommentsTableSeeder extends Seeder {
 			array (
 				'id' => 2,
 				'user_id' => 1,
-				'post_id' => 3,
+				'pin_id' => 3,
 				'content' => 'Giggity',
 				'created_at' => '2014-04-01 10:00:30',
 				'updated_at' => '2014-04-01 10:00:30',

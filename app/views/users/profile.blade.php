@@ -40,7 +40,7 @@
         <ul class="stats">
             <li class="">
                 <h4 class="statLbl">Pins</h4>
-                {{ count($user->posts) }}
+                {{ count($user->pins) }}
             </li>
             <li>
                 <h4 class="statLbl">Boards</h4>
@@ -61,14 +61,20 @@
 <div class="well">
     <div class="container">
         <div class="panel panel-default">
-            <div class="panel-heading"><h4>{{ $user->username }}'s boards</h4></div>
+            <div class="panel-heading"><h4>Boars of {{ $user->username }}</h4></div>
             <div class="panel-body">
                 <div class="col-xs-6 col-md-12">
                     @if(count ($user->boards) > 0)
                     @foreach($user->boards as $board)
+
                     <a href="#" class="thumbnail boardThumb pull-left">
-                        <p>$board->title</p>
+                        <p>{{ $board->title }} </p>
+
+                        @if(($image = $board->MostLiked('Image')) != null)
+                        {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '')) }}
+                        @else
                         <img src="http://placehold.it/150x150" >
+                        @endif
                     </a>
                     @endforeach
                     @else
@@ -86,25 +92,17 @@
 
     <div class="container">
 
-
-        <h2>Has made the following boards</h2>
+        <h2>Has made the following pins</h2>
         <ul>
-            @foreach($user->boards as $user_board)
-            <li><a href="{{ URL::TO('/boards/detail/'.$user_board->id) }}">{{ $user_board->title }}</a> ( {{ count($user_board->posts) }} posts) </li>
-            @endforeach
-        </ul>
-
-        <h2>Has made the following posts</h2>
-        <ul>
-            @foreach($user->posts as $user_post)
-            <li><a href="{{ URL::TO('/posts/detail/'.$user_post->id) }}">{{ $user_post->title }}</a> ( in {{ count($user_post->boards) }} boards) </li>
+            @foreach($user->pins as $user_pin)
+            <li><a href="{{ URL::TO('/pins/detail/'.$user_pin->id) }}">{{ $user_pin->title }}</a> ( in {{ count($user_pin->boards) }} boards) </li>
             @endforeach
         </ul>
 
         <h2>Follows following boards</h2>
         <ul>
             @foreach($user->follows as $board)
-            <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->posts) }} posts) </li>
+            <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->pins) }} pins) </li>
             @endforeach
         </ul>
 

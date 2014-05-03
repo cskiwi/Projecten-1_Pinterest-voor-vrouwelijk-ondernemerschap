@@ -53,12 +53,12 @@
                     <li class="dropdown active">
                         <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
                         <ul class="dropdown-menu text-right">
-                            <li><a href="{{ URL::to('users/profile/') }} {{ Auth::user()->id }} " data-toggle="modal" data-target=".bs-example-modal-sm">Profile <span class="fa fa-user leftSpacingSmall"> </span></a></li>
+                            <li><a href="{{ URL::to('users/profile/' . Auth::user()->id) }}">Profile <span class="fa fa-user leftSpacingSmall"> </span></a></li>
                             <li><a href="{{ URL::to('admin/settings') }}">Settings <span class="fa fa-wrench leftSpacingSmall"> </span></a></li>
                             <li><a href="{{ URL::to('admin/logout') }}">Logout <span class="fa fa-shield leftSpacingSmall"> </span></a></li>
                         </ul>
                     </li>
-                    <!--<li><a href="{{ URL::to('posts') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
+                    <!--<li><a href="{{ URL::to('pins') }}">POSTS <span class="fa fa-comments leftSpacingSmall"></span></a></li>
                     <li><a href="{{ URL::to('boards') }}">BOARDS <span class="fa fa-cloud leftSpacingSmall"> </span> </a></li>-->
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -69,7 +69,7 @@
 
 
 @yield('content')
-<div class="row">
+<div class="col-md-12">
     <div class="container">
         <p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
     </div>
@@ -87,7 +87,7 @@
             <div class="modal-body">
 
 
-                {{ Form::open(array('url' => '../public/posts/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
+                {{ Form::open(array('url' => '../public/pins/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'addPin', 'files' => true)) }}
 
                 <div id="validation-errors" class="alert alert-danger" hidden>
                     <p>Some errors occured</p>

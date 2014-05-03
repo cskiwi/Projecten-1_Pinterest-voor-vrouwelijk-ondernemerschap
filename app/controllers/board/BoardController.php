@@ -57,7 +57,7 @@ class BoardController extends BaseController {
                 $board->delete();
                 return Redirect::to('/');
             } else {
-                return Redirect::to('boards/detail/'.$board['id'])->witherror('not Your post');
+                return Redirect::to('boards/detail/'.$board['id'])->witherror('not Your pin');
             }
         } else {
             return Redirect::to('/');

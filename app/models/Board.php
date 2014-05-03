@@ -24,8 +24,8 @@ class Board extends Eloquent {
     /**
      * @return mixed
      */
-    public function Posts() {
-        return $this->belongsToMany('Post', 'board_post');
+    public function Pins() {
+        return $this->belongsToMany('Pin', 'board_pin');
     }
 
     /**
@@ -54,10 +54,11 @@ class Board extends Eloquent {
 
 
     public function MostLiked($type){
-        $posts = $this->posts()->where('type', '=', $type)->get();
+        $posts = $this->pins()->where('type', '=', $type)->get();
         $highestID = -1;
         $highestCount = -1;
-        if ($posts){
+        // var_dump($posts);
+        if (sizeof($posts) > 0){
         foreach( $posts as $i => $thisPost){
             $currentCount = count($thisPost->favorites);
             if ($highestCount <= $currentCount){

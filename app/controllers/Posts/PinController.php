@@ -3,13 +3,13 @@
 /**
  * Class PostController
  */
-class PostController extends BaseController {
+class PinController extends BaseController {
     /**
      * @return mixed
      */
     public function getIndex()
     {
-        /*foreach(Post::All() as $post){
+        /*foreach(Pin::All() as $post){
             echo 'Title: ';
             echo ($post->title) ? $post->title : 'no title defined';
             echo '<br />';
@@ -21,8 +21,8 @@ class PostController extends BaseController {
         }
         die();//*/
 
-        $posts = Post::paginate(5);
-        return View::make('posts.overview')->with('posts', $posts);
+        $pins = Pin::paginate(5);
+        return View::make('pins.overview')->with('pins', $pins);
     }
 
     /**
@@ -31,9 +31,12 @@ class PostController extends BaseController {
      */
     public function getDetail($id)
     {
-        $post = Post::find($id);
-
-        return View::make('posts.detail', array('post' => $post));
+        $post = Pin::find($id);
+        if ($post) {
+            return View::make('pins.detail', array('pin' => $post));
+        } else {
+            return Redirect::to('/');
+        }
     }
 
     /**
@@ -82,7 +85,7 @@ class PostController extends BaseController {
                 if(!\Request::ajax()){
                     switch(Input::get('media-type')){
                         case 'Text':
-                            $post = Post::create(array(
+                            $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'title'     => Input::get('Text-title'),
                                 'description' => Input::get('Text-description'),
@@ -90,7 +93,7 @@ class PostController extends BaseController {
                             ));
                             break;
                         case 'Image':
-                            $post = Post::create(array(
+                            $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'title'     => Input::get('Image-title'),
                                 'description' => Input::get('Image-description'),
@@ -101,14 +104,14 @@ class PostController extends BaseController {
 
                             $destinationPath    = 'img/';
                             $extension          = $file->getClientOriginalExtension();
-                            $filename           = 'usr_'.  Auth::user()->id . '_post'.$post->id .'.'. $extension;
+                            $filename           = 'usr_'.  Auth::user()->id . '_pin'.$pin->id .'.'. $extension;
 
                             $file->move($destinationPath, $filename);
-                            $post->imgLocation = $filename;
-                            $post->save();
+                            $pin->imgLocation = $filename;
+                            $pin->save();
                             break;
                         case 'Video':
-                            $post = Post::create(array(
+                            $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'title'     => Input::get('Video-title'),
                                 'description' => Input::get('Video-link'),
@@ -116,7 +119,7 @@ class PostController extends BaseController {
                             ));
                             break;
                         case 'Tutorial':
-                            $post = Post::create(array(
+                            $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'title'     => Input::get('Text-title'),
                                 'description' => Input::get('Text-description'),
@@ -124,18 +127,26 @@ class PostController extends BaseController {
                             ));
                             break;
                         case 'Offer':
-                            $post = Post::create(array(
+                            $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'title'     => Input::get('Offer-title'),
                                 'price'     => Input::get('Offer-price'),
                                 'description' => Input::get('Offer-description'),
-                                'imgLocation' => '',
                                 'type'      => 'Offer',
                             ));
+                            $file = Input::file('Offer-file');
+
+                            $destinationPath    = 'img/';
+                            $extension          = $file->getClientOriginalExtension();
+                            $filename           = 'usr_'.  Auth::user()->id . '_pin'.$pin->id .'.'. $extension;
+
+                            $file->move($destinationPath, $filename);
+                            $pin->imgLocation = $filename;
+                            $pin->save();
                             break;
                     }
 
-                    DB::table('board_post')->insert(['board_id'  => 2, 'post_id'   => $post->id]);
+                    DB::table('board_pin')->insert(['board_id'  => 2, 'pin_id'   => $pin->id]);
                     return Redirect::to('/');
                 } else {
                     return \Response::json(['success' => true]);
@@ -144,14 +155,14 @@ class PostController extends BaseController {
         }
     }
 
-    public function postDelete($id){
+    public function getDelete($id){
         if (Auth::check()){
-            $post = Post::find($id);
+            $post = Pin::find($id);
             if ($post->user == Auth::user()){
                 $post->delete();
                 return Redirect::to('/');
             } else {
-                return Redirect::to('posts/detail/'.$post['id'])->witherror('not Your post');
+                return Redirect::to('pins/detail/'.$post['id'])->witherror('not Your post');
             }
         } else {
             return Redirect::to('/');
@@ -161,12 +172,12 @@ class PostController extends BaseController {
     public function postFavorite(){
         if (Auth::check()){
             $id = Input::get('id');
-            $like = Auth::user()->favorites()->where('post_id', '=', $id)->get()->first();
+            $like = Auth::user()->favorites()->where('pin_id', '=', $id)->get()->first();
 
             if ($like == null){
                 Favorite::create(array(
                     'user_id' => Auth::user()->id,
-                    'post_id' => $id));
+                    'pin_id' => $id));
             } else {
                 $like->delete();
             }

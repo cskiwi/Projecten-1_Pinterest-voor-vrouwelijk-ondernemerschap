@@ -13,9 +13,10 @@ Welcome {{ Auth::user()->username  }}
 @stop
 @section('content')
 
-<div class="row pvvoPills">
+<div class="pvvoPills">
+
 	<div class="col-md-12">
-	
+
 		<ul class="nav nav-pills">
 			
 			@foreach (Auth::user()->follows as $board)
@@ -28,14 +29,14 @@ Welcome {{ Auth::user()->username  }}
 			@endforeach
 			<li class="pull-right">
 				<a class="refresh refreshPill" href="{{ URL::to('/')}}">
-					Refresh <span id="newposts" class="badge"></span>
+					Refresh <span id="newpins" class="badge"></span>
 				</a>
 			</li>
 
 		</ul>
 	</div>
 </div>
-		
+
 <div class="well">
 	
 	<div class="row topOffset">
@@ -44,34 +45,55 @@ Welcome {{ Auth::user()->username  }}
 
 			<div class="row photos" id="">
 
-				@foreach($posts as $post)
+				@foreach($pins as $pin)
 				
-				<div class="panel panel-default item" date="{{ $post->created_at }}">
+				<div class="panel panel-default item" date="{{ $pin->created_at }}">
 				
 					<div class="hoverContainer">
-						@if($post->type == 'Image')
+						@if($pin->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
-								<!-- style="background:url('./img/{{ $post->imgLocation}}') no-repeat center center;" -->
-								<img class="img-responsive pvvoThumbImg" src="./img/{{ $post->imgLocation}}" >
+                                {{ HTML::image(asset('img/' . $pin->imgLocation), $pin->title , array('class' => 'img-responsive pvvoThumbImg')) }}
 							</a>
 							
 						</div>
 						@endif
 						
-						@if($post->type == 'Text')
+						@if($pin->type == 'Text')
 						<div class="panel-body">
 							<div class="pvvoStreamBody">
 								<p>
-									<strong>{{ $post->title }}</strong>
+									<strong>{{ $pin->title }}</strong>
 								</p>
-								{{ str_limit($post->description, $limit = 300, $end = '...') }}
+								{{ str_limit($pin->description, $limit = 300, $end = '...') }}
 							</div>	
 						</div>
 
 						@endif
-                        <a class="hoverCaption" href="{{ URL::to('/posts/detail/' . $post->id)}}">
-							Read more...
+
+                        @if($pin->type == 'Offer')
+                        <div class="panel-article-header">
+                            <a class="pvvoThumbUrl" href="#">
+                                {{ HTML::image(asset('img/' . $pin->imgLocation), $pin->title , array('class' => 'img-responsive pvvoThumbImg')) }}
+                            </a>
+
+                        </div>
+                        <div class="panel-body">
+                            <div class="pvvoStreamBody">
+                                <p>
+                                    <strong>{{ $pin->title }}</strong>
+                                </p>
+                                {{ str_limit($pin->description, $limit = 300, $end = '...') }}
+                            </div>
+                        </div>
+
+                        @endif
+
+                        @if($pin->type == 'Video')
+                            <iframe class="pvvoStreamVideo" width="100%" src="{{ $pin->description }}" frameborder="0" allowfullscreen></iframe>
+                        @endif
+                        <a class="hoverCaption" href="{{ URL::to('/pins/detail/' . $pin->id)}}">
+							View pin
                         </a>
 					
 					</div>
@@ -79,12 +101,12 @@ Welcome {{ Auth::user()->username  }}
                     <div class="panel-footer">
 						<div class="btn-group btn-group-xs btn-group-justified pinBtns">
 
-                            <a href="#" class="btn favorite" data="{{$post->id}}">
-								<span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($post->favorites) }} @if($post->FavoriteUser())*@endif</span>
+                            <a href="#" class="btn favorite" data="{{$pin->id}}">
+								<span class="fa fa-star rightSpacingSmall @if($pin->FavoriteUser()) pvvoPink @endif"></span> <span class="count @if($pin->FavoriteUser()) pvvoPink @endif">{{ count($pin->favorites) }}</span>
 							</a>
 
 							<a class="btn comment">
-								<span class="fa fa-comment rightSpacingSmall"></span> <span class="count">{{ count($post->comments) }}</span>
+								<span class="fa fa-comment rightSpacingSmall"></span> <span class="count">{{ count($pin->comments) }}</span>
 							</a>
 							
 							<a class="btn repin">
@@ -104,12 +126,14 @@ Welcome {{ Auth::user()->username  }}
 
 	orderBy(DB::raw('RAND()'))->get
 	-->
+
+
 	<div class="row topOffset">
 
 		<div class="col-md-12">
 
 			<div class="row photos suggestion" id="">
-				@if (count($posts)  < 1)
+				@if (count($pins)  < 1)
 				@foreach(Board::take(3)->get() as $board)
 				<div class="thumbnail item">
 
@@ -125,7 +149,7 @@ Welcome {{ Auth::user()->username  }}
 								<h5 class="media-heading"><a href="{{ URL::to('/boards/detail/' . $board->id)}}"> {{ $board->title }}</a></h5>
 								<p>
 									<span class="label label-danger"><span class="fa fa-heart rightSpacingSmall"></span> <span class="count">{{ count($board->followers) }}</span></span>
-									<span class="label label-warning"><span class="fa fa-pencil rightSpacingSmall"></span> {{ count($board->posts) }}</span>
+									<span class="label label-warning"><span class="fa fa-pencil rightSpacingSmall"></span> {{ count($board->pins) }}</span>
 								</p>
 							</div>
 
@@ -150,16 +174,7 @@ Welcome {{ Auth::user()->username  }}
 
 				@endif
 
-				<!-- <div class="col-sm-6 col-md-3">
-										<div class="thumbnail">
-											<img src="http://localhost/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/img/01.jpg" alt="...">
-											<div class="caption">
-												<h3>Pin</h3>
-												<p>...</p>
-												<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-											</div>
-										</div>
-									</div>-->
+
 			</div>
 
 		</div>

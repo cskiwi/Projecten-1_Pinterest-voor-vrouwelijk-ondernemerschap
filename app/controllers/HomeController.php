@@ -31,15 +31,16 @@ class HomeController extends BaseController {
     }
 
     public function postStream(){
-        $posts= [];
+        $pins= [];
         foreach( Auth::user()->follows()->get() as $board){
-            foreach($board -> posts as $post){
-                array_push($posts, $post);
+            foreach($board -> pins as $pin){
+                array_push($pins, $pin);
             }
         }
 
+
         // remove dupes
-        $posts = array_filter($posts,function ($obj) {
+        $pins = array_filter($pins,function ($obj) {
             static $idList = array();
             if(in_array($obj->id,$idList)) {
                 return false;
@@ -49,18 +50,18 @@ class HomeController extends BaseController {
         });
 
         // sort by date
-        usort($posts, function($a, $b){
+        usort($pins, function($a, $b){
             return strcmp($b->created_at,$a->created_at);
         });
 
         if (Request::ajax()) {
             $postresponse = [];
-            foreach($posts as $post) {
-                array_push($postresponse, ['post' => $post->toArray(), 'favorites' => count($post->favorites), 'comments' => count($post->comments)]);
+            foreach($pins as $pin) {
+                array_push($postresponse, ['pin' => $pin->toArray(), 'favorites' => count($pin->favorites), 'comments' => count($pin->comments)]);
             }
             return Response::json($postresponse);
         } else {
-            return array('posts' => $posts);
+            return array('pins' => $pins);
         }
     }
 }

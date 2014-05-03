@@ -20,16 +20,17 @@ $('.favorite').click(function(event) {
     var clickID = $(this).attr('data');
     var count = $('.favorite[data=' + clickID + '] > span.count');
     $.ajax({
-        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/posts/favorite',
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/pins/favorite',
         type: 'post',
         cache: false,
         data: { id: clickID },
         success: function(data) {
-            console.log(data);
             if (data.like) {
                 count.text(parseInt(count.text())-1);
+                $('.favorite').find('span').removeClass('pvvoPink');
             } else{
                 count.text(parseInt(count.text())+1);
+                $('.favorite').find('span').addClass('pvvoPink');
 
             }
         },

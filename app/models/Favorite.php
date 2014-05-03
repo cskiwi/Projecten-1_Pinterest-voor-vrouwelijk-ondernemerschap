@@ -8,7 +8,7 @@ class Favorite extends Eloquent {
      * @var string
      */
     protected $table = 'favorites';
-    protected $fillable = array('user_id', 'post_id');
+    protected $fillable = array('user_id', 'pin_id');
     public $timestamps = false;
 
     public function post() {

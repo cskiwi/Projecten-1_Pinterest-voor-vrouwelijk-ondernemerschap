@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class PivotBoardPostTable extends Migration {
+class PivotBoardPinTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,12 @@ class PivotBoardPostTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('board_post', function(Blueprint $table) {
+		Schema::create('board_pin', function(Blueprint $table) {
 			$table->increments('id');
             $table->unsignedinteger('board_id')->index();
-			$table->unsignedinteger('post_id')->index();
+			$table->unsignedinteger('pin_id')->index();
             $table->foreign('board_id')->references('id')->on('boards')->onDelete('cascade');
-			$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
+			$table->foreign('pin_id')->references('id')->on('pins')->onDelete('cascade');
 		});
 	}
 
@@ -30,7 +30,7 @@ class PivotBoardPostTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('board_post');
+		Schema::drop('board_pin');
 	}
 
 }
