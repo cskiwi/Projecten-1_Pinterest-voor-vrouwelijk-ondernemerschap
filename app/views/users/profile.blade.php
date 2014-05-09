@@ -4,6 +4,18 @@
 {{ $user->name }} on WomanInterest
 @stop
 
+@section('scripts')
+<script>
+    $('.photos').shapeshift({
+    enableDrag: false,
+    enableCrossDrop: false,
+    enableResize: true,
+    enableTrash: false,
+    colWidth: 250
+    });
+</script>
+@stop
+
 @section('content')
 
 <div class="container">
@@ -92,18 +104,6 @@
                     </div>
                 </div>
 
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h4>Latest pins of {{ $user->username }}</h4></div>
-                    <div class="panel-body">
-                        <div class="col-xs-6 col-md-12">
-
-                            @foreach($user->pins as $user_pin)
-
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
             </div>
 
             <div class="col-md-4">
@@ -130,5 +130,22 @@
 
     </div>
 
+</div>
+
+<div class="well">
+
+    <h1>User's pins</h1>
+
+    <div class="row topOffset">
+        <div class="col-md-12">
+            <div class="row photos" id="">
+
+                @foreach($user->pins as $pin)
+                    @include('partial.pinboard')
+                @endforeach
+
+            </div>
+        </div>
+    </div>
 </div>
 @stop
