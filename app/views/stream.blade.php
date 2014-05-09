@@ -46,19 +46,19 @@ Welcome {{ Auth::user()->username  }}
 			<div class="row photos" id="">
 
 				@foreach($pins as $pin)
-				
+
 				<div class="panel panel-default item" date="{{ $pin->created_at }}">
-				
+
 					<div class="hoverContainer">
 						@if($pin->type == 'Image')
 						<div class="panel-article-header">
 							<a class="pvvoThumbUrl" href="#">
                                 {{ HTML::image(asset('img/' . $pin->imgLocation), $pin->title , array('class' => 'img-responsive pvvoThumbImg')) }}
 							</a>
-							
+
 						</div>
 						@endif
-						
+
 						@if($pin->type == 'Text')
 						<div class="panel-body">
 							<div class="pvvoStreamBody">
@@ -66,7 +66,7 @@ Welcome {{ Auth::user()->username  }}
 									<strong>{{ $pin->title }}</strong>
 								</p>
 								{{ str_limit($pin->description, $limit = 300, $end = '...') }}
-							</div>	
+							</div>
 						</div>
 
 						@endif
@@ -97,7 +97,7 @@ Welcome {{ Auth::user()->username  }}
                         <a class="hoverCaption" href="{{ URL::to('/pins/detail/' . $pin->id)}}">
 							View pin
                         </a>
-					
+
 					</div>
 
                     <div class="panel-footer">
@@ -130,10 +130,7 @@ Welcome {{ Auth::user()->username  }}
 		</div>
 	</div>
 
-	<!--</div>
 
-	orderBy(DB::raw('RAND()'))->get
-	-->
 
 
 	<div class="row topOffset">
@@ -188,8 +185,6 @@ Welcome {{ Auth::user()->username  }}
 		</div>
 
 	</div>
-
 </div>
-
 @stop
 

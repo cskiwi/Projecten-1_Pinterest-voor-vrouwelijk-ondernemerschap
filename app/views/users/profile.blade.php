@@ -58,54 +58,77 @@
     </div>
 
 </div>
+
 <div class="well">
     <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading"><h4>Boars of {{ $user->username }}</h4></div>
-            <div class="panel-body">
-                <div class="col-xs-6 col-md-12">
-                    @if(count ($user->boards) > 0)
-                    @foreach($user->boards as $board)
 
-                    <a href="#" class="thumbnail boardThumb pull-left">
-                        <p>{{ $board->title }} </p>
+        <div class="row">
 
-                        @if(($image = $board->MostLiked('Image')) != null)
-                        {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '')) }}
-                        @else
-                        <img src="http://placehold.it/150x150" >
-                        @endif
-                    </a>
-                    @endforeach
-                    @else
-                    <a href="#" class="thumbnail boardThumb pull-left">
-                        <p>This user created no boards</p>
-                    </a>
-                    @endif
+            <div class="col-md-8">
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Boards of {{ $user->username }}</h4></div>
+                    <div class="panel-body">
+                        <div class="col-xs-6 col-md-12">
+                            @if(count ($user->boards) > 0)
+                            @foreach($user->boards as $board)
+
+                            <a href="#" class="thumbnail boardThumb pull-left">
+                                <p>{{ $board->title }} </p>
+
+                                @if(($image = $board->MostLiked('Image')) != null)
+                                {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '')) }}
+                                @else
+                                <img src="http://placehold.it/150x150" >
+                                @endif
+                            </a>
+                            @endforeach
+                            @else
+                                <p>This user didn't create any boards yet.</p>
+                            @endif
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Latest pins of {{ $user->username }}</h4></div>
+                    <div class="panel-body">
+                        <div class="col-xs-6 col-md-12">
+
+                            @foreach($user->pins as $user_pin)
+
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
 
             </div>
+
+            <div class="col-md-4">
+
+                <div class="panel panel-danger">
+                    <div class="panel-heading">
+                        {{ $user->username }} follows these boards
+                    </div>
+
+                    <div class="list-group">
+                        @if(count ($user->follows) > 0)
+                            @foreach($user->follows as $board)
+                            <a href="{{ URL::TO('/boards/detail/'.$board->id) }}" class="list-group-item">{{ $board->title }} <span class="badge pull-right">{{ count($board->pins) }}</span></a>
+                            @endforeach
+                        @else
+                            <li class="list-group-item">{{ $user->username }} is not following any board.</li>
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+
         </div>
-    </div>
-
-
-
-    <div class="container">
-
-        <h2>Has made the following pins</h2>
-        <ul>
-            @foreach($user->pins as $user_pin)
-            <li><a href="{{ URL::TO('/pins/detail/'.$user_pin->id) }}">{{ $user_pin->title }}</a> ( in {{ count($user_pin->boards) }} boards) </li>
-            @endforeach
-        </ul>
-
-        <h2>Follows following boards</h2>
-        <ul>
-            @foreach($user->follows as $board)
-            <li><a href="{{ URL::TO('/boards/detail/'.$board->id) }}">{{ $board->title }}</a> ( has {{ count($board->pins) }} pins) </li>
-            @endforeach
-        </ul>
 
     </div>
+
 </div>
 @stop
