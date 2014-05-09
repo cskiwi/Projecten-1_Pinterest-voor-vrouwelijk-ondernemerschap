@@ -79,18 +79,20 @@ Welcome {{ Auth::user()->username  }}
 
                         </div>
                         <div class="panel-body">
+
                             <div class="pvvoStreamBody">
-                                <p>
+                                <p class="">
                                     <strong>{{ $pin->title }}</strong>
                                 </p>
-                                {{ str_limit($pin->description, $limit = 300, $end = '...') }}
+                                <p>{{ str_limit($pin->description, $limit = 300, $end = '...') }}</p>
                             </div>
+
                         </div>
 
                         @endif
 
                         @if($pin->type == 'Video')
-                            <iframe class="pvvoStreamVideo" width="100%" src="{{ $pin->description }}" frameborder="0" allowfullscreen></iframe>
+                            <iframe class="pvvoStreamVideo" width="100%" src="{{ $pin->description }}" frameborder="0"></iframe>
                         @endif
                         <a class="hoverCaption" href="{{ URL::to('/pins/detail/' . $pin->id)}}">
 							View pin
@@ -108,10 +110,16 @@ Welcome {{ Auth::user()->username  }}
 							<a class="btn comment">
 								<span class="fa fa-comment rightSpacingSmall"></span> <span class="count">{{ count($pin->comments) }}</span>
 							</a>
-							
-							<a class="btn repin">
-								<span class="fa fa-retweet rightSpacingSmall"></span> pin
-							</a>
+
+                            @if($pin->type == 'Offer')
+                            <a class="btn repin">
+                                <span class="fa fa-euro rightSpacingSmall"></span> {{ $pin->price }} -  BUY
+                            </a>
+                            @else
+                            <a class="btn repin ">
+                                <span class="fa fa-retweet rightSpacingSmall"></span> pin
+                            </a>
+                            @endif
 
                         </div>
 					</div>

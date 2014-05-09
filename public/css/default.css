@@ -110,6 +110,12 @@ html, body {
 	border-radius: 5px;
 }
 
+.itemOfferPrice {
+
+    font-size: 12px;
+
+}
+
 .pinBtns a {
 	color: #999;
 	font-weight: normal;
