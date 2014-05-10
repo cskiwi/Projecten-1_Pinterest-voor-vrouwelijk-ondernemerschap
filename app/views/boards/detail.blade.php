@@ -5,13 +5,14 @@ Board detail | {{ $board->title }}
 @stop
 
 @section('scripts')
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
+{{ HTML::script('js/jquery.touch-punch.min.js') }}
+{{ HTML::script('js/jquery.shapeshift.min.js') }}
 {{ HTML::script('js/followBoard.js') }}
+{{ HTML::script('js/stream.js') }}
 @stop
 
 @section('content')
-
-
-@if(Auth::check())
 
 <div class="jumbotron pvvoJumboBoard" style="background: url('') no-repeat  fixed;">
 	<div class="container">
@@ -34,15 +35,19 @@ Board detail | {{ $board->title }}
 
 <div class="well">
 
-    @if(Auth::user() == $board->user)
-        <a href="{{ URL::TO('boards/'.$board->id.'/remove') }}">Remove board</a>
-    @endif
-    @endifby
 
-    <a href="{{ URL::TO('/users/profile/'.$board->user->id) }}"> {{$board->user->name}}</a></li>
-    @foreach($board->pins as $pin)
-    <li><a href="{{ URL::TO('/pins/detail/'.$pin->id) }}">{{ $pin->title }}</a><p>{{ $pin->body }}</p></li>
-    @endforeach
+    <div class="row topOffset">
+        <div class="col-md-12">
+            <div class="row photos" id="">
+
+                @foreach($board->pins as $pin)
+                    @include('partial.pinboard')
+                @endforeach
+
+            </div>
+        </div>
+    </div>
 </div>
+
 
 @stop

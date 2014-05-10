@@ -5,15 +5,11 @@
 @stop
 
 @section('scripts')
-<script>
-    $('.photos').shapeshift({
-    enableDrag: false,
-    enableCrossDrop: false,
-    enableResize: true,
-    enableTrash: false,
-    colWidth: 250
-    });
-</script>
+{{ HTML::script('//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js') }}
+{{ HTML::script('js/jquery.touch-punch.min.js') }}
+{{ HTML::script('js/jquery.shapeshift.min.js') }}
+{{ HTML::script('js/followBoard.js') }}
+{{ HTML::script('js/stream.js') }}
 @stop
 
 @section('content')
