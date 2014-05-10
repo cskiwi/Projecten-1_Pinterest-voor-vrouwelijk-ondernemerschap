@@ -1,4 +1,3 @@
-// app/database/migrations/####_##_##_######_create_users_table.php
 
 <?php
 
