@@ -6,7 +6,8 @@
 	"require": {
         "laravel/framework": "4.1.*@dev",
         "way/generators": "dev-master",
-		"phpdocumentor/reflection": "dev-master"
+		"phpdocumentor/reflection": "dev-master",
+        "alchemyapi/php-sdk": "1.0.x-dev"
 	},
 	"autoload": {
 		"classmap": [
