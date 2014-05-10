@@ -51,7 +51,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="#" data-toggle="modal" data-target="#pinAddModal" class="pvvoPink">Add pin <span class="fa fa-plus leftSpacingSmall"></span></a></li>
                     <li class="dropdown active">
-                        <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->username  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
+                        <a href="#" class="dropdown-toggle upperCase" data-toggle="dropdown">{{ Auth::user()->viewName()  }} <span class="fa fa-bars leftSpacingSmall"></span></a>
                         <ul class="dropdown-menu text-right">
                             <li><a href="{{ URL::to('users/profile/' . Auth::user()->id) }}">Profile <span class="fa fa-user leftSpacingSmall"> </span></a></li>
                             <li><a href="{{ URL::to('admin/settings') }}">Settings <span class="fa fa-wrench leftSpacingSmall"> </span></a></li>

@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,7 +17,11 @@ Route::group(array('before' => 'loginCheck'), function()
     Route::controller('/pins', 'PinController');
 
     Route::controller('/boards', 'BoardController');
+
+    Route::post('/comment/add/{id}', 'CommentController@addComment');
+
 });
+
 
 Route::controller('/admin/password', 'RemindersController');
 Route::controller('/admin', 'AdminController');
@@ -32,3 +35,4 @@ Route::filter('loginCheck', function()
         return Redirect::to('/')->with('authError', 'Please login');
     }
 });
+

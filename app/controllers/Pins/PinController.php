@@ -184,5 +184,4 @@ class PinController extends BaseController {
             return \Response::json(['success' => true, 'like' => $like]);//*/
         }
     }
-
 }
