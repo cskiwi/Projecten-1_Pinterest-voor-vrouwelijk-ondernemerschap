@@ -67,7 +67,7 @@
                 <span class="fa fa-euro rightSpacingSmall"></span> {{ $pin->price }} -  BUY
             </a>
             @else
-            <a class="btn repin ">
+            <a class="btn repin" data-toggle="modal" data-target="#repinModal">
                 <span class="fa fa-retweet rightSpacingSmall"></span> pin
             </a>
             @endif

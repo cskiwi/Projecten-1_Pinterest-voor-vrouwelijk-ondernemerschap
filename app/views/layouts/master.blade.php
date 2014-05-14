@@ -230,6 +230,57 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="repinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Repin</h4>
+            </div>
+
+            <div class="modal-body">
+
+                {{ Form::open(array('url' => '../public/pins/add', 'class'=>'form-horizontal', 'role' => 'form', 'id' => 'rePin', 'files' => true)) }}
+
+                <div id="validation-errors" class="alert alert-danger" hidden>
+                    <p>Some errors occured</p>
+                    <ul></ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Select board</label>
+                    <div class="col-sm-9">
+                        {{ Form::select('board', array(
+                        '1' => 'Board of user X',
+                        '2' => 'Board of user X',
+                        '3' => 'Board of user X',
+                        '4' => 'Board of user X'
+                        ), null, array('id' => '', 'class' => 'form-control'))}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        {{ Form::text('boardname', null, array('class' => 'form-control', 'placeholder' => 'Or fill in a board name to create a new board.')) }}
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
+                    {{ Form::submit('Repin', array('class' => 'btn btn-info')) }}
+                </div>
+                {{ Form::close() }}
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 {{ HTML::script('js/bootstrap.min.js') }}
