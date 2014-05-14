@@ -41,14 +41,14 @@ Your settings - {{ Auth::user()->username  }}
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-sm-3 control-label">First name</label>
+            <label class="col-sm-3 control-label">Full name</label>
             <div class="col-sm-5">
                 {{ Form::text('name', Auth::user()->name, array('class' => 'form-control', 'placeholder' => 'Name' ) ) }}
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">First name</label>
+            <label class="col-sm-3 control-label">Profile picture</label>
             <div class="col-sm-5">
                 {{ Form::file('image', array('class' => 'form-control', 'placeholder' => 'Name' ) ) }}
             </div>
