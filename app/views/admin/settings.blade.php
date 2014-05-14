@@ -47,7 +47,29 @@ Your settings - {{ Auth::user()->username  }}
             </div>
         </div>
 
-        <!-- Button -->
+        <div class="form-group">
+            <label class="col-sm-3 control-label">First name</label>
+            <div class="col-sm-5">
+                {{ Form::file('image', array('class' => 'form-control', 'placeholder' => 'Name' ) ) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-10">
+                <h4>Options</h4>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('name', 'value') }} Receive mails
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('name', 'value') }} If checked, shows your full name instead of username
+                    </label>
+                </div>
+            </div>
+        </div>
+
         <div class="form-group">
             <label class="col-sm-3 control-label"></label>
             <div class="col-sm-9">
