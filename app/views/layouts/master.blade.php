@@ -107,6 +107,27 @@
                     </div>
                 </div>
 
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Select board</label>
+                    <div class="col-sm-9">
+                        {{ Form::select('board', array(
+                        '1' => 'Board of user X',
+                        '2' => 'Board of user X',
+                        '3' => 'Board of user X',
+                        '4' => 'Board of user X'
+                        ), null, array('id' => '', 'class' => 'form-control'))}}
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label"></label>
+                    <div class="col-sm-9">
+                        {{ Form::text('boardname', null, array('class' => 'form-control', 'placeholder' => 'Or fill in a board name to create a new board.')) }}
+                    </div>
+                </div>
+
+                <div class="well">
                 <!-- Image Type -->
                     <span id="type-image" class="type-media">
 						<div class="form-group">
@@ -193,6 +214,8 @@
                             </div>
                         </div>
 					</span>
+
+                </div>
 
                 <div class="modal-footer">
                     {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
