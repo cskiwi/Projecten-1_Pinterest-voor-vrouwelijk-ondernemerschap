@@ -211,11 +211,16 @@ class PinController extends BaseController {
         if (Auth::check()){
             $boardId = Input::get('board');
             $id = Input::get('id');
+            $errors = [];
+            // error checking
+
             if ($boardId == -1 && Input::get('boardname') == "") {
-                return \Response::json(['success' => false, 'errors' =>  ['Destination board'=> 'Either select an existsing board or fill in the name for the new board']]);
-            }elseif(Pin::find($id) == null){
-                return \Response::json(['success' => false, 'errors' =>  ['Repin'=> 'Not a valid pin (this is WIP)']]);
-            } else {
+                $errors[]=  'Either select an existsing board or fill in the name for the new board';
+            }
+            if(Pin::find($id) == null){
+                $errors[]=  'Not a valid pin (this is WIP)';
+            }
+            if ($errors == []){
 
                 $pin = Pin::create(array(
                     'user_id'   => Auth::user()->id,
@@ -239,6 +244,8 @@ class PinController extends BaseController {
                 DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
 
                 return Redirect::to('/');
+            } else {
+                return \Response::json(['success' => false, 'errors' => $errors]);
             }
         }
     }
