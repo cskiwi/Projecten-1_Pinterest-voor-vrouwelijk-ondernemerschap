@@ -214,7 +214,7 @@ class PinController extends BaseController {
             if ($boardId == -1 && Input::get('boardname') == "") {
                 return \Response::json(['success' => false, 'errors' =>  ['Destination board'=> 'Either select an existsing board or fill in the name for the new board']]);
             }elseif(Pin::find($id) == null){
-                return \Response::json(['success' => false, 'errors' =>  ['Repin'=> 'Not a valid pin']]);
+                return \Response::json(['success' => false, 'errors' =>  ['Repin'=> 'Not a valid pin (this is WIP)']]);
             } else {
 
                 $pin = Pin::create(array(

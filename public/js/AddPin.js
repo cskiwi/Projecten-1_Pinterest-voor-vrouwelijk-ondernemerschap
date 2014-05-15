@@ -139,6 +139,6 @@ rePin.on('submit', function() {
         }
     });
     console.log(returnvalue);
-    return true;
+    return returnvalue;
 } );
 
