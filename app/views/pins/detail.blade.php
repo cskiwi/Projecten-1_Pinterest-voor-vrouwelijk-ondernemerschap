@@ -75,7 +75,10 @@ Post detail | {{ $pin->title }}
                 <div class="panel">
                     <div class="panel-body">
                         <p>
-                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName(); }} </a>
+                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName(); }} </a> <br />
+                            @if ($repin_by)
+                            Repin by <a href="{{ URL::TO('/users/profile/'.$repin_by->id) }}">{{ $repin_by->viewName(); }} </a>
+                            @endif
                         </p>
 
                         <h4 class="statLbl">Favourites</h4>
@@ -123,7 +126,6 @@ Post detail | {{ $pin->title }}
     <div class="row">
 
         <div class="col-md-8">
-
             @if(Auth::check())
             <h3>Comments</h3>
 

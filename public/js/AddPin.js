@@ -5,6 +5,8 @@ var typeImage = $('#type-image');
 var typeOffer = $('#type-offer');
 var addPin = $('#addPin');
 var boardname = $('#boardname');
+var rePin = $('#rePin');
+
 
 media.hide();
 typeText.show();
@@ -99,4 +101,44 @@ addPin.on('submit', function() {
     return returnvalue;
 } );
 
+
+rePin.on('submit', function() {
+    var formData = rePin.serializeArray();
+    var errorForm = rePin.find('div#validation-errors');
+    var returnvalue = false;
+    $.ajax({
+        url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/pins/repin',
+        type: 'post',
+        cache: false,
+        async: false,
+        data: formData,
+        beforeSend: function() {
+            errorForm.hide();
+            errorForm.find("ul").empty();
+        },
+        success: function(data) {
+            console.log('setting');
+
+            if(data.success == false) {
+                var arr = data.errors;
+                $.each(arr, function(index, value){
+                    if (value.length != 0){
+                        errorForm.find("ul").append('<li>'+ value +'</li>');
+                    }
+                });
+                errorForm.show();
+                returnvalue = false;
+            } else {
+                returnvalue = true;
+            }
+        },
+        error: function(data) {
+            console.log(data);
+            alert('see console');
+            return false;
+        }
+    });
+    console.log(returnvalue);
+    return true;
+} );
 

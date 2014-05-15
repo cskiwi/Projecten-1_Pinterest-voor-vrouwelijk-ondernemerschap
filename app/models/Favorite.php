@@ -11,8 +11,8 @@ class Favorite extends Eloquent {
     protected $fillable = array('user_id', 'pin_id');
     public $timestamps = false;
 
-    public function post() {
-        return $this->belongsTo('Post');
+    public function pin() {
+        return $this->belongsTo('Pin');
     }
 
     public function user()

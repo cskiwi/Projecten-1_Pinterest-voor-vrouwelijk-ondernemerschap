@@ -34,6 +34,11 @@ class HomeController extends BaseController {
         $pins= [];
         foreach( Auth::user()->follows()->get() as $board){
             foreach($board -> pins as $pin){
+                $pin = Pin::find($pin->id);
+                $repin_by = User::find($pin->user_id);
+                $pin = $pin->base();
+                $pin['repin_by'] = $repin_by;
+
                 array_push($pins, $pin);
             }
         }

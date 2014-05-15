@@ -31,9 +31,12 @@ class PinController extends BaseController {
      */
     public function getDetail($id)
     {
-        $post = Pin::find($id);
-        if ($post) {
-            return View::make('pins.detail', array('pin' => $post));
+        $pin = Pin::find($id);
+        $repin_by = User::find($pin->original_id);
+        $pin = $pin->base();
+
+        if ($pin) {
+            return View::make('pins.detail', array('pin' => $pin, 'repin_by' => $repin_by));
         } else {
             return Redirect::to('/');
         }
@@ -78,9 +81,15 @@ class PinController extends BaseController {
                     break;
             }
             $validator = Validator::make(Input::all(), $rules);
+            $boardId = Input::get('board');
 
-            if ($validator->fails()) {
-                return \Response::json(['success' => false, 'errors' =>  $validator->getMessageBag()->toArray()]);
+            if ($validator->fails() || $boardId == -1 && Input::get('boardname') == "" ) {
+                $messages = $validator->errors();
+
+                if ($boardId == -1 && Input::get('boardname') == "" ){
+                    $messages->add('Destination board', 'Either select an existsing board or fill in the name for the new board');
+                }
+                return \Response::json(['success' => false, 'errors' =>  $messages->toArray()]);
             } else {
                 if(!\Request::ajax()){
                     switch(Input::get('media-type')){
@@ -145,7 +154,6 @@ class PinController extends BaseController {
                             $pin->save();
                             break;
                     }
-                    $boardId = Input::get('board');
                     if ($boardId == -1 ){
                         // create new board
                         $board = Board::create([
@@ -197,6 +205,41 @@ class PinController extends BaseController {
                 $like->delete();
             }
             return \Response::json(['success' => true, 'like' => $like]);//*/
+        }
+    }
+    public function postRepin(){
+        if (Auth::check()){
+            $boardId = Input::get('board');
+            $id = Input::get('id');
+            if ($boardId == -1 && Input::get('boardname') == "") {
+                return \Response::json(['success' => false, 'errors' =>  ['Destination board'=> 'Either select an existsing board or fill in the name for the new board']]);
+            }elseif(Pin::find($id) == null){
+                return \Response::json(['success' => false, 'errors' =>  ['Repin'=> 'Not a valid pin']]);
+            } else {
+
+                $pin = Pin::create(array(
+                    'user_id'   => Auth::user()->id,
+                    'original_id' => $id,
+                ));
+                if ($boardId == -1 ){
+                    // create new board
+                    $board = Board::create([
+                        'user_id' => Auth::user()->id,
+                        'title' => Input::get('boardname')
+                    ]);
+
+                    $boardId = $board['id'];
+
+                    DB::table('follows')->insert(array(
+                        'user_id'   => Auth::user()->id,
+                        'board_id'   => $boardId
+                    ));
+                }
+
+                DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
+
+                return Redirect::to('/');
+            }
         }
     }
 }
