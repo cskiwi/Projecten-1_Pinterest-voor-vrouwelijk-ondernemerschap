@@ -82,9 +82,9 @@ Welcome {{ Auth::user()->username  }}
 							<div class="modal-body">
 								<div class="text">
 									@if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
-									{{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
+									{{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton emptystrean')) }}
 									@else
-									{{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
+									{{ Form::submit('follow', array('class' => 'btn btn-primary followButton emptystrean')) }}
 									@endif
 									{{ Form::hidden('board_id',$board->id ) }}
 

@@ -41,7 +41,7 @@ $('.favorite').click(function(event) {
     return false;
 } );
 
-var followButton = $('.followButton');
+var followButton = $('.emptystrean');
 
 followButton.click(function(){
     location.reload();
