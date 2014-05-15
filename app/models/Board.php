@@ -3,7 +3,7 @@
 /**
  * Class Board
  */
-class Board extends Eloquent {
+class Board extends Eloquent  {
 
     /**
      * The database table used by the model.
@@ -69,4 +69,5 @@ class Board extends Eloquent {
         return $posts[$highestID];
         } else return null;
     }
+
 }

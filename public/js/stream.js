@@ -27,10 +27,10 @@ $('.favorite').click(function(event) {
         success: function(data) {
             if (data.like) {
                 count.text(parseInt(count.text())-1);
-                $('.favorite').find('span').removeClass('pvvoPink');
+                $('.favorite[data=' + clickID + ']').find('span').removeClass('pvvoPink');
             } else{
                 count.text(parseInt(count.text())+1);
-                $('.favorite').find('span').addClass('pvvoPink');
+                $('.favorite[data=' + clickID + ']').find('span').addClass('pvvoPink');
 
             }
         },

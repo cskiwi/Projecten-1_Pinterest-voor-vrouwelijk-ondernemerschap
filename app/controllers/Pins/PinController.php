@@ -145,8 +145,23 @@ class PinController extends BaseController {
                             $pin->save();
                             break;
                     }
+                    $boardId = Input::get('board');
+                    if ($boardId == -1 ){
+                        // create new board
+                        $board = Board::create([
+                            'user_id' => Auth::user()->id,
+                            'title' => Input::get('boardname')
+                        ]);
 
-                    DB::table('board_pin')->insert(['board_id'  => 2, 'pin_id'   => $pin->id]);
+                        $boardId = $board['id'];
+
+                        DB::table('follows')->insert(array(
+                            'user_id'   => Auth::user()->id,
+                            'board_id'   => $boardId
+                        ));
+                    }
+
+                    DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
                     return Redirect::to('/');
                 } else {
                     return \Response::json(['success' => true]);

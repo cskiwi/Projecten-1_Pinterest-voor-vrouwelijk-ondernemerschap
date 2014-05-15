@@ -69,11 +69,15 @@
 
 
 @yield('content')
+
+
+
 <div class="col-md-12">
     <div class="container">
         <p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
     </div>
 </div>
+
 <!-- Modal -->
 <div class="modal fade" id="pinAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -107,23 +111,16 @@
                     </div>
                 </div>
 
-
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Select board</label>
                     <div class="col-sm-9">
-                        {{ Form::select('board', array(
-                        '1' => 'Board of user X',
-                        '2' => 'Board of user X',
-                        '3' => 'Board of user X',
-                        '4' => 'Board of user X'
-                        ), null, array('id' => '', 'class' => 'form-control'))}}
+                        {{ Form::select('board', [-1 => 'Create new board'] + Auth::User()->boards->lists('title','id'), null, array('id' => 'board', 'class' => 'form-control'))}}
                     </div>
                 </div>
-
                 <div class="form-group">
                     <label class="col-sm-3 control-label"></label>
                     <div class="col-sm-9">
-                        {{ Form::text('boardname', null, array('class' => 'form-control', 'placeholder' => 'Or fill in a board name to create a new board.')) }}
+                        {{ Form::text('boardname', null, array('id' => 'boardname', 'class' => 'form-control', 'placeholder' => 'Fill in a board name to create a new board.')) }}
                     </div>
                 </div>
 
