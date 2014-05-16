@@ -4,7 +4,7 @@ var typeVideo = $('#type-video');
 var typeImage = $('#type-image');
 var typeOffer = $('#type-offer');
 var addPin = $('#addPin');
-var boardname = $('#boardname');
+var boardname = $('.boardnameinput');
 var rePin = $('#rePin');
 
 
@@ -31,7 +31,7 @@ typeOffer.find('textarea').wysihtml5({
     "color": false
 });
 
-$('#board').change(function(){
+$('.boardSelection').change(function(){
     boardname.hide();
     if($(this).val() == -1){
         boardname.show();

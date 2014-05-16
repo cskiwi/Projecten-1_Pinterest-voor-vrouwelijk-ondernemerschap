@@ -114,13 +114,13 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Select board</label>
                     <div class="col-sm-9">
-                        {{ Form::select('board', [-1 => 'Create new board'] + Auth::User()->boards->lists('title','id'), null, array('id' => 'board', 'class' => 'form-control'))}}
+                        {{ Form::select('board', [-1 => 'Create new board'] + Auth::User()->boards->lists('title','id'), null, array('class' => 'boardSelection form-control'))}}
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label"></label>
                     <div class="col-sm-9">
-                        {{ Form::text('boardname', null, array('id' => 'boardname', 'class' => 'form-control', 'placeholder' => 'Fill in a board name to create a new board.')) }}
+                        {{ Form::text('boardname', null, array('class' => 'boardnameinput form-control', 'placeholder' => 'Fill in a board name to create a new board.')) }}
                     </div>
                 </div>
 
@@ -249,14 +249,14 @@
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Select board</label>
                     <div class="col-sm-9">
-                        {{ Form::select('board', [-1 => 'Create new board'] + Auth::User()->boards->lists('title','id'), null, array('id' => '', 'class' => 'form-control'))}}
+                        {{ Form::select('board', [-1 => 'Create new board'] + Auth::User()->boards->lists('title','id'), null, array('class' => 'boardSelection form-control'))}}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="col-sm-3 control-label"></label>
                     <div class="col-sm-9">
-                        {{ Form::text('boardname', null, array('class' => 'form-control', 'placeholder' => 'Or fill in a board name to create a new board.')) }}
+                        {{ Form::text('boardname', null, array('class' => 'form-control boardnameinput', 'placeholder' => 'Or fill in a board name to create a new board.')) }}
                     </div>
                 </div>
 
