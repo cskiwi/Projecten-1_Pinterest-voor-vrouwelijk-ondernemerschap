@@ -18,6 +18,14 @@ class Pin extends Eloquent {
     public function User() {
         return $this->belongsTo('User', 'user_id');
     }
+    public function originalUser(){
+        return user::find($this->Base()->user_id);
+    }
+    public function repinned(){
+        return $this->original_id != null;
+    }
+
+
     public function Comments(){
         return $this->hasMany('Comment');
     }

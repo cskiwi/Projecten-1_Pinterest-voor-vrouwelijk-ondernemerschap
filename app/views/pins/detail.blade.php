@@ -21,39 +21,39 @@ Post detail | {{ $pin->title }}
 
                 <div class="panel panel-default">
 
-                    <div class="panel-heading">{{ $pin->title }}</div>
+                    <div class="panel-heading">{{ $pin->base()->title }}</div>
 
-                    @if($pin->type == 'Image')
+                    @if($pin->base()->type == 'Image')
                     <div class="panel-body pinDetailBodyImg">
-                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $pin->imgLocation) }}" >
+                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $pin->base()->imgLocation) }}" >
 
                     </div>
-                    @if($pin->description != '')
+                    @if($pin->base()->description != '')
                     <div class="panel-body">
                         <h4>Description</h4>
-                        {{ $pin->description }}
+                        {{ $pin->base()->description }}
                     </div>
                     @endif
                     @endif
 
-                    @if($pin->type == 'Text')
+                    @if($pin->base()->type == 'Text')
                     <div class="panel-body">
-                        {{ $pin->description }}
+                        {{ $pin->base()->description }}
                     </div>
                     @endif
 
-                    @if($pin->type == 'Offer')
+                    @if($pin->base()->type == 'Offer')
                     <div class="panel-body pinDetailBodyImg">
-                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $pin->imgLocation) }}" >
+                        <img class="img-responsive pvvoThumbImg" src="{{ URL::asset('/img/' . $pin->base()->imgLocation) }}" >
 
                     </div>
-                    @if($pin->description != '')
+                    @if($pin->base()->description != '')
                     <div class="panel-body">
                         <h3>Description</h3>
-                        {{ $pin->description }}
+                        {{ $pin->base()->description }}
 
                         <h3>Buy this item!</h3>
-                        <h4>Price <span class="label label-info">€ {{ $pin->price }}</span></h4>
+                        <h4>Price <span class="label label-info">€ {{ $pin->base()->price }}</span></h4>
                         <p>
                             <button type="button" class="btn btn-danger">Get it now in our store!</button>
 
@@ -62,8 +62,8 @@ Post detail | {{ $pin->title }}
                     @endif
                     @endif
 
-                    @if($pin->type == 'Video')
-                    <iframe class="pvvoStreamVideo" width="100%" height="500px" src="{{ $pin->description }}" frameborder="0" allowfullscreen></iframe>
+                    @if($pin->base()->type == 'Video')
+                    <iframe class="pvvoStreamVideo" width="100%" height="500px" src="{{ $pin->base()->description }}" frameborder="0" allowfullscreen></iframe>
                     @endif
 
                 </div>
@@ -75,9 +75,9 @@ Post detail | {{ $pin->title }}
                 <div class="panel">
                     <div class="panel-body">
                         <p>
-                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName(); }} </a> <br />
-                            @if ($repin_by)
-                            Repin by <a href="{{ URL::TO('/users/profile/'.$repin_by->id) }}">{{ $repin_by->viewName(); }} </a>
+                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->originalUser()->id) }}">{{ $pin->originalUser()->viewName(); }} </a> <br />
+                            @if ($pin->repinned())
+                            Repin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName(); }} </a>
                             @endif
                         </p>
 
@@ -89,7 +89,16 @@ Post detail | {{ $pin->title }}
                         <p>
                             <button type="button" id="favorited"  class="btn btn-info favorite" data="{{$pin->id}}" @if(!$pin->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourited</button>
                             <button type="button" id="not-favorited" class="btn btn-default favorite" data="{{$pin->id}}" @if($pin->FavoriteUser()) style="display: none;" @endif><span class="fa fa-star rightSpacingSmall"></span> Favourite</button>
-                            <button type="button" class="btn btn-default"><span class="fa fa-retweet rightSpacingSmall"></span> pin</button>
+                            @if($pin->base()->type == 'Offer')
+                            <a class="btn buy">
+                                <button type="button" class="btn btn-default"><span class="fa fa-euro rightSpacingSmall"></span> {{ $pin->base()->price }} -  BUY </button>
+                            </a>
+                            @else
+                            <a class="btn repin" data="{{$pin->id}}">
+                                <button type="button" class="btn btn-default"><span class="fa fa-retweet rightSpacingSmall"></span> pin</button>
+                            </a>
+                            @endif
+
 
                             @if(Auth::check())
                             @if(Auth::user() == $pin->user)

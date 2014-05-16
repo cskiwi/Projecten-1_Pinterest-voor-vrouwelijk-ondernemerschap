@@ -8,6 +8,7 @@ var boardname = $('#boardname');
 var rePin = $('#rePin');
 
 
+
 media.hide();
 typeText.show();
 
@@ -102,10 +103,10 @@ addPin.on('submit', function() {
 } );
 
 
+
 rePin.on('submit', function() {
     var formData = rePin.serializeArray();
     var errorForm = rePin.find('div#validation-errors');
-    var returnvalue = false;
     $.ajax({
         url: '/Projecten-1_Pinterest-voor-vrouwelijk-ondernemerschap/public/pins/repin',
         type: 'post',
@@ -117,8 +118,6 @@ rePin.on('submit', function() {
             errorForm.find("ul").empty();
         },
         success: function(data) {
-            console.log('setting');
-
             if(data.success == false) {
                 var arr = data.errors;
                 $.each(arr, function(index, value){
@@ -127,9 +126,8 @@ rePin.on('submit', function() {
                     }
                 });
                 errorForm.show();
-                returnvalue = false;
             } else {
-                returnvalue = true;
+                location.reload();
             }
         },
         error: function(data) {
@@ -138,7 +136,10 @@ rePin.on('submit', function() {
             return false;
         }
     });
-    console.log(returnvalue);
-    return returnvalue;
+    return false;
 } );
 
+$('.repin').click(function(){
+    $('#pin_id').val($(this).attr('data'));
+    $('#repinModal').modal();
+});

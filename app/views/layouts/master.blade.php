@@ -260,7 +260,7 @@
                     </div>
                 </div>
 
-                {{Form::hidden ('id', '0');}}
+                {{Form::hidden ('pin_id', '0', array('id' => 'pin_id'));}}
 
                 <div class="modal-footer">
                     {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}

@@ -15,22 +15,22 @@ Board detail | {{ $board->title }}
 @section('content')
 
 <div class="jumbotron pvvoJumboBoard" style="background: url('') no-repeat  fixed;">
-	<div class="container">
-		<h1>{{ $board->title }}</h1>
-		<p>Followers: {{count($board->followers)}}</p>
-		<p>
-			{{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
-				<div class="text">
-				@if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
-				{{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
-				@else
-				{{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
-				@endif
-				{{ Form::hidden('board_id',$board->id ) }}
-				</div>
-			{{ Form::close() }}
-		</p>
-	</div>
+    <div class="container">
+        <h1>{{ $board->title }}</h1>
+        <p>Followers: {{count($board->followers)}}</p>
+        <p>
+            {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
+        <div class="text">
+            @if(count(Auth::user()->follows()->where('board_id', '=', $board->id)->first()) > 0)
+            {{ Form::submit('unfollow', array('class' => 'btn btn-primary following followButton')) }}
+            @else
+            {{ Form::submit('follow', array('class' => 'btn btn-primary followButton')) }}
+            @endif
+            {{ Form::hidden('board_id',$board->id ) }}
+        </div>
+        {{ Form::close() }}
+        </p>
+    </div>
 </div>
 
 <div class="well">

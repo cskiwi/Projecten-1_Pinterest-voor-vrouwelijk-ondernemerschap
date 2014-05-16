@@ -32,11 +32,9 @@ class PinController extends BaseController {
     public function getDetail($id)
     {
         $pin = Pin::find($id);
-        $repin_by = User::find($pin->original_id);
-        $pin = $pin->base();
 
         if ($pin) {
-            return View::make('pins.detail', array('pin' => $pin, 'repin_by' => $repin_by));
+            return View::make('pins.detail', array('pin' => $pin));
         } else {
             return Redirect::to('/');
         }
@@ -210,22 +208,26 @@ class PinController extends BaseController {
     public function postRepin(){
         if (Auth::check()){
             $boardId = Input::get('board');
-            $id = Input::get('id');
+            $pinId = Input::get('pin_id');
             $errors = [];
-            // error checking
 
+            // error checking
             if ($boardId == -1 && Input::get('boardname') == "") {
                 $errors[]=  'Either select an existsing board or fill in the name for the new board';
             }
-            if(Pin::find($id) == null){
+            if(Pin::find($pinId) == null){
                 $errors[]=  'Not a valid pin (this is WIP)';
             }
+
+
             if ($errors == []){
 
                 $pin = Pin::create(array(
                     'user_id'   => Auth::user()->id,
-                    'original_id' => $id,
+                    'original_id' => $pinId,
                 ));
+
+
                 if ($boardId == -1 ){
                     // create new board
                     $board = Board::create([
@@ -234,19 +236,24 @@ class PinController extends BaseController {
                     ]);
 
                     $boardId = $board['id'];
-
+                    echo $boardId;
                     DB::table('follows')->insert(array(
                         'user_id'   => Auth::user()->id,
                         'board_id'   => $boardId
                     ));
                 }
 
-                DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
+                if (DB::table('board_pin')->where('board_id', $boardId)->where('pin_id', $pin->id)->get() != null){
+                    $pin->delete();
+                    $errors[]=  'Already in this board';
+                } else{
+                    // return \Response::json(['success' => false, 'errors' => ['board_id'  => $boardId, 'pin_id'   => $pin->original_id]]);
+                    DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
 
-                return Redirect::to('/');
-            } else {
-                return \Response::json(['success' => false, 'errors' => $errors]);
+                    return \Response::json(['success' => true]);
+                }
             }
+            return \Response::json(['success' => false, 'errors' => $errors]);
         }
     }
 }
