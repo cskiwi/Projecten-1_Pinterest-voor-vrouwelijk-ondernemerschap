@@ -1,4 +1,3 @@
-// BoardsTableSeeder
 <?php
 
 class BoardsTableSeeder extends Seeder {

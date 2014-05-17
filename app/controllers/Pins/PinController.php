@@ -239,33 +239,28 @@ class PinController extends BaseController {
                 $errors[]=  'Not a valid pin';
             }
 
+            if ($errors != []) return \Response::json(['success' => false, 'errors' => $errors]);
 
+            if ($boardId == -1 ){
+                // create new board
+                $board = Board::create([
+                    'user_id' => Auth::user()->id,
+                    'title' => Input::get('boardname')
+                ]);
 
-            if ($errors == []){
-                if ($boardId == -1 ){
-                    // create new board
-                    $board = Board::create([
-                        'user_id' => Auth::user()->id,
-                        'title' => Input::get('boardname')
-                    ]);
-
-                    $boardId = $board['id'];
-                    echo $boardId;
-                    DB::table('follows')->insert(array(
-                        'user_id'   => Auth::user()->id,
-                        'board_id'   => $boardId
-                    ));
-                }
-
-                $pin = Pin::create(array(
+                $boardId = $board['id'];
+                DB::table('follows')->insert(array(
                     'user_id'   => Auth::user()->id,
-                    'board_id' => $boardId,
-                    'original_id' => $originalPin->id,
+                    'board_id'   => $boardId
                 ));
-
-            } else {
-                return \Response::json(['success' => false, 'errors' => $errors]);
             }
+
+            $pin = Pin::create(array(
+                'user_id'   => Auth::user()->id,
+                'board_id' => $boardId,
+                'original_id' => $originalPin->id,
+            ));
+
         }
         return \Response::json(['success' => true]);
     }
