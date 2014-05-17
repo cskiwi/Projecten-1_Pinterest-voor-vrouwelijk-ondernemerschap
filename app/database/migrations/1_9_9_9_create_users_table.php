@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration {
             $table->string('email', 320);
             $table->string('password', 64);
 
+            $table->boolean('receiveMails');
+            $table->boolean('showFullName');
 
             $table->timestamps();
         });

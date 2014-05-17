@@ -73,9 +73,6 @@
         <div class="row">
 
             <div class="col-md-8">
-
-                {{ var_dump(Auth::user()->follows()->where('board_id', '=', 10)->first() ) }}
-
                 <div class="panel panel-default">
                     <div class="panel-heading"><h4>Boards of {{ $user->username }}</h4></div>
                     <div class="panel-body">

@@ -128,8 +128,8 @@ class AdminController extends BaseController {
         if (Auth::check()){
 
             $rules = array(
-                'email' => 'Required|Min:3|Max:255|alpha_spaces',
-                'password' => 'Required|Min:3|Max:255|alpha_spaces',
+                'email' => 'Required|Min:3|Max:255',
+                'password' => 'Min:3|Max:255|alpha_spaces',
                 'name' => 'Min:3|Max:255|alpha_spaces',
             );
 
@@ -141,6 +141,8 @@ class AdminController extends BaseController {
                     ->withInput();
             } else {
                 $data = Input::only(array('email', 'password', 'name'));
+                $data['receiveMails'] = Input::has('receiveMails');
+                $data['showFullName'] = Input::has('showFullName');
 
                 Auth::User()->Update($data);
 

@@ -6,13 +6,9 @@ class Pin extends Eloquent {
 
     public $timestamps = true;
 
-    /*public function Boards() {
-        return $this->belongsToMany('Board', 'board_pin');
-    }//*/
-
     public function Board() {
         return $this->belongsTo('Board', 'board_id');
-    }//*/
+    }
 
     public function Repins(){
         return $this->hasMany('Pin', 'original_id');

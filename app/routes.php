@@ -19,6 +19,8 @@ Route::group(array('before' => 'loginCheck'), function()
     Route::controller('/boards', 'BoardController');
 
     Route::post('/comment/add/{id}', 'CommentController@addComment');
+    Route::post('/comment/edit/{id}', 'CommentController@updateComment');
+    Route::post('/comment/delete/{commmentid}/{pinID}', 'CommentController@deleteComment');
 
 });
 

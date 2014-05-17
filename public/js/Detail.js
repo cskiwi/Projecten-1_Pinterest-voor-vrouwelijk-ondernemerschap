@@ -2,6 +2,8 @@
  * Created by Glenn on 2/05/14.
  */
 
+var comment = $('#comment');
+
 $('.favorite').click(function(event) {
     event.preventDefault();
     var clickID = $(this).attr('data');

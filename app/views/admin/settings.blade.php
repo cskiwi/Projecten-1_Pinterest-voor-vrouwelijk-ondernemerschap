@@ -15,6 +15,17 @@ Your settings - {{ Auth::user()->username  }}
         <!-- Form Name -->
         <legend>Settings</legend>
 
+        @if ( $errors->count() > 0 )
+        <div id="validation-errors" class="alert alert-danger">
+            <p>Some errors occured</p>
+            <ul>
+                @foreach( $errors->all() as $message )
+                <li>{{ $message }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <!-- Text input-->
         <div class="form-group">
             <label class="col-sm-3 control-label">Username</label>
@@ -59,12 +70,12 @@ Your settings - {{ Auth::user()->username  }}
                 <h4>Options</h4>
                 <div class="checkbox">
                     <label>
-                        {{ Form::checkbox('name', 'value') }} Receive mails
+                        {{ Form::checkbox('receiveMails', null, Auth::user()->receiveMails) }} Receive mails
                     </label>
                 </div>
                 <div class="checkbox">
                     <label>
-                        {{ Form::checkbox('name', 'value') }} If checked, shows your full name instead of username
+                        {{ Form::checkbox('showFullName', null, Auth::user()->showFullName) }} If checked, shows your full name instead of username
                     </label>
                 </div>
             </div>

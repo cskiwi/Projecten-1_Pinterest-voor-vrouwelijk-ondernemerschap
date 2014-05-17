@@ -75,10 +75,12 @@ Post detail | {{ $pin->title }}
                 <div class="panel">
                     <div class="panel-body">
                         <p>
-                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->originalUser()->id) }}">{{ $pin->originalUser()->viewName(); }} </a> <br />
+                            Pin by <a href="{{ URL::TO('/users/profile/'.$pin->originalUser()->id) }}">{{ $pin->originalUser()->viewName() }} </a> <br />
                             @if ($pin->repinned())
-                            Repin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName(); }} </a>
+                            Repin by <a href="{{ URL::TO('/users/profile/'.$pin->user->id) }}">{{ $pin->user->viewName() }} </a> <br />
                             @endif
+                            Pinned in <a href="{{ URL::TO('/boards/detail/'.$pin->board->id) }}">{{ $pin->board->title }}</a>
+
                         </p>
 
                         <h4 class="statLbl">Favourites</h4>
@@ -117,11 +119,11 @@ Post detail | {{ $pin->title }}
                     </div>
 
                     <div class="list-group">
-                        <a href="{{ URL::TO('/boards/detail/'.$pin->board->id) }}" class="list-group-item">{{ $pin->board->title }}</a>
-
-                        @foreach($pin->repins as $repin)
+                        <a href="{{ URL::TO('/boards/detail/'.$pin->base()->board->id) }}" class="list-group-item">{{ $pin->base()->board->title }}</a>
+                        @foreach($pin->base()->repins as $repin)
                         <a href="{{ URL::TO('/boards/detail/'.$repin->board->id) }}" class="list-group-item">{{ $repin->board->title }}</a>
-                        @endforeach</div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -140,12 +142,19 @@ Post detail | {{ $pin->title }}
             <h3>Comments</h3>
 
             <p><em>Add a comment as {{ Auth::user()->viewName() }}</em></p>
-            @if($errors->has())
-            @foreach ($errors->all() as $error)
-            <div>{{ $error }}</div>
-            @endforeach
-            @endif
+
+
             {{ Form::open(array('action' => array('CommentController@addComment', $pin->id), 'role' => 'form', 'id' => 'addComment',  'method' => 'post')) }}
+            @if ( $errors->count() > 0 )
+            <div id="validation-errors" class="alert alert-danger">
+                <p>Some errors occured</p>
+                <ul>
+                    @foreach( $errors->all() as $message )
+                    <li>{{ $message }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             <div class="form-group">
                 {{ Form::textarea('content', null, array('class' => 'form-control wysi', 'rows' => '3')) }}
@@ -165,6 +174,16 @@ Post detail | {{ $pin->title }}
                     <div class="media-body">
                         <h4 class="media-heading">{{$comment->user->viewName()}}</h4>
                         <p>{{$comment->content}}</p>
+
+                        @if ($pin->user == Auth::user() || $comment->user == Auth::user())
+                        <p>Send edit form data to: CommentController@updateComment</p>
+
+                        {{ Form::open(array('action' => array('CommentController@deleteComment', $comment->id, $pin->id), 'role' => 'form', 'id' => 'addComment',  'method' => 'post')) }}
+                        <div class="form-group">
+                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
+                        </div>
+                        {{ Form::close() }}
+                        @endif
                     </div>
                 </div>
             </div>
