@@ -13,8 +13,6 @@ class DatabaseSeeder extends Seeder {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
     	$this->call('UsersTableSeeder');
 		$this->call('BoardsTableSeeder');
-		$this->call('BoardPinTableSeeder');
-		$this->call('BoardTagTableSeeder');
 		$this->call('CommentsTableSeeder');
 		$this->call('FavoritesTableSeeder');
 		$this->call('FollowsTableSeeder');

@@ -17,7 +17,7 @@ Board detail | {{ $board->title }}
 <div class="jumbotron pvvoJumboBoard" style="background: url('') no-repeat  fixed;">
     <div class="container">
         <h1>{{ $board->title }}</h1>
-        <p>Followers: {{count($board->followers)}}</p>
+        <p>Followers: {{count($board->Followers() )}}</p>
         <p>
             {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
         <div class="text">

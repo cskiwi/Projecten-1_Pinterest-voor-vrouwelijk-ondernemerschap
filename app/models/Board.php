@@ -5,27 +5,15 @@
  */
 class Board extends Eloquent  {
 
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
     protected $table = 'boards';
-    /**
-     * @var array
-     */
     protected $fillable = array('user_id', 'title');
-
-    /**
-     * @var bool
-     */
     public $timestamps = true;
 
     /**
      * @return mixed
      */
     public function Pins() {
-        return $this->belongsToMany('Pin', 'board_pin');
+        return $this->hasMany('Pin', 'board_id');
     }
 
     /**
@@ -40,16 +28,14 @@ class Board extends Eloquent  {
      * @return mixed
      */
     public function Followers(){
-        return $this->belongsToMany('User', 'follows', 'board_id'); //->withPivot('user_id');
+        return $this->hasMany('User', 'follows', 'board_id'); //->withPivot('user_id');
     }
-
-
 
     /**
      * @return mixed
      */
     public function Tags() {
-        return $this->belongsToMany('Tag', 'board_tag');
+        return $this->hasMany('Tag', 'board_tag');
     }
 
 

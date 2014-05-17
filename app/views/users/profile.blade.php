@@ -74,6 +74,7 @@
 
             <div class="col-md-8">
 
+                {{ var_dump(Auth::user()->follows()->where('board_id', '=', 10)->first() ) }}
 
                 <div class="panel panel-default">
                     <div class="panel-heading"><h4>Boards of {{ $user->username }}</h4></div>
@@ -82,7 +83,7 @@
                             @if(count ($user->boards) > 0)
                             @foreach($user->boards as $board)
 
-                            <a href="#" class="thumbnail boardThumb pull-left">
+                            <a href="{{ URL::TO('/boards/detail/'.$board->id) }}" class="thumbnail boardThumb pull-left">
                                 <p>{{ $board->title }} </p>
 
                                 @if(($image = $board->MostLiked('Image')) != null)

@@ -90,10 +90,26 @@ class PinController extends BaseController {
                 return \Response::json(['success' => false, 'errors' =>  $messages->toArray()]);
             } else {
                 if(!\Request::ajax()){
+                    if ($boardId == -1 ){
+                        // create new board
+                        $board = Board::create([
+                            'user_id' => Auth::user()->id,
+                            'title' => Input::get('boardname')
+                        ]);
+
+                        $boardId = $board['id'];
+
+                        DB::table('follows')->insert(array(
+                            'user_id'   => Auth::user()->id,
+                            'board_id'   => $boardId
+                        ));
+                    }
+
                     switch(Input::get('media-type')){
                         case 'Text':
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
+                                'board_id'     => $boardId,
                                 'title'     => Input::get('Text-title'),
                                 'description' => Input::get('Text-description'),
                                 'type'      => 'Text',
@@ -102,6 +118,7 @@ class PinController extends BaseController {
                         case 'Image':
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
+                                'board_id'     => $boardId,
                                 'title'     => Input::get('Image-title'),
                                 'description' => Input::get('Image-description'),
                                 'type'      => 'Image',
@@ -120,6 +137,7 @@ class PinController extends BaseController {
                         case 'Video':
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
+                                'board_id'     => $boardId,
                                 'title'     => Input::get('Video-title'),
                                 'description' => Input::get('Video-link'),
                                 'type'      => 'Video',
@@ -128,6 +146,7 @@ class PinController extends BaseController {
                         case 'Tutorial':
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
+                                'board_id'     => $boardId,
                                 'title'     => Input::get('Text-title'),
                                 'description' => Input::get('Text-description'),
                                 'type'      => 'Tutorial',
@@ -136,6 +155,7 @@ class PinController extends BaseController {
                         case 'Offer':
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
+                                'board_id'     => $boardId,
                                 'title'     => Input::get('Offer-title'),
                                 'price'     => Input::get('Offer-price'),
                                 'description' => Input::get('Offer-description'),
@@ -152,22 +172,7 @@ class PinController extends BaseController {
                             $pin->save();
                             break;
                     }
-                    if ($boardId == -1 ){
-                        // create new board
-                        $board = Board::create([
-                            'user_id' => Auth::user()->id,
-                            'title' => Input::get('boardname')
-                        ]);
 
-                        $boardId = $board['id'];
-
-                        DB::table('follows')->insert(array(
-                            'user_id'   => Auth::user()->id,
-                            'board_id'   => $boardId
-                        ));
-                    }
-
-                    DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
                     return Redirect::to('/');
                 } else {
                     return \Response::json(['success' => true]);
@@ -209,25 +214,34 @@ class PinController extends BaseController {
         if (Auth::check()){
             $boardId = Input::get('board');
             $pinId = Input::get('pin_id');
+            $originalPin = Pin::find($pinId)->base();
             $errors = [];
 
             // error checking
-            if ($boardId == -1 && Input::get('boardname') == "") {
-                $errors[]=  'Either select an existsing board or fill in the name for the new board';
+            if ($boardId == -1) {
+                if (Input::get('boardname') == "") {
+                    $errors[]=  'Either select an existsing board or fill in the name for the new board';
+                }
+            } else {
+                $inBoard =  $originalPin->board->id == $boardId;
+
+                foreach($originalPin->Repins as $repin){
+                    if ($repin->board->id == $boardId){
+                        $inBoard = true;
+                    }
+                }
+
+                if ($inBoard){
+                    $errors[]=  'Pin already in board';
+                }
             }
-            if(Pin::find($pinId) == null){
-                $errors[]=  'Not a valid pin (this is WIP)';
+            if($originalPin == null){
+                $errors[]=  'Not a valid pin';
             }
+
 
 
             if ($errors == []){
-
-                $pin = Pin::create(array(
-                    'user_id'   => Auth::user()->id,
-                    'original_id' => $pinId,
-                ));
-
-
                 if ($boardId == -1 ){
                     // create new board
                     $board = Board::create([
@@ -243,17 +257,16 @@ class PinController extends BaseController {
                     ));
                 }
 
-                if (DB::table('board_pin')->where('board_id', $boardId)->where('pin_id', $pin->id)->get() != null){
-                    $pin->delete();
-                    $errors[]=  'Already in this board';
-                } else{
-                    // return \Response::json(['success' => false, 'errors' => ['board_id'  => $boardId, 'pin_id'   => $pin->original_id]]);
-                    DB::table('board_pin')->insert(['board_id'  => $boardId, 'pin_id'   => $pin->id]);
+                $pin = Pin::create(array(
+                    'user_id'   => Auth::user()->id,
+                    'board_id' => $boardId,
+                    'original_id' => $originalPin->id,
+                ));
 
-                    return \Response::json(['success' => true]);
-                }
+            } else {
+                return \Response::json(['success' => false, 'errors' => $errors]);
             }
-            return \Response::json(['success' => false, 'errors' => $errors]);
         }
+        return \Response::json(['success' => true]);
     }
 }

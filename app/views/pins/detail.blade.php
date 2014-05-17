@@ -117,10 +117,11 @@ Post detail | {{ $pin->title }}
                     </div>
 
                     <div class="list-group">
-                        @foreach($pin->boards->take(5) as $board)
-                        <a href="{{ URL::TO('/boards/detail/'.$board->id) }}" class="list-group-item">{{ $board->title }}</a>
-                        @endforeach
-                    </div>
+                        <a href="{{ URL::TO('/boards/detail/'.$pin->board->id) }}" class="list-group-item">{{ $pin->board->title }}</a>
+
+                        @foreach($pin->repins as $repin)
+                        <a href="{{ URL::TO('/boards/detail/'.$repin->board->id) }}" class="list-group-item">{{ $repin->board->title }}</a>
+                        @endforeach</div>
                 </div>
             </div>
 
