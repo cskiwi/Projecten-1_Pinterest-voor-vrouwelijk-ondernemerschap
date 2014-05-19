@@ -56,7 +56,7 @@ return array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
 			'database'  => 'pvvo',
-			'username'  => 'pvvo',
+			'username'  => 'root',
 			'password'  => 'Azerty123',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
