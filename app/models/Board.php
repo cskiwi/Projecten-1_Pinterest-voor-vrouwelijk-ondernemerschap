@@ -38,21 +38,24 @@ class Board extends Eloquent  {
         return $this->hasMany('Tag', 'board_tag');
     }
 
+    public function getType($type, $amount = 10){
+        return $this->pins()->where('type', '=', $type)->take($amount)->get();
+    }
 
     public function MostLiked($type){
-        $posts = $this->pins()->where('type', '=', $type)->get();
+        $pins = $this->pins()->where('type', '=', $type)->get();
         $highestID = -1;
         $highestCount = -1;
-        // var_dump($posts);
-        if (sizeof($posts) > 0){
-        foreach( $posts as $i => $thisPost){
+        // var_dump($pins);
+        if (sizeof($pins) > 0){
+        foreach( $pins as $i => $thisPost){
             $currentCount = count($thisPost->favorites);
             if ($highestCount <= $currentCount){
                 $highestCount = $currentCount;
                 $highestID = $i;
             }
         }
-        return $posts[$highestID];
+        return $pins[$highestID];
         } else return null;
     }
 
