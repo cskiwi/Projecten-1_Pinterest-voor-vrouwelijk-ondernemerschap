@@ -176,7 +176,6 @@ Post detail | {{ $pin->title }}
                         <p>{{$comment->content}}</p>
 
                         @if ($pin->user == Auth::user() || $comment->user == Auth::user())
-                        <p>Send edit form data to: CommentController@updateComment</p>
 
                         {{ Form::open(array('action' => array('CommentController@deleteComment', $comment->id, $pin->id), 'role' => 'form', 'id' => 'addComment',  'method' => 'post')) }}
                         <div class="form-group">

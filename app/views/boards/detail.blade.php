@@ -13,7 +13,8 @@ Board detail | {{ $board->title }}
 @stop
 
 @section('content')
-<div class="jumbotron pvvoJumboBoard" style="background: url('{{ asset('img/' . $board->mostLiked('image')->imgLocation) }}'); background-size: cover; background-position: 0% 25%;">
+
+<div class="jumbotron pvvoJumboBoard" style="@if ($board->mostLiked('image') != false) background: url({{ asset('img/' . $board->mostLiked('image')->imgLocation) }}); @else color: #000; @endif background-size: cover; background-position: 0% 25%;">
     <div class="container">
         <h1>{{ $board->title }}</h1>
         <p>Followers: {{count($board->Followers() )}}</p>
@@ -31,6 +32,7 @@ Board detail | {{ $board->title }}
         </p>
     </div>
 </div>
+
 
 <div class="well">
 

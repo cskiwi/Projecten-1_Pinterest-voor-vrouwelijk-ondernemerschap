@@ -47,7 +47,11 @@ class Board extends Eloquent  {
         $highestID = -1;
         $highestCount = -1;
         // var_dump($pins);
-        if (sizeof($pins) > 0){
+
+        if(sizeof($pins) == 0) {
+            return false;
+        }
+
         foreach( $pins as $i => $thisPost){
             $currentCount = count($thisPost->favorites);
             if ($highestCount <= $currentCount){
@@ -56,7 +60,7 @@ class Board extends Eloquent  {
             }
         }
         return $pins[$highestID];
-        } else return null;
+
     }
 
 }
