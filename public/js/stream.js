@@ -43,9 +43,7 @@ $('.favorite').click(function(event) {
 
 var followButton = $('.emptystrean');
 
-followButton.click(function(){
-    location.reload();
-});
+
 
 setInterval(function() {
     fetchNewPosts();
@@ -93,3 +91,7 @@ function latestd(selector) {
     });
     return max;
 }
+
+followButton.click(function(){
+    location.reload();
+});

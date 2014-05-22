@@ -3,6 +3,8 @@
 /**
  * Class PostController
  */
+
+
 class PinController extends BaseController {
     /**
      * @return mixed
@@ -173,8 +175,6 @@ class PinController extends BaseController {
                             break;
                     }
 
-                    $pin->description;
-                    $pin->title;
                     return Redirect::to('/');
 
                 } else {

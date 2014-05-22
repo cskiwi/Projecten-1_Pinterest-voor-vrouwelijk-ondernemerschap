@@ -168,6 +168,32 @@ class PinTableSeeder extends Seeder {
                     'created_at' => '2014-04-01 10:00:28',
                     'updated_at' => '2014-04-01 10:00:28',
                 ),
+            12 =>
+                array (
+                    'id' => 13,
+                    'board_id' => 7,
+                    'user_id' => 1,
+                    'title' => 'Olive Oil',
+                    'description' => 'Olive oil is a fat obtained from the olive, a traditional tree crop of the Mediterranean Basin. The oil is produced by pressing whole olives.',
+                    'imgLocation' => '',
+                    'price' => 3.50,
+                    'type' => 'Text',
+                    'created_at' => '2014-04-01 10:00:28',
+                    'updated_at' => '2014-04-01 10:00:28',
+                ),
+            13 =>
+                array (
+                    'id' => 14,
+                    'board_id' => 3,
+                    'user_id' => 7,
+                    'title' => 'Homemade Wine',
+                    'description' => 'People have been making wine at home for thousands of years. Wine can be made using any type of fruit, though grapes are the most popular choice. After mixing up the ingredients, you let the wine ferment, then age before bottling. This simple, ancient process results in a delicious wine you can be proud you made yourself.',
+                    'imgLocation' => '',
+                    'price' => 8.50,
+                    'type' => 'Text',
+                    'created_at' => '2014-04-01 10:00:28',
+                    'updated_at' => '2014-04-01 10:00:28',
+                ),
         ));
     }
 
