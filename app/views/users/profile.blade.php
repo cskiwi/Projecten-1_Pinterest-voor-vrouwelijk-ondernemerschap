@@ -22,47 +22,52 @@
 
             <div class="row">
 
-                <div class="pull-left profBoxInfo">
-                    <p><img src="@if ($user->avatar) {{ asset('avatar/' .  $user->avatar) }} @else http://placehold.it/150x150 @endif" width="150" height="150" /></p>
+                <div class="col-md-6">
+
+                    <div class="pull-left profBoxInfo">
+                        <p><img src="@if ($user->avatar) {{ asset('avatar/' .  $user->avatar) }} @else http://placehold.it/150x150 @endif" width="150" height="150" /></p>
+                    </div>
+
+                    <div class="pull-left profBoxInfo">
+                        <h3>{{ $user->name }} - {{ $user->username }}</h3>
+
+                        <p>
+                            <span class="fa fa-facebook leftSpacingSmall"></span>
+                            <span class="fa fa-twitter leftSpacingSmall"></span>
+                            <span class="fa fa-flickr leftSpacingSmall"></span>
+                            <span class="fa fa-linkedin leftSpacingSmall"></span>
+                        </p>
+                    </div>
+
                 </div>
 
-                <div class="pull-left profBoxInfo">
-                    <h3>{{ $user->name }} - {{ $user->username }}</h3>
-
-                    <p>
-                        <span class="fa fa-facebook leftSpacingSmall"></span>
-                        <span class="fa fa-twitter leftSpacingSmall"></span>
-                        <span class="fa fa-flickr leftSpacingSmall"></span>
-                        <span class="fa fa-linkedin leftSpacingSmall"></span>
-                    </p>
+                <div class="col-md-6 col-sm-3">
+                    <div class="profBoxJumbo">
+                        <ul class="stats">
+                            <li class="">
+                                <h4 class="statLbl">Pins</h4>
+                                {{ count($user->pins) }}
+                            </li>
+                            <li>
+                                <h4 class="statLbl">Boards</h4>
+                                {{ count($user->boards) }}
+                            </li>
+                            <li>
+                                <h4 class="statLbl">Following</h4>
+                                {{ count($user->follows) }}
+                            </li>
+                            <li>
+                                <h4 class="statLbl">Favourites</h4>
+                                {{ count($user->favorites) }}
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </div>
 
         </div>
 
-
-    </div>
-
-    <div class="row profBoxJumbo">
-        <ul class="stats">
-            <li class="">
-                <h4 class="statLbl">Pins</h4>
-                {{ count($user->pins) }}
-            </li>
-            <li>
-                <h4 class="statLbl">Boards</h4>
-                {{ count($user->boards) }}
-            </li>
-            <li>
-                <h4 class="statLbl">Following</h4>
-                {{ count($user->follows) }}
-            </li>
-            <li>
-                <h4 class="statLbl">Favourites</h4>
-                {{ count($user->favorites) }}
-            </li>
-        </ul>
     </div>
 
 </div>
@@ -126,9 +131,10 @@
 
 </div>
 
+@if (count($user->pins) != 0)
 <div class="well">
 
-    <h1>User's pins</h1>
+    <h2>Pins from user</h2>
 
     <div class="row topOffset">
         <div class="col-md-12">
@@ -142,4 +148,5 @@
         </div>
     </div>
 </div>
+@endif
 @stop
