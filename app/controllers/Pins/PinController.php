@@ -287,7 +287,7 @@ class PinController extends BaseController {
             array_push($pins,$tag->pin);
         }
         foreach(Pin::where('title', 'LIKE', '%'. $search .'%')->get() as $pin){
-            array_push($pin,$pins);
+            array_push($pins,$pin);
         }
 
         // sort by name
