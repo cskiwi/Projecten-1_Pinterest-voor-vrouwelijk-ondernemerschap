@@ -23,7 +23,7 @@
             <div class="row">
 
                 <div class="pull-left profBoxInfo">
-                    <p><img src="http://placehold.it/150x150" /></p>
+                    <p><img src="@if ($user->avatar) {{ asset('avatar/' .  $user->avatar) }} @else http://placehold.it/150x150 @endif" width="150" height="150" /></p>
                 </div>
 
                 <div class="pull-left profBoxInfo">

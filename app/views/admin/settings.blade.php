@@ -62,7 +62,17 @@ Your settings - {{ Auth::user()->username  }}
             <label class="col-sm-3 control-label">Profile picture</label>
             <div class="col-sm-5">
                 {{ Form::file('avatar-file',array('class' => 'form-control') ) }}
+
+                <p>
+                    <br />
+                    @if
+                        (Auth::user()->avatar) <img src="{{ asset('avatar/' .  Auth::user()->avatar) }} " width="150" height="150" />
+                    @else
+                        No avatar yet.
+                    @endif
+                </p>
             </div>
+
         </div>
 
         <div class="form-group">
