@@ -173,7 +173,10 @@ class PinController extends BaseController {
                             break;
                     }
 
+                    $pin->description;
+                    $pin->title;
                     return Redirect::to('/');
+
                 } else {
                     return \Response::json(['success' => true]);
                 }
