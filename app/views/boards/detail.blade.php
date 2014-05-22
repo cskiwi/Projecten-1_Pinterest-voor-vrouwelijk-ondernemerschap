@@ -18,6 +18,8 @@ Board detail | {{ $board->title }}
     <div class="container">
         <h1>{{ $board->title }}</h1>
         <p>Followers: {{count($board->Followers() )}}</p>
+
+        @if ($board->user != Auth::User())
         <p>
             {{ Form::open(array('url' => '#', 'class'=>'form follow-form', 'role' => 'form', 'target' => URL::to("boards"))) }}
         <div class="text">
@@ -30,6 +32,7 @@ Board detail | {{ $board->title }}
         </div>
         {{ Form::close() }}
         </p>
+        @endif
     </div>
 </div>
 
