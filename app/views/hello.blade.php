@@ -53,7 +53,7 @@
 
             <div class="col-md-7 col-lg-6 col-sm-6 topOffset text-center">
 
-                <h2>Hello, ladies.. <br />Get ready for some interesting times.</h2>
+                <h2>Hello, ladies.. <br />Search, Share, Learn Together</h2>
                 <p>Work hard. Pin hard.</p>
 
                 <button type="button" class="btn btn-warning">Learn more</button>

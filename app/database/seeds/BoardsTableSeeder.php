@@ -16,7 +16,7 @@ class BoardsTableSeeder extends Seeder {
 			array (
 				'id' => 1,
 				'user_id' => 16,
-				'title' => 'Littens',
+				'title' => 'Kittens',
 				'created_at' => '2014-04-01 10:00:28',
 				'updated_at' => '2014-04-01 10:00:28',
 			),
@@ -44,14 +44,22 @@ class BoardsTableSeeder extends Seeder {
 				'created_at' => '2014-04-01 10:00:28',
 				'updated_at' => '2014-04-01 10:00:28',
 			),
-			4 => 
-			array (
-				'id' => 5,
-				'user_id' => 20,
-				'title' => 'Random',
-				'created_at' => '2014-04-01 10:00:28',
-				'updated_at' => '2014-04-01 10:00:28',
-			),
+			4 =>
+                array (
+                    'id' => 5,
+                    'user_id' => 20,
+                    'title' => 'Random',
+                    'created_at' => '2014-04-01 10:00:28',
+                    'updated_at' => '2014-04-01 10:00:28',
+                ),
+            5 =>
+                array (
+                    'id' => 6,
+                    'user_id' => 20,
+                    'title' => 'Offers',
+                    'created_at' => '2014-04-01 10:00:28',
+                    'updated_at' => '2014-04-01 10:00:28',
+                ),
 		));
 	}
 
