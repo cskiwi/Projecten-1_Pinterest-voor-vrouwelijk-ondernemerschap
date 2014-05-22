@@ -10,26 +10,10 @@ Board detail | {{ $board->title }}
 {{ HTML::script('js/jquery.shapeshift.min.js') }}
 {{ HTML::script('js/followBoard.js') }}
 {{ HTML::script('js/stream.js') }}
-{{ HTML::script('js/jquery.photoset-grid.min.js') }}
-
-<script>
-    $('.photoset-grid').photosetGrid();
-</script>
 @stop
 
 @section('content')
-<?php
- var_dump($board->getType('image')->toArray());
-?>
-
-<div class="photoset-grid" data-layout="2">
-    @foreach ($board->getType('image') as $photo)
-        <img src="{{ asset('img/' . $photo->imgLocation) }}"  />
-    @endforeach
-</div>
-
-
-<div class="jumbotron pvvoJumboBoard" style="background: url('{{ asset('img/') }}'); background-size: cover; background-position: 0% 25%;">
+<div class="jumbotron pvvoJumboBoard" style="background: url('{{ asset('img/' . $board->mostLiked('image')->imgLocation) }}'); background-size: cover; background-position: 0% 25%;">
     <div class="container">
         <h1>{{ $board->title }}</h1>
         <p>Followers: {{count($board->Followers() )}}</p>
