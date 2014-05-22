@@ -66,7 +66,6 @@ class BoardController extends BaseController {
 
     public function postFollow(){
         if (Auth::check()){
-            // TODO: check if id is avalid
 
             DB::table('follows')->insert(array(
                 'user_id'   => Auth::user()->id,
@@ -79,12 +78,17 @@ class BoardController extends BaseController {
     }
     public function postUnfollow(){
         if (Auth::check()){
-            // TODO: check if id is avalid
-            DB::table('follows')
-                ->where('user_id', Auth::user()->id)
-                ->where('board_id', Input::get('board_id'))
-                ->delete();
-            return \Response::json(['success' => true]);
+            $user = Auth::user();
+            $board = Board::find(Input::get('board_id'));
+            if ($board){
+                if ($board->user != $user){
+                    DB::table('follows')
+                        ->where('user_id', Auth::user()->id)
+                        ->where('board_id', Input::get('board_id'))
+                        ->delete();
+                    return \Response::json(['success' => true]);
+                }
+            }
         }
     }
 }

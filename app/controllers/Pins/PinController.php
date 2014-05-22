@@ -55,13 +55,11 @@ class PinController extends BaseController {
                 case 'Image':
                     $rules = array(
                         'Image-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Image-description' => 'Required|Min:3'
                     );
                     break;
                 case 'Video':
                     $rules = array(
                         'Video-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Video-link' => 'Required|Min:3'
                     );
                     break;
                 case 'Tutorial':
@@ -73,7 +71,7 @@ class PinController extends BaseController {
                 case 'Offer':
                     $rules = array(
                         'Offer-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Offer-price' => 'Required|numeric|Min:3',
+                        'Offer-price' => 'Required|numeric',
                         'Offer-description' => 'Required|Min:3'
                     );
                     break;
