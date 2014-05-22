@@ -53,7 +53,7 @@
 
     <div class="well well-sm wellpinBoard clearfix">
 
-        <img class="media-object pull-left" src="@if ($pin->user->avatar) {{ asset('avatar/' .  $pin->user->avatar) }} @else http://placehold.it/40x40 @endif" width="40" height="40" /> <span class="pull-left avatarName"><a href="{{ URL::to('/users/profile/' . $pin->user->id)}}">{{ $pin->user->viewName() }}</a> &dash; <a href="{{ URL::to('/boards/detail/' . $pin->board->id)}}">{{ $pin->board->title }}</a></span>
+        <img class="media-object pull-left" src="@if ($pin->user->avatar) {{ asset('avatar/' .  $pin->user->avatar) }} @else http://placehold.it/40x40 @endif" width="40" height="40" /> <span class="pull-left avatarName"><a href="{{ URL::to('/users/profile/' . $pin->user->id)}}">{{ Str::limit($pin->user->viewName(), 10) }}</a> &dash; <a href="{{ URL::to('/boards/detail/' . $pin->board->id)}}">{{ Str::limit($pin->board->title, 10) }}</a></span>
 
     </div>
 
