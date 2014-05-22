@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration {
             $table->string('remember_token', 100)->nullable();
             $table->string('email', 320);
             $table->string('password', 64);
+            $table->string('avatar', 64);
 
             $table->boolean('receiveMails');
             $table->boolean('showFullName');

@@ -133,7 +133,7 @@ class AdminController extends BaseController {
                 'name' => 'Min:3|Max:255|alpha_spaces',
             );
 
-            $validator = Validator::make(Input::all(), $rules);
+            $validator = Validator::make(Input::only(array('email', 'password', 'name')), $rules);
 
             if ($validator->fails()) {
                 return Redirect::to('admin/settings')
@@ -145,6 +145,17 @@ class AdminController extends BaseController {
                 $data['showFullName'] = Input::has('showFullName');
 
                 Auth::User()->Update($data);
+
+                $file = Input::file('avatar-file');
+
+                $destinationPath    = 'avatar/';
+                $extension          = $file->getClientOriginalExtension();
+                $filename           = 'usr_'.  Auth::user()->id . '.'. $extension;
+
+                $file->move($destinationPath, $filename);
+                Auth::User()->avatar = $filename;
+                Auth::user()->save();
+
 
                 return Redirect::to('admin/settings/');
 

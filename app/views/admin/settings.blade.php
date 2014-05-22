@@ -10,7 +10,7 @@ Your settings - {{ Auth::user()->username  }}
 <div class="well">
     <div class="container">
 
-        {{ Form::open(array('action' => 'AdminController@postSettings', 'class'=>'form form-horizontal')) }}
+        {{ Form::open(array('action' => 'AdminController@postSettings', 'class'=>'form form-horizontal','files' => true)) }}
 
         <!-- Form Name -->
         <legend>Settings</legend>
@@ -61,7 +61,7 @@ Your settings - {{ Auth::user()->username  }}
         <div class="form-group">
             <label class="col-sm-3 control-label">Profile picture</label>
             <div class="col-sm-5">
-                {{ Form::file('image', array('class' => 'form-control', 'placeholder' => 'Name' ) ) }}
+                {{ Form::file('avatar-file',array('class' => 'form-control') ) }}
             </div>
         </div>
 
