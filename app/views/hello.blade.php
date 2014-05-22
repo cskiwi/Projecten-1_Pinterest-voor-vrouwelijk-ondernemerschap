@@ -100,7 +100,7 @@
         </div>
 
         <div class="row pvvoFooter">
-            <p class="">WomanInterest is a project for KaHo Sint&dash;Lieven University &dash; Developed by highly intellectual monkeys.</p>
+            <p class="">WomanInterest is a project for KaHo Sint&dash;Lieven University</p>
         </div>
 
 

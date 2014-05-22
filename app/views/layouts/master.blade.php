@@ -74,7 +74,7 @@
 
 <div class="col-md-12">
     <div class="container">
-        <p>Copyright &copy; 2014 &mdash; It is in fact developed by a monkey.</p>
+        <p>Copyright &copy; 2014 &mdash; WomanInterest is a project for KaHo Sint&dash;Lieven University</p>
     </div>
 </div>
 
@@ -215,8 +215,8 @@
                 </div>
 
                 <div class="modal-footer">
+                    {{ Form::submit('Pin it!', array('class' => 'btn btn-info')) }}
                     {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
-                    {{ Form::submit('Pin it, babe!', array('class' => 'btn btn-info')) }}
                 </div>
                 {{ Form::close() }}
             </div>
@@ -263,8 +263,8 @@
                 {{Form::hidden ('pin_id', '0', array('id' => 'pin_id'));}}
 
                 <div class="modal-footer">
-                    {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
                     {{ Form::submit('Repin', array('class' => 'btn btn-info')) }}
+                    {{ Form::submit('Close', array('class' => 'btn btn-default', 'data-dismiss' => 'modal')) }}
                 </div>
                 {{ Form::close() }}
             </div>
