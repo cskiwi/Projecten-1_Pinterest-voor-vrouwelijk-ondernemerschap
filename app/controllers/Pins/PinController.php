@@ -3,6 +3,8 @@
 /**
  * Class PostController
  */
+// require 'term-extractor/TermExtractor.php';
+
 class PinController extends BaseController {
     /**
      * @return mixed
@@ -73,7 +75,7 @@ class PinController extends BaseController {
                 case 'Offer':
                     $rules = array(
                         'Offer-title' => 'Required|Min:3|Max:255|alpha_spaces',
-                        'Offer-price' => 'Required|numeric|Min:3',
+                        'Offer-price' => 'Required|numeric|Min:0',
                         'Offer-description' => 'Required|Min:3'
                     );
                     break;
@@ -114,6 +116,7 @@ class PinController extends BaseController {
                                 'description' => Input::get('Text-description'),
                                 'type'      => 'Text',
                             ));
+                            $this->extractKeywords($pin);
                             break;
                         case 'Image':
                             $pin = Pin::create(array(
@@ -133,6 +136,7 @@ class PinController extends BaseController {
                             $file->move($destinationPath, $filename);
                             $pin->imgLocation = $filename;
                             $pin->save();
+                            $this->extractKeywords($pin);
                             break;
                         case 'Video':
                             $pin = Pin::create(array(
@@ -142,6 +146,7 @@ class PinController extends BaseController {
                                 'description' => Input::get('Video-link'),
                                 'type'      => 'Video',
                             ));
+                            $this->extractKeywords($pin);
                             break;
                         case 'Tutorial':
                             $pin = Pin::create(array(
@@ -151,6 +156,7 @@ class PinController extends BaseController {
                                 'description' => Input::get('Text-description'),
                                 'type'      => 'Tutorial',
                             ));
+                            $this->extractKeywords($pin);
                             break;
                         case 'Offer':
                             $pin = Pin::create(array(
@@ -170,17 +176,32 @@ class PinController extends BaseController {
                             $file->move($destinationPath, $filename);
                             $pin->imgLocation = $filename;
                             $pin->save();
+                            $this->extractKeywords($pin);
                             break;
                     }
 
-                    $pin->description;
-                    $pin->title;
+
+
                     return Redirect::to('/');
 
                 } else {
                     return \Response::json(['success' => true]);
                 }
             }
+        }
+    }
+
+    private function extractKeywords($pin){
+        $extractor = new TermExtractor();
+        $terms = $extractor->extract($pin->description . $pin->title);
+
+        foreach ($terms as $term_info) {
+            list($term, $occurrence, $word_count) = $term_info;
+            Keyword::create([
+                'keywords' => $term_info[0],
+                'pin_id' => $pin->id,
+                'occurrences' => $term_info[1],
+            ]);
         }
     }
 
@@ -248,7 +269,7 @@ class PinController extends BaseController {
                 // create new board
                 $board = Board::create([
                     'user_id' => Auth::user()->id,
-                    'title' => Input::get('boardname')
+                    'title' => Input::get('boardname'),
                 ]);
 
                 $boardId = $board['id'];
@@ -262,6 +283,7 @@ class PinController extends BaseController {
                 'user_id'   => Auth::user()->id,
                 'board_id' => $boardId,
                 'original_id' => $originalPin->id,
+                'type' => $originalPin->type
             ));
 
         }

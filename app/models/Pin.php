@@ -23,6 +23,10 @@ class Pin extends Eloquent {
         return $this->original_id != null;
     }
 
+    public function keywords(){
+        return $this->hasMany('Keyword');
+    }
+
     public function Comments(){
         return $this->hasMany('Comment');
     }
