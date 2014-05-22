@@ -14,7 +14,7 @@ Board detail | {{ $board->title }}
 
 @section('content')
 
-<div class="jumbotron pvvoJumboBoard" style="background: url('') no-repeat  fixed;">
+<div class="jumbotron pvvoJumboBoard" style="background: url('{{ asset('img/' . $board->mostLiked('image')->imgLocation) }}'); background-size: cover; background-position: 0% 25%;">
     <div class="container">
         <h1>{{ $board->title }}</h1>
         <p>Followers: {{count($board->Followers() )}}</p>
