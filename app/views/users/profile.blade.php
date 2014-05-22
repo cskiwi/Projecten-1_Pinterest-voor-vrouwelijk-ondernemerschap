@@ -84,7 +84,7 @@
                                 <p>{{ $board->title }} </p>
 
                                 @if(($image = $board->MostLiked('Image')) != null)
-                                {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '')) }}
+                                {{ HTML::image(asset('img/' . $image->imgLocation), $board->title , array('class' => '', 'width' => '150', 'height' => '150')) }}
                                 @else
                                 <img src="http://placehold.it/150x150" >
                                 @endif
