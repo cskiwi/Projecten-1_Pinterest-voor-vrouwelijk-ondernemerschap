@@ -35,8 +35,6 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="" data-toggle="modal" data-target=".bs-example-modal-sm">LOGIN <span class="fa fa-bars leftSpacingSmall"> </span></a></li>
-                        <li><a href="{{ URL::to('posts') }}">TOUR <span class="fa fa-retweet leftSpacingSmall"></span></a></li>
-                        <li><a href="{{ URL::to('boards') }}">DISCLAIMER <span class="fa fa-shield leftSpacingSmall"> </span> </a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
