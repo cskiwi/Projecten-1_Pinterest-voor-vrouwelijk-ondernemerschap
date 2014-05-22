@@ -148,14 +148,15 @@ class AdminController extends BaseController {
 
                 $file = Input::file('avatar-file');
 
-                $destinationPath    = 'avatar/';
-                $extension          = $file->getClientOriginalExtension();
-                $filename           = 'usr_'.  Auth::user()->id . '.'. $extension;
+                if ($file){
+                    $destinationPath    = 'avatar/';
+                    $extension          = $file->getClientOriginalExtension();
+                    $filename           = 'usr_'.  Auth::user()->id . '.'. $extension;
 
-                $file->move($destinationPath, $filename);
-                Auth::User()->avatar = $filename;
-                Auth::user()->save();
-
+                    $file->move($destinationPath, $filename);
+                    Auth::User()->avatar = $filename;
+                    Auth::user()->save();
+                }
 
                 return Redirect::to('admin/settings/');
 
