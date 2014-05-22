@@ -89,6 +89,16 @@ html, body {
 
 }
 
+
+.wellpinBoard {
+    margin-bottom: 0px !important;
+}
+
+.avatarName {
+    line-height: 40px;
+    margin-left: 15px;
+}
+
 .readMore {
 	height: 25px;
 	border-bottom: 1px solid #ff4136;

@@ -51,6 +51,12 @@
 
     </div>
 
+    <div class="well well-sm wellpinBoard clearfix">
+
+        <img class="media-object pull-left" src="@if ($pin->user->avatar) {{ asset('avatar/' .  $pin->user->avatar) }} @else http://placehold.it/40x40 @endif" width="40" height="40" /> <span class="pull-left avatarName"><a href="{{ URL::to('/users/profile/' . $pin->user->id)}}">{{ $pin->user->viewName() }}</a> &dash; <a href="{{ URL::to('/boards/detail/' . $pin->board->id)}}">{{ $pin->board->title }}</a></span>
+
+    </div>
+
     <div class="panel-footer">
         <div class="btn-group btn-group-xs btn-group-justified pinBtns">
 

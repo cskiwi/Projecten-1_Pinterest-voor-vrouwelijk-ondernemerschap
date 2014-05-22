@@ -49,7 +49,7 @@ Welcome {{ Auth::user()->username  }}
         </div>
     </div>
 </div>
-
+<!--
 <div class="well">
 
     <div class="row topOffset">
@@ -104,6 +104,6 @@ Welcome {{ Auth::user()->username  }}
         </div>
 
     </div>
-</div>
+</div>-->
 @stop
 

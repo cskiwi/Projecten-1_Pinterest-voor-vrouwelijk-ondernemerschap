@@ -165,11 +165,11 @@ Post detail | {{ $pin->title }}
             {{ Form::close() }}
 
             @endif
-            @foreach($pin->comments as $comment)
+            @foreach($pin->comments()->orderBy('created_at', 'DESC')->get() as $comment)
             <div class="well well-sm">
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object" src="http://placehold.it/75x75" alt="...">
+                        <img class="media-object" src="@if ($comment->user->avatar) {{ asset('avatar/' .  $comment->user->avatar) }} @else http://placehold.it/75x75 @endif" width="75" height="75" />
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{$comment->user->viewName()}}</h4>
