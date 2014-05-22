@@ -278,4 +278,35 @@ class PinController extends BaseController {
         }
         return \Response::json(['success' => true]);
     }
+
+    public function getSearch(){
+
+        $search = strlen(Input::get('search-text')) > 1 ? Input::get('search-text') : '';
+        $pins = [];
+        foreach(Keyword::where('keywords', 'LIKE', '%'. $search .'%')->get() as $tag){
+            array_push($pins,$tag->pin);
+        }
+        foreach(Pin::where('title', 'LIKE', '%'. $search .'%')->get() as $pin){
+            array_push($pin,$pins);
+        }
+
+        // sort by name
+        usort($pins, function($a, $b){
+            return strcmp($b->title,$a->title);
+        });
+
+        // remove dupes
+        $pins = array_filter($pins,function ($obj) {
+            static $idList = array();
+            if(in_array($obj->id,$idList)) {
+                return false;
+            }
+            $idList []= $obj->id;
+            return true;
+        });
+
+
+        return View::make('pins.search')->with('pins', $pins);
+    }
+
 }

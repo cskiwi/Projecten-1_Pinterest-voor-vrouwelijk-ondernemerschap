@@ -87,35 +87,4 @@ class BoardController extends BaseController {
             return \Response::json(['success' => true]);
         }
     }
-
-    public function getSearch(){
-
-        $search = strlen(Input::get('search-text')) > 1 ? Input::get('search-text') : '';
-        $boards = [];
-        foreach(Tag::where('name', 'LIKE', '%'. $search .'%')->get() as $tag){
-            foreach( $tag->boards as $board){
-                array_push($boards,$board);
-            }
-        }
-        foreach(Board::where('title', 'LIKE', '%'. $search .'%')->get() as $board){
-            array_push($boards,$board);
-        }
-        // sort by name
-        usort($boards, function($a, $b){
-            return strcmp($b->title,$a->title);
-        });
-
-        // remove dupes
-        $boards = array_filter($boards,function ($obj) {
-            static $idList = array();
-            if(in_array($obj->id,$idList)) {
-                return false;
-            }
-            $idList []= $obj->id;
-            return true;
-        });
-
-
-        return View::make('boards.search')->with('boards', $boards);
-    }
 }

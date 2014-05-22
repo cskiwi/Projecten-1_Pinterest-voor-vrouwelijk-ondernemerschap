@@ -20,8 +20,8 @@ class Keyword extends eloquent{
     /**
      * @return mixed
      */
-    public function Pins() {
-        return $this->belongsToMany('Pin');
+    public function Pin() {
+        return $this->belongsTo('Pin');
     }
 
 } 

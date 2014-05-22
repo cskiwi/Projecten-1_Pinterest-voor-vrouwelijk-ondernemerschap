@@ -40,7 +40,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <div class="col-md-3 col-sm-5">
                     <ul class="nav navbar-nav">
-                        {{ Form::open(array('url' => './boards/search', 'class'=>'navbar-form navbar-left', 'method' => 'get', 'role' => 'search', 'id' => 'search-form')) }}
+                        {{ Form::open(array('url' => './pins/search', 'class'=>'navbar-form navbar-left', 'method' => 'get', 'role' => 'search', 'id' => 'search-form')) }}
                         <div class="input-group">
                             {{ Form::text('search-text', $value = null, array('placeholder' => 'Search boards...', 'class'=> 'form-control', 'required' => 'required')) }}
                             <span class="input-group-addon"><span class="fa fa-search"></span></span>
