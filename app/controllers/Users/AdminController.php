@@ -140,7 +140,16 @@ class AdminController extends BaseController {
                     ->withErrors($validator)
                     ->withInput();
             } else {
-                $data = Input::only(array('email', 'password', 'name'));
+                if ($email = Input::get('email')){
+                    $data['email'] = $email;
+                }
+                if ($password = Input::get('password')){
+                    $data['password'] = Hash::make($password);
+                }
+                if ($name = Input::get('name')){
+                    $data['name'] = $name;
+                }
+
                 $data['receiveMails'] = Input::has('receiveMails');
                 $data['showFullName'] = Input::has('showFullName');
 
