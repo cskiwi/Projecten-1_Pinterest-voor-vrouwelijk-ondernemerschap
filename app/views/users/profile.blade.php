@@ -32,10 +32,9 @@
                         <h3>{{ $user->name }} - {{ $user->username }}</h3>
 
                         <p>
-                            <span class="fa fa-facebook leftSpacingSmall"></span>
-                            <span class="fa fa-twitter leftSpacingSmall"></span>
-                            <span class="fa fa-flickr leftSpacingSmall"></span>
-                            <span class="fa fa-linkedin leftSpacingSmall"></span>
+                            @if($user->facebook)<a href="http://facebook.com/{{ $user->facebook }}"><span class="fa fa-facebook leftSpacingSmall"></span></a>@endif
+                            @if($user->twitter)<a href="http://twitter.com/{{ $user->twitter }}"><span class="fa fa-twitter leftSpacingSmall"></span></a>@endif
+                            @if($user->instagram)<a href="http://instagram.com/{{ $user->instagram }}"><span class="fa fa-instagram leftSpacingSmall"></span></a>@endif
                         </p>
                     </div>
 

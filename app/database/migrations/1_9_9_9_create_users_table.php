@@ -25,10 +25,9 @@ class CreateUsersTable extends Migration {
             $table->string('avatar', 64);
 
             // social media
-            $table->string('fb', 64);
+            $table->string('facebook', 64);
             $table->string('twitter', 64);
             $table->string('instagram', 64);
-            $table->string('linkedin', 64);
 
 
             $table->boolean('receiveMails');

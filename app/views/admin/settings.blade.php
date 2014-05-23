@@ -76,29 +76,6 @@ Your settings - {{ Auth::user()->username  }}
         </div>
 
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-10">
-                <h4>Socal media</h4>
-                <div class="checkbox">
-                    <label>
-                        {{ Form::checkbox('receiveMails', null, Auth::user()->receiveMails) }} Receive mails
-                    </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                        {{ Form::checkbox('showFullName', null, Auth::user()->showFullName) }} If checked, shows your full name instead of username
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label"></label>
-            <div class="col-sm-9">
-                <button id="submit" name="submit" class="btn btn-info">Save settings</button>
-            </div>
-        </div>
-
-        <div class="form-group">
             <div class="col-sm-offset-3 col-sm-10"><h4>Social media</h4></div>
             <label class="col-sm-3 control-label">Facebook</label>
             <div class="col-sm-5">
@@ -121,12 +98,27 @@ Your settings - {{ Auth::user()->username  }}
         </div>
 
         <div class="form-group">
-            <label class="col-sm-3 control-label">LinkedIn</label>
-            <div class="col-sm-5">
-                {{ Form::text('linkedin', Auth::user()->linkedin, array('class' => 'form-control', 'placeholder' => 'Profile link' ) ) }}
+            <div class="col-sm-offset-3 col-sm-10">
+                <h4>Options</h4>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('receiveMails', null, Auth::user()->receiveMails) }} Receive mails
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                        {{ Form::checkbox('showFullName', null, Auth::user()->showFullName) }} If checked, shows your full name instead of username
+                    </label>
+                </div>
             </div>
         </div>
 
+        <div class="form-group">
+            <label class="col-sm-3 control-label"></label>
+            <div class="col-sm-9">
+                <button id="submit" name="submit" class="btn btn-info">Save settings</button>
+            </div>
+        </div>
         {{ Form::close() }}
 
 

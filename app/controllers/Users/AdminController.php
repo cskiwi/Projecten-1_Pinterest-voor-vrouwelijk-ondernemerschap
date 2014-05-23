@@ -151,6 +151,16 @@ class AdminController extends BaseController {
                 if ($name = Input::get('name')){
                     $data['name'] = $name;
                 }
+                if ($facebook = Input::get('facebook')){
+                    $data['facebook'] =  preg_replace( '#(?:https?://)?(?:www.)?(?:facebook.com/)?#u', '$1',$facebook);
+
+                }
+                if ($twitter = Input::get('twitter')){
+                    $data['twitter'] =  preg_replace( '#(?:https?://)?(?:www.)?(?:twitter.com/)?#u', '$1',$twitter);
+                }
+                if ($instagram = Input::get('instagram')){
+                    $data['instagram'] =  preg_replace( '#(?:https?://)?(?:www.)?(?:instagram.com/)?#u', '$1',$instagram);
+                }
 
 
                 $data['receiveMails'] = Input::has('receiveMails');
