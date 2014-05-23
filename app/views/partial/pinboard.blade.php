@@ -10,11 +10,22 @@
         </div>
         @endif
 
-        @if($pin->base()->type == 'Text')
+        @if($pin->base()->type == 'Text' )
         <div class="panel-body">
             <div class="pvvoStreamBody">
                 <p>
                     <strong>{{ $pin->base()->title }}</strong>
+                </p>
+                {{ str_limit($pin->base()->description, $limit = 300, $end = '...') }}
+            </div>
+        </div>
+        @endif
+
+        @if($pin->base()->type == 'Tutorial')
+        <div class="panel-body">
+            <div class="pvvoStreamBody">
+                <p>
+                    <strong>Tutorial: {{ $pin->base()->title }}</strong>
                 </p>
                 {{ str_limit($pin->base()->description, $limit = 300, $end = '...') }}
             </div>
