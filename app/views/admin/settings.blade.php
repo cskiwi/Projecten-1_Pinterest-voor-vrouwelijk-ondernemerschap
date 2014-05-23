@@ -76,6 +76,28 @@ Your settings - {{ Auth::user()->username  }}
         </div>
 
         <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-10"><h4>Social media</h4></div>
+            <label class="col-sm-3 control-label">Facebook</label>
+            <div class="col-sm-5">
+                {{ Form::text('facebook', Auth::user()->facebook, array('class' => 'form-control', 'placeholder' => 'Profile link' ) ) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Twitter</label>
+            <div class="col-sm-5">
+                {{ Form::text('twitter', Auth::user()->twitter, array('class' => 'form-control', 'placeholder' => 'Profile link' ) ) }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Instagram</label>
+            <div class="col-sm-5">
+                {{ Form::text('instagram', Auth::user()->instagram, array('class' => 'form-control', 'placeholder' => 'Profile link' ) ) }}
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-sm-offset-3 col-sm-10">
                 <h4>Options</h4>
                 <div class="checkbox">

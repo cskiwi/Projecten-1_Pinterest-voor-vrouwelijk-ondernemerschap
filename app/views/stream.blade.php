@@ -44,7 +44,11 @@ Welcome {{ Auth::user()->username  }}
                 @foreach($pins as $pin)
                 @include('partial.pinboard')
                 @endforeach
-
+                @if (count($pins)  < 1)
+                <div class="text-center">
+                    <img src="{{ asset('img/Test.jpg') }}"/>
+                </div>
+                @endif
             </div>
         </div>
     </div>

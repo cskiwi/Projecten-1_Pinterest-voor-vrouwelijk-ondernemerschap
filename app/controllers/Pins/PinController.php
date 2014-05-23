@@ -133,11 +133,20 @@ class PinController extends BaseController {
                             $pin->save();
                             break;
                         case 'Video':
+                            $video_id = null;
+                            if (preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', Input::get('Video-link'), $match)) {
+                                $video_id = '//www.youtube.com/embed/' . $match[1];
+                            }
+
+                            if(preg_match('%https?://(player\.)?vimeo\.com(/video)?/(\d+)%i',Input::get('Video-link'), $match)){
+                                $video_id = '//player.vimeo.com/video/' . $match[3];
+                            }
+
                             $pin = Pin::create(array(
                                 'user_id'   => Auth::user()->id,
                                 'board_id'     => $boardId,
                                 'title'     => Input::get('Video-title'),
-                                'description' => Input::get('Video-link'),
+                                'description' => $video_id,
                                 'type'      => 'Video',
                             ));
                             break;
