@@ -5,7 +5,7 @@
 var loginForm = $( '#login-form' );
 var registerForm = $( '#register-form' );
 
-loginForm.on( 'submit', function() {
+loginForm.on( 'submit', function(event) {
     event.preventDefault();
     var errorForm = loginForm.find('div#validation-errors');
     $.ajax({
@@ -29,6 +29,7 @@ loginForm.on( 'submit', function() {
                 errorForm.show();
             } else {
                 location.reload();
+                return true;
             }
         },
         error: function() {
@@ -39,7 +40,7 @@ loginForm.on( 'submit', function() {
 } );
 
 
-registerForm.on( 'submit', function() {
+registerForm.on( 'submit', function(event) {
     event.preventDefault();
     var errorForm = registerForm.find('div#validation-errors');
     $.ajax({
@@ -63,6 +64,7 @@ registerForm.on( 'submit', function() {
                 errorForm.show();
             } else {
                 location.reload();
+                return true;
             }
         },
         error: function() {
