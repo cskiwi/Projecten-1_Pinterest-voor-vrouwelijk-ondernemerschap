@@ -95,6 +95,7 @@ class AdminController extends BaseController {
             $data['password'] = Hash::make($data['password']);
             $user = User::create($data);
             Auth::login($user, true);
+
             // validation successful!
             // redirect them to the secure section or whatever
             return \Response::json(['success' => true], 200);
