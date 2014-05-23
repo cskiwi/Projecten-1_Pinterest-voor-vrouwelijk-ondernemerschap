@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Class AdminController
  */
@@ -45,13 +46,13 @@ class AdminController extends BaseController {
         } else {
 
             // create our user data for the authentication
-            $userdata = array(
+            $userData = array(
                 'username' 	=> Input::get('username'),
                 'password' 	=> Input::get('password')
             );
 
             // attempt to do the login
-            if (Auth::attempt($userdata, true, true)) {
+            if (Auth::attempt($userData, true, true)) {
 
                 // validation successful!
                 // redirect them to the secure section or whatever
@@ -150,6 +151,7 @@ class AdminController extends BaseController {
                 if ($name = Input::get('name')){
                     $data['name'] = $name;
                 }
+
 
                 $data['receiveMails'] = Input::has('receiveMails');
                 $data['showFullName'] = Input::has('showFullName');
