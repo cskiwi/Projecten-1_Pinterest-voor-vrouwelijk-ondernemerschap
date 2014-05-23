@@ -19,7 +19,7 @@ class CreateBoardsTable extends Migration {
             $table->unsignedinteger('user_id');
             $table->string('title');
 			$table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
 	}
 

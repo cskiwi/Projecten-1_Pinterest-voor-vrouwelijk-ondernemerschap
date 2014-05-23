@@ -17,8 +17,8 @@ class CreateFavoritesTable extends Migration {
             $table->increments('id')->index();
             $table->unsignedinteger('user_id')->index();
             $table->unsignedinteger('pin_id')->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');
-            $table->foreign('pin_id')->references('id')->on('pins')->onDelete('RESTRICT');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('pin_id')->references('id')->on('pins')->onDelete('CASCADE')->onUpdate('CASCADE');
         });
     }
 

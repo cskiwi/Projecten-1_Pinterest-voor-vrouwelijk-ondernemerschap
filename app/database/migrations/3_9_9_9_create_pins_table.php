@@ -19,20 +19,20 @@ class CreatePinsTable extends Migration {
             $table->increments('id');
 
             $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
 
             $table->unsignedInteger('board_id')->nullable();
-            $table->foreign('board_id')->references('id')->on('boards')->onDelete('RESTRICT');
+            $table->foreign('board_id')->references('id')->on('boards')->onDelete('CASCADE')->onUpdate('CASCADE');
 
             $table->unsignedInteger('original_id')->nullable();
-            $table->foreign('original_id')->references('id')->on('pins')->onDelete('RESTRICT');
+            $table->foreign('original_id')->references('id')->on('pins')->onDelete('CASCADE')->onUpdate('CASCADE');
 
 
             $table->string('title')->nullable();
             $table->text('description')->nullable();
             $table->string('imgLocation')->nullable();
             $table->double('price')->nullable();
-            $table->enum('type', array('Image', 'Text', 'Video', 'Tutorial', 'Offer'))->nullable();
+            $table->enum('type', array('Image', 'Text', 'Video', 'Tutorial', 'Offer'));
 			$table->timestamps();
 
         });

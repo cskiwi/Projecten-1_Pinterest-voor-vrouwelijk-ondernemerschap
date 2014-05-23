@@ -17,8 +17,8 @@ class PivotFollowsTable extends Migration {
             $table->increments('id')->index();
             $table->unsignedinteger('user_id')->index();
             $table->unsignedinteger('board_id')->index();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('RESTRICT');
-            $table->foreign('board_id')->references('id')->on('boards')->onDelete('RESTRICT');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE')->onUpdate('CASCADE');
+            $table->foreign('board_id')->references('id')->on('boards')->onDelete('CASCADE')->onUpdate('CASCADE');
 		});
 	}
 

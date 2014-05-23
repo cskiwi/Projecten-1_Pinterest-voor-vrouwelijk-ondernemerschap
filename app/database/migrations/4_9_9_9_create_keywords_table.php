@@ -18,7 +18,7 @@ class CreateKeywordsTable extends Migration {
             $table->unsignedinteger('pin_id')->index();
             $table->integer('occurrences');
             $table->string('keywords');
-            $table->foreign('pin_id')->references('id')->on('pins')->onDelete('RESTRICT');
+            $table->foreign('pin_id')->references('id')->on('pins')->onDelete('CASCADE')->onUpdate('CASCADE');
 		});
 	}
 

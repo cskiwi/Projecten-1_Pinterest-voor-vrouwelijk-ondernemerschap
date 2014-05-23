@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder {
 		$this->call('FollowsTableSeeder');
 		$this->call('PasswordRemindersTableSeeder');
 		$this->call('PinTableSeeder');
-		$this->call('TagTableSeeder');
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
     }
