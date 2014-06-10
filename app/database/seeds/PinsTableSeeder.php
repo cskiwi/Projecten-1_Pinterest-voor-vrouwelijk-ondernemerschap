@@ -340,11 +340,11 @@ class PinTableSeeder extends Seeder {
             25 =>
                 array (
                     'id' => 26,
-                    'board_id' => 9,
+                    'board_id' => 10,
                     'user_id' => 8,
                     'title' => 'Core of student apps',
                     'description' => 'Here is a beautiful picture with a lot of apps and explanation!',
-                    'imgLocation' => 'usr_8_pin1.jpg',
+                    'imgLocation' => 'usr_8_pin3.jpg',
                     'price' => 0,
                     'type' => 'Image',
                     'created_at' => '2014-04-01 10:00:28',
@@ -353,11 +353,11 @@ class PinTableSeeder extends Seeder {
             26 =>
                 array (
                     'id' => 27,
-                    'board_id' => 9,
+                    'board_id' => 10,
                     'user_id' => 8,
                     'title' => 'Core of teacher apps',
                     'description' => 'And here is one for the teachers!',
-                    'imgLocation' => 'usr_8_pin2.jpg',
+                    'imgLocation' => 'usr_8_pin1.jpg',
                     'price' => 0,
                     'type' => 'Image',
                     'created_at' => '2014-04-01 10:00:28',

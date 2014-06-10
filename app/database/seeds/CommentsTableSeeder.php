@@ -15,21 +15,22 @@ class CommentsTableSeeder extends Seeder {
 			0 => 
 			array (
 				'id' => 1,
-				'user_id' => 1,
+				'user_id' => 10,
 				'pin_id' => 1,
-				'content' => 'Let\'s go crazy',
+				'content' => 'Looks delicious, gonna use this recipe this afternoon! Thanks!',
 				'created_at' => '2014-04-01 10:00:30',
 				'updated_at' => '2014-04-01 10:00:30',
 			),
 			1 => 
 			array (
 				'id' => 2,
-				'user_id' => 1,
-				'pin_id' => 3,
-				'content' => 'Giggity',
+				'user_id' => 11,
+				'pin_id' => 2,
+				'content' => 'God I love this poster!',
 				'created_at' => '2014-04-01 10:00:30',
 				'updated_at' => '2014-04-01 10:00:30',
 			),
+
             2 =>
                 array (
                     'id' => 3,
@@ -63,6 +64,15 @@ class CommentsTableSeeder extends Seeder {
                     'user_id' => 3,
                     'pin_id' => 8,
                     'content' => 'Thank you!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            6 =>
+                array (
+                    'id' => 7,
+                    'user_id' => 9,
+                    'pin_id' => 3,
+                    'content' => 'I like it a lot!',
                     'created_at' => '2014-04-01 10:00:30',
                     'updated_at' => '2014-04-01 10:00:30',
                 ),
