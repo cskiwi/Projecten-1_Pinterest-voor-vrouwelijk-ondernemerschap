@@ -342,7 +342,7 @@ class PinTableSeeder extends Seeder {
                     'id' => 26,
                     'board_id' => 10,
                     'user_id' => 8,
-                    'title' => 'Core of student apps',
+                    'title' => 'Core of student apps!',
                     'description' => 'Here is a beautiful picture with a lot of apps and explanation!',
                     'imgLocation' => 'usr_8_pin3.jpg',
                     'price' => 0,
