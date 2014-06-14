@@ -355,8 +355,141 @@ class CommentsTableSeeder extends Seeder {
                     'created_at' => '2014-04-01 10:00:30',
                     'updated_at' => '2014-04-01 10:00:30',
                 ),
-
+            38 =>
+                array (
+                    'id' => 39,
+                    'user_id' => 18,
+                    'pin_id' => 37,
+                    'content' => 'I like it!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            39 =>
+                array (
+                    'id' => 40,
+                    'user_id' => 16,
+                    'pin_id' => 36,
+                    'content' => 'This is really beautiful!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            40 =>
+                array (
+                    'id' => 41,
+                    'user_id' => 13,
+                    'pin_id' => 36,
+                    'content' => 'Would love to get one like this!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            41 =>
+                array (
+                    'id' => 42,
+                    'user_id' => 11,
+                    'pin_id' => 35,
+                    'content' => 'Beautiful!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            42 =>
+                array (
+                    'id' => 43,
+                    'user_id' => 10,
+                    'pin_id' => 34,
+                    'content' => 'This was really helpful thank you!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            43 =>
+                array (
+                    'id' => 44,
+                    'user_id' => 9,
+                    'pin_id' => 34,
+                    'content' => 'Thanks for sharing, any idea where I can buy this book?',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            44 =>
+                array (
+                    'id' => 45,
+                    'user_id' => 18,
+                    'pin_id' => 34,
+                    'content' => 'You can buy it online on a lot of sites, like this one: www.amazon.com or bookshops in your neighbourhood!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            45 =>
+                array (
+                    'id' => 46,
+                    'user_id' => 8,
+                    'pin_id' => 32,
+                    'content' => 'Thank you, really helpful since I am a teacher!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            46 =>
+                array (
+                    'id' => 47,
+                    'user_id' => 7,
+                    'pin_id' => 32,
+                    'content' => 'Thank you, have been looking for a good site to learn a third language!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            47 =>
+                array (
+                    'id' => 48,
+                    'user_id' => 6,
+                    'pin_id' => 31,
+                    'content' => 'Awesome picture, did you study photography?',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            48 =>
+                array (
+                    'id' => 49,
+                    'user_id' => 16,
+                    'pin_id' => 31,
+                    'content' => 'Yes I have, for 4 years now!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            49 =>
+                array (
+                    'id' => 50,
+                    'user_id' => 7,
+                    'pin_id' => 30,
+                    'content' => 'Ordered some immediately!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            50 =>
+                array (
+                    'id' => 51,
+                    'user_id' => 4,
+                    'pin_id' => 30,
+                    'content' => 'Thank you for supporting me! Hope you will like it!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            51 =>
+                array (
+                    'id' => 52,
+                    'user_id' => 5,
+                    'pin_id' => 28,
+                    'content' => 'I recommend other people to use this link, it is really good!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
+            52 =>
+                array (
+                    'id' => 53,
+                    'user_id' => 7,
+                    'pin_id' => 28,
+                    'content' => 'Yes indeed,really helpful!',
+                    'created_at' => '2014-04-01 10:00:30',
+                    'updated_at' => '2014-04-01 10:00:30',
+                ),
 		));
 	}
-
 }
