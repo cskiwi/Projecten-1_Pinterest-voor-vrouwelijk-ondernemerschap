@@ -179,8 +179,7 @@ class PinController extends BaseController {
                             $pin->save();
                             break;
                     }
-                    $this->extractKeywords($pin);
-                    return Redirect::to('/');
+                    return Redirect::back();
 
                 } else {
                     return \Response::json(['success' => true]);
@@ -189,19 +188,6 @@ class PinController extends BaseController {
         }
     }
 
-    private function extractKeywords($pin){
-        $extractor = new TermExtractor();
-        $terms = $extractor->extract($pin->description . $pin->title);
-
-        foreach ($terms as $term_info) {
-            list($term, $occurrence, $word_count) = $term_info;
-            Keyword::create([
-                'keywords' => $term_info[0],
-                'pin_id' => $pin->id,
-                'occurrences' => $term_info[1],
-            ]);
-        }
-    }
     public function getDelete($id){
         if (Auth::check()){
             $post = Pin::find($id);
