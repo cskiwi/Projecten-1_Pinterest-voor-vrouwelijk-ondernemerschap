@@ -75,7 +75,7 @@
                 <span class="fa fa-star rightSpacingSmall @if($pin->FavoriteUser()) pvvoPink @endif"></span> <span class="count @if($pin->FavoriteUser()) pvvoPink @endif">{{ count($pin->favorites) }}</span>
             </a>
 
-            <a class="btn comment">
+            <a class="btn comment" href="{{ URL::to('/pins/detail/' . $pin->id . '#comments')}}">
                 <span class="fa fa-comment rightSpacingSmall"></span> <span class="count">{{ count($pin->base()->comments) }}</span>
             </a>
 

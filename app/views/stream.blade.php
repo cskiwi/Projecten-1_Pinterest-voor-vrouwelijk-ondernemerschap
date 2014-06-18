@@ -13,45 +13,45 @@ Welcome {{ Auth::user()->username  }}
 @stop
 @section('content')
 
-<div class="pvvoPills">
+<div class="pvvoPills hidden-xs">
 
-    <div class="col-md-12">
+  <div class="col-md-12 ">
 
-        <ul class="nav nav-pills">
-            @foreach (Auth::user()->follows as $board)
-            <li class="" id="filter_boards">
-                <a href="{{ URL::to('/boards/detail/'.$board->id) }}">
-                    {{$board->title }}
-                </a>
-            </li>
+    <ul class="nav nav-pills">
+      @foreach (Auth::user()->follows as $board)
+      <li class="" id="filter_boards">
+        <a href="{{ URL::to('/boards/detail/'.$board->id) }}">
+          {{$board->title }}
+        </a>
+      </li>
 
-            @endforeach
-            <li class="pull-right">
-                <a class="refresh refreshPill" href="{{ URL::to('/')}}">
-                    Refresh <span id="newpins" class="badge"></span>
-                </a>
-            </li>
+      @endforeach
+      <li class="pull-right">
+        <a class="refresh refreshPill" href="{{ URL::to('/')}}">
+          Refresh <span id="newpins" class="badge"></span>
+        </a>
+      </li>
 
-        </ul>
-    </div>
+    </ul>
+  </div>
 </div>
 
 <div class="well">
-    <div class="row topOffset">
-        <div class="col-md-12">
-            <div class="row photos" id="">
+  <div class="row topOffset">
+    <div class="col-md-12">
+      <div class="row photos" id="">
 
-                @foreach($pins as $pin)
-                @include('partial.pinboard')
-                @endforeach
-                @if (count($pins)  < 1)
-                <div class="text-center">
-                    <img src="{{ asset('img/Test.jpg') }}"/>
-                </div>
-                @endif
-            </div>
+        @foreach($pins as $pin)
+        @include('partial.pinboard')
+        @endforeach
+        @if (count($pins) < 1)
+        <div class="text-center">
+          <img src="{{ asset('img/Test.jpg') }}"/>
         </div>
+        @endif
+      </div>
     </div>
+  </div>
 </div>
 <!--
 <div class="well">
