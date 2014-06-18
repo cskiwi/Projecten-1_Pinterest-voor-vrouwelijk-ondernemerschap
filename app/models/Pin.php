@@ -71,5 +71,6 @@ class Pin extends Eloquent {
         'occurrences' => $term_info[1],
       ]);
     }
+    return $pin;
   }
 }
